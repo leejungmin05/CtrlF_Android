@@ -1,4 +1,4 @@
-package com.thinlineit.ctrlf.main
+package com.thinlineit.ctrlf.notes
 
 data class NoteDao(
     val id:Int,

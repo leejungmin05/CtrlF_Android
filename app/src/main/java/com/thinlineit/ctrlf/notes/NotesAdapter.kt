@@ -1,6 +1,7 @@
-package com.thinlineit.ctrlf.main
+package com.thinlineit.ctrlf.notes
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -8,8 +9,8 @@ import com.thinlineit.ctrlf.util.BindingRecyclerViewAdapter
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.ListItemNoteBinding
 
-class NoteAdapter : RecyclerView.Adapter<NoteAdapter.ViewHolder>(),
-    BindingRecyclerViewAdapter<List<NoteDao>> {
+class NotesAdapter(private val clickListener: (Int) -> Unit) :
+    RecyclerView.Adapter<NotesAdapter.ViewHolder>(), BindingRecyclerViewAdapter<List<NoteDao>> {
     var noteList = listOf<NoteDao>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
@@ -19,13 +20,16 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.ViewHolder>(),
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val noteDao = noteList[position]
-        holder.bind(noteDao)
+        holder.bind(noteDao, clickListener)
     }
 
     class ViewHolder(private val dataBinding: ListItemNoteBinding) :
         RecyclerView.ViewHolder(dataBinding.root) {
-        fun bind(noteDao: NoteDao) {
+        fun bind(noteDao: NoteDao, clickListener: (Int) -> Unit) {
             dataBinding.note = noteDao
+            dataBinding.root.setOnClickListener {
+                clickListener(noteDao.id)
+            }
         }
 
         companion object {

@@ -6,20 +6,25 @@
     <data>
         <variable
             name="note"
-            type="com.thinlineit.ctrlf.main.NoteDao" />
+            type="com.thinlineit.ctrlf.notes.NoteDao" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_margin="3dp"
+        android:background="@color/teal_200">
 
         <TextView
             android:id="@+id/noteName"
-            tool:text="Database"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@{note.name}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            tool:text="Database" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,10 +1,10 @@
-package com.thinlineit.ctrlf.main
+package com.thinlineit.ctrlf.notes
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class MainViewModel : ViewModel() {
+class NotesViewModel : ViewModel() {
     val noteList: LiveData<MutableList<NoteDao>>
         get() = _noteList
 
