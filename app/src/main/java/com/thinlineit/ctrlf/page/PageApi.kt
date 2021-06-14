@@ -1,7 +1,5 @@
 package com.thinlineit.ctrlf.page
 
-import com.thinlineit.ctrlf.page.PageDao
-import retrofit2.Call
 import retrofit2.http.*
 
 interface PageApi {
@@ -12,7 +10,6 @@ interface PageApi {
         @Path("page_id") pageId: Int,
     ): PageDao
 
-
     //Page 생성
     @FormUrlEncoded
     @POST("pages")
@@ -21,7 +18,6 @@ interface PageApi {
         @Field("title") title: String,
         @Field("content") content: String
     )
-
 
     //Page 수정
     @FormUrlEncoded
@@ -32,7 +28,6 @@ interface PageApi {
         @Field("title") title: String,
         @Field("content") content: String
     )
-
 
     @DELETE("pages/{page_id}")
     suspend fun deletePage(

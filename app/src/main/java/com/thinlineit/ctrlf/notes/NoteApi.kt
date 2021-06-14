@@ -1,8 +1,5 @@
 package com.thinlineit.ctrlf.notes
 
-
-import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.*
 
 interface NoteApi {
@@ -19,14 +16,12 @@ interface NoteApi {
         @Path("note_id") noteId: Int,
     ): NoteDao
 
-
     //note 생성
     @FormUrlEncoded
     @POST("notes")
     suspend fun addNote(
         @Field("title") title: String
     )
-
 
     //note 수정
     @FormUrlEncoded
@@ -36,10 +31,8 @@ interface NoteApi {
         @Field("title") title: String
     )
 
-
     @DELETE("notes/{note_id}")
     suspend fun deleteNote(
         @Path("note_id") noteId: Int
     )
-
 }

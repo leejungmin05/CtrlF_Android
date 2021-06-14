@@ -1,7 +1,6 @@
 package com.thinlineit.ctrlf.notes
 
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +15,7 @@ import com.thinlineit.ctrlf.databinding.FragmentNotesBinding
 
 class NotesFragment : Fragment() {
     private val notesViewModel by viewModels<NotesViewModel>()
-    private val noteAdapter = NotesAdapter {noteId->
+    private val noteAdapter = NotesAdapter { noteId ->
         this.findNavController().navigate(
             NotesFragmentDirections.actionNotesFragmentToPageFragment(noteId)
         )
@@ -33,8 +32,8 @@ class NotesFragment : Fragment() {
         binding.NoteListRecyclerView.adapter = noteAdapter
         notesViewModel.alertLiveData.observe(viewLifecycleOwner) {
             //TODO: Check if response body is empty
-            Toast.makeText(context,it,Toast.LENGTH_LONG).show()
-            Log.e("loadNote Exception",it)
+            Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+            Log.e("loadNote Exception", it)
         }
         return binding.root
     }
