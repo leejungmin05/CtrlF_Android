@@ -15,24 +15,25 @@ import retrofit2.Call
 import retrofit2.Response
 import java.lang.Exception
 
+
 class NotesViewModel : ViewModel() {
     val noteList: LiveData<List<NoteDao>>
         get() = _noteList
     val alertLiveData = MutableLiveData<String>()
-
     private val _noteList = MutableLiveData<List<NoteDao>>(listOf())
 
     init {
-            loadNote()
+        loadNote()
     }
 
     private fun loadNote() {
         viewModelScope.launch {
             try {
                 _noteList.setValue(NoteService.retrofitService.listNote(""))
-            } catch(e : Exception) {
+            } catch (e: Exception) {
                 alertLiveData.postValue(e.toString())
             }
         }
+
     }
 }

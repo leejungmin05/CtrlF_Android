@@ -21,11 +21,12 @@ interface TopicApi {
         @Field("title") title: String
     )
 
+
     //Topic 수정
     @FormUrlEncoded
     @PATCH("topics/{topic_id}")
     suspend fun updateTopic(
-        @Path("topic_id") topicId : Int,
+        @Path("topic_id") topicId: Int,
         @Field("note_id") noteId: Int,
         @Field("title") title: String
     )
@@ -34,6 +35,7 @@ interface TopicApi {
     //Topic 삭제
     @DELETE("topics/{topic_id}")
     suspend fun deleteTopic(
-        @Path("topic_id") topicId : Int
+        @Path("topic_id") topicId: Int
     )
+
 }
