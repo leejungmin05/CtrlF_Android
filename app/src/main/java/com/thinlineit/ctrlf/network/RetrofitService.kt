@@ -7,8 +7,6 @@ import com.thinlineit.ctrlf.network.api.TopicApi
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
-
 private const val BASE_URL =
     "http://kongjingoo.pythonanywhere.com/api/"
 
