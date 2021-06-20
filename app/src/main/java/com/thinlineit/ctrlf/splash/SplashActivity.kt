@@ -18,7 +18,6 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
         loadSplashView()
         startFirstActivity()
-
     }
 
     private fun checkLogin(): Boolean {

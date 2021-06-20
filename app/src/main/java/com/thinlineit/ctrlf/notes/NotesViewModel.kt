@@ -3,22 +3,28 @@ package com.thinlineit.ctrlf.notes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.thinlineit.ctrlf.network.NoteService
+import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class NotesViewModel : ViewModel() {
-    val noteList: LiveData<MutableList<NoteDao>>
+    private val _noteList = MutableLiveData<List<NoteDao>>(listOf())
+    val noteList: LiveData<List<NoteDao>>
         get() = _noteList
+    val alertLiveData = MutableLiveData<String>()
 
-    private val _noteList = MutableLiveData<MutableList<NoteDao>>()
     init {
-        listNote()
+        loadNote()
     }
-    private fun listNote() {
-        _noteList.value = mutableListOf(
-            NoteDao(0, "test0"),
-            NoteDao(1, "test1"),
-            NoteDao(2, "test2"),
-            NoteDao(3, "test3"),
-            NoteDao(4, "test4")
-        )
+
+    private fun loadNote() {
+        viewModelScope.launch {
+            try {
+                _noteList.setValue(NoteService.retrofitService.listNote(""))
+            } catch (e: Exception) {
+                alertLiveData.postValue(e.toString())
+            }
+        }
     }
 }
