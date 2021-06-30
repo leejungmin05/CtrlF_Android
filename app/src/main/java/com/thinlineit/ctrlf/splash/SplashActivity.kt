@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.bumptech.glide.Glide
 import com.thinlineit.ctrlf.MainActivity
 import com.thinlineit.ctrlf.R
+import com.thinlineit.ctrlf.registration.LoginActivity
 import kotlinx.android.synthetic.main.activity_splash.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -18,7 +19,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
         loadSplashView()
         startFirstActivity()
-
+        finish()
     }
 
     private fun checkLogin(): Boolean {
@@ -45,7 +46,12 @@ class SplashActivity : AppCompatActivity() {
                     )
                 )
             } else {
-                // start loginActivity
+                this@SplashActivity.startActivity(
+                    Intent(
+                        this@SplashActivity,
+                        LoginActivity::class.java
+                    )
+                )
             }
         }
     }
