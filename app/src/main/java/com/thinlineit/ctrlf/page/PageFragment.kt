@@ -17,15 +17,14 @@ class PageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding:FragmentPageBinding = DataBindingUtil.inflate(
-            inflater,R.layout.fragment_page,container,false
+        val binding: FragmentPageBinding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_page, container, false
         )
         val noteId = PageFragmentArgs.fromBundle(requireArguments()).noteId
         val viewModelFactory = PageViewModelFactory(noteId)
-        val pageViewModel=ViewModelProvider(this,viewModelFactory).get(PageViewModel::class.java)
+        val pageViewModel = ViewModelProvider(this, viewModelFactory).get(PageViewModel::class.java)
         binding.pageViewModel = pageViewModel
         binding.lifecycleOwner = this
-
         return binding.root
     }
 }
