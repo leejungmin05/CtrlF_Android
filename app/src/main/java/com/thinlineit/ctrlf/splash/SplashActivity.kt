@@ -7,6 +7,8 @@ import com.bumptech.glide.Glide
 import com.thinlineit.ctrlf.MainActivity
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.registration.LoginActivity
+import com.thinlineit.ctrlf.util.Application
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_splash.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -19,12 +21,11 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
         loadSplashView()
         startFirstActivity()
-        finish()
     }
 
     private fun checkLogin(): Boolean {
-        //TODO: check if user have login via sharedPreference
-        return true
+        val email = Application.prefs.getString("email", "")
+        return email != ""
     }
 
     private fun loadSplashView() {
@@ -45,6 +46,7 @@ class SplashActivity : AppCompatActivity() {
                         MainActivity::class.java
                     )
                 )
+                finish()
             } else {
                 this@SplashActivity.startActivity(
                     Intent(
@@ -52,6 +54,7 @@ class SplashActivity : AppCompatActivity() {
                         LoginActivity::class.java
                     )
                 )
+                finish()
             }
         }
     }
