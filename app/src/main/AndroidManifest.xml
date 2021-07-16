@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CtrlF"
         android:usesCleartextTraffic="true">
+        <activity android:name=".issue.detail.IssueDetailActivity"></activity>
         <activity
             android:name=".splash.SplashActivity"
             android:theme="@style/Theme.Design.NoActionBar">

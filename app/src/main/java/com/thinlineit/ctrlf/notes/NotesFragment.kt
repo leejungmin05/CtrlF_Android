@@ -30,6 +30,11 @@ class NotesFragment : Fragment() {
         binding.noteViewModel = notesViewModel
         binding.lifecycleOwner = this
         binding.NoteListRecyclerView.adapter = noteAdapter
+        binding.IssueButton.setOnClickListener {
+            this.findNavController().navigate(
+                NotesFragmentDirections.actionNotesFragmentToIssueListFragment()
+            )
+        }
         notesViewModel.alertLiveData.observe(viewLifecycleOwner) {
             //TODO: Check if response body is empty
             Toast.makeText(context, it, Toast.LENGTH_LONG).show()

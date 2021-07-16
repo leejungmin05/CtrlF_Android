@@ -19,17 +19,5 @@ data class TopicDao(
     val pageList: List<PageDao>? = null
 )
 
-data class IssueDao(
-    val id: Int,
-    val title: String,
-    @SerializedName("note_id")
-    val noteId: Int,
-    @SerializedName("topic_id")
-    val topicId: Int,
-    @SerializedName("registration_date")
-    val registrationDate: String,
-    val content: String
-)
-
 
 
