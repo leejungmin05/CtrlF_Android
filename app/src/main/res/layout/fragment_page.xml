@@ -10,16 +10,35 @@
     </data>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/dl_main_drawer_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".page.PageFragment">
-        <com.mukesh.MarkdownView
-            android:id="@+id/markdown_view"
-            app:markdownString="@{pageViewModel.content}"
+        android:fitsSystemWindows="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            />
+            tools:context=".page.PageFragment">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.mukesh.MarkdownView
+                android:id="@+id/markdown_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:markdownString="@{pageViewModel.content}" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- navigation drawer-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/PageListRecyclerView"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            android:layout_width="240dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="@color/white"
+            android:choiceMode="singleChoice"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp" />
+
+    </androidx.drawerlayout.widget.DrawerLayout>
 </layout>
