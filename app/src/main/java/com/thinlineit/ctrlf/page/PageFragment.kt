@@ -16,13 +16,11 @@ class PageFragment : Fragment() {
 
     lateinit var contextadapter : ListAdapter
 
-    var contentlist = arrayListOf<ContentList>(
-        ContentList("a"),
-        ContentList("b"),
-        ContentList("c"),
-        ContentList("d"),
-        ContentList("e"),
-        ContentList("f")
+    var contentlist = arrayListOf<PageDao>(
+        PageDao(1,"asd1",1,"ddd"),
+        PageDao(1,"asd2",1,"ddd"),
+        PageDao(1,"asd3",1,"ddd"),
+        PageDao(1,"asd4",1,"ddd")
     )
 
     override fun onCreateView(
