@@ -20,9 +20,14 @@ class ListAdapter(list: ArrayList<ContentList>) : RecyclerView.Adapter<ListAdapt
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
         //= ViewHolder.from(parent)
     {
+        val view = LayoutInflater.from(parent.context)
+        val dataBinding = DataBindingUtil.inflate<FragmentNotesBinding>(view,R.layout.main_lv_item,parent,false)
+        return ViewHolder(dataBinding)
+        /*
         val view = LayoutInflater.from(parent.context).inflate(R.layout.main_lv_item,parent,false)
         //val dataBinding = DataBindingUtil.inflate<FragmentNotesBinding>(view,R.layout.main_lv_item,parent,false)
         return ViewHolder(view)
+        */
     }
 
     override fun getItemCount(): Int = mList.size
@@ -36,9 +41,17 @@ class ListAdapter(list: ArrayList<ContentList>) : RecyclerView.Adapter<ListAdapt
         holder.bind(p)
     }
 
+    class ViewHolder(private val dataBinding: FragmentNotesBinding) : RecyclerView.ViewHolder(dataBinding.root) {
+        fun bind(contents :ContentList) {
+            itemView.content.text = contents.content
+        }
+    }
+    /*
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(contents :ContentList) {
             itemView.content.text = contents.content
         }
     }
+
+     */
 }
