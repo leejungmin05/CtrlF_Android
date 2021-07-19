@@ -30,9 +30,6 @@ class IssueListFragment : Fragment() {
         binding.issueViewModel = issueViewModel
         binding.lifecycleOwner = this
         binding.IssueListRecyclerView.adapter = issueAdapter
-        binding.IssueListRecyclerView.layoutManager =
-            StaggeredGridLayoutManager(3, LinearLayoutManager.VERTICAL)
-
         return binding.root
     }
 }

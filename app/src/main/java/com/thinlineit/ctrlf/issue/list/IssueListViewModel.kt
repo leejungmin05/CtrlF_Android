@@ -18,18 +18,6 @@ class IssueListViewModel : ViewModel() {
         loadIssue()
     }
 
-    /*
-    private fun loadIssue(){
-        viewModelScope.launch {
-            try {
-                _issueList.setValue(IssueService.retrofitService.listIssue("","1","1",2))
-            }catch (e:Exception){
-                Log.d("issuefail",e.toString())
-            }
-        }
-    }
- */
-
     private fun loadIssue() {
         val imsiList: MutableList<IssueDao> = arrayListOf()
         var contentStr =

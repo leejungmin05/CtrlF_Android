@@ -11,7 +11,5 @@ class IssueDetailViewModel(issue: IssueDao) : ViewModel() {
     val issueInfo: LiveData<IssueDao>
         get() = _issueInfo
 
-    init {
-        Log.d("IssueInfo1", issueInfo.value.toString())
-    }
+    init { }
 }
