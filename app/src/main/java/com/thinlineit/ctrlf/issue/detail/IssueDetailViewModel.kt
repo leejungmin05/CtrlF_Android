@@ -1,6 +1,5 @@
 package com.thinlineit.ctrlf.issue.detail
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,6 +9,4 @@ class IssueDetailViewModel(issue: IssueDao) : ViewModel() {
     private val _issueInfo = MutableLiveData<IssueDao>(issue)
     val issueInfo: LiveData<IssueDao>
         get() = _issueInfo
-
-    init { }
 }

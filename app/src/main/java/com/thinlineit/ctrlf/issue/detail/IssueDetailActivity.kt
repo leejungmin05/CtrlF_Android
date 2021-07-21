@@ -14,9 +14,13 @@ class IssueDetailActivity : AppCompatActivity() {
         DataBindingUtil.setContentView(this, R.layout.activity_issue_detail)
     }
 
+    companion object {
+        lateinit var issue: IssueDao
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val issue = intent.getSerializableExtra("issueInfo") as IssueDao
+        issue = intent.getSerializableExtra("issueInfo") as IssueDao
         val viewModelFactory = IssueDetailViewModelFactory(issue)
         val issueDetailViewModel =
             ViewModelProvider(this, viewModelFactory).get(IssueDetailViewModel::class.java)

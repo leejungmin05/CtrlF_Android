@@ -8,13 +8,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.FragmentIssueListBinding
 
 class IssueListFragment : Fragment() {
-    private val issueViewModel by viewModels<IssueListViewModel>()
+    private val issuesViewModel by viewModels<IssueListViewModel>()
     private val issueAdapter = IssueListAdapter { issueInfo ->
         this.findNavController().navigate(
             IssueListFragmentDirections.actionIssueListFragmentToIssueDetailActivity(issueInfo)
@@ -24,12 +22,14 @@ class IssueListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding: FragmentIssueListBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_issue_list, container, false)
-        binding.issueViewModel = issueViewModel
-        binding.lifecycleOwner = this
-        binding.IssueListRecyclerView.adapter = issueAdapter
+        binding.apply {
+            issueViewModel = issuesViewModel
+            lifecycleOwner = this@IssueListFragment
+            IssueListRecyclerView.adapter = issueAdapter
+        }
         return binding.root
     }
 }
