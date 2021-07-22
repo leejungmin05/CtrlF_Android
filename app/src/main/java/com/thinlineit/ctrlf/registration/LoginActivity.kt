@@ -6,59 +6,42 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.thinlineit.ctrlf.MainActivity
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.ActivityLoginBinding
-import com.thinlineit.ctrlf.util.Application
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
+    private val viewModel: LoginViewModel by lazy {
+        ViewModelProvider(this).get(LoginViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         binding.lifecycleOwner = this
+        binding.viewModel = viewModel
 
-        binding.loginBtn.setOnClickListener {
-            val email = binding.loginEmail.text.toString()
-            val pwd = binding.loginPwd.text.toString()
-            Application.prefs.setString("email",email)
-            Application.prefs.setString("pwd",pwd)
-            loginCheck(email,pwd)
-
-        }
-
-        binding.registerBtn.setOnClickListener {
-            setRegisterActivity()
-        }
-    }
-
-    fun loginCheck(email: String, pwd: String) {
-        if(email.equals("") || pwd.equals("")) {
-            Toast.makeText(this,"이메일과 비밀번호를 입력해주세요",Toast.LENGTH_LONG).show()
-        } else {
-            doLogin(email,pwd)
-        }
-    }
-
-    private fun doLogin(email: String, pwd: String) {
-        if(email == "test" ) {
-            if(pwd == "1234") {
+        viewModel.loginStatus.observe(this, Observer {
+            if (it) {
                 MainActivity.start(this)
                 finish()
             } else {
-                Toast.makeText(this,"이메일과 비밀번호를 확인해주세요",Toast.LENGTH_LONG).show()
+                Toast.makeText(this, ALERTTEXT, Toast.LENGTH_LONG).show()
             }
-        } else {
-            Toast.makeText(this,"회원가입해줘!!!!!",Toast.LENGTH_LONG).show()
+        })
+
+        viewModel.eventClick.observe(this, {
+            RegisterActivity.start(this)
+            finish()
+        })
+
+        viewModel.alertLiveData.observe(this) {
+            Toast.makeText(this, it, Toast.LENGTH_LONG).show()
         }
-
     }
-
-    private fun setRegisterActivity() {
-        RegisterActivity.start(this)
-    }
-
 
     companion object {
         fun start(context: Context) {
@@ -67,4 +50,5 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private val ALERTTEXT = "이메일과 비밀번호를 입력해주세요"
 }
