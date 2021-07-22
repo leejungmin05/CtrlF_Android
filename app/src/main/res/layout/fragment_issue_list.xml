@@ -38,7 +38,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/issueText"
-                app:spanCount="3"
+                app:spanCount="2"
                 tools:listitem="@layout/list_item_issue" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
