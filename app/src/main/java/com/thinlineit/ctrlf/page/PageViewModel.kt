@@ -22,9 +22,11 @@ class PageViewModel(noteId: Int) : ViewModel() {
         get() = _pageInfo
 
     val content = Transformations.map(pageInfo) { it.content }
+    val topicList = Transformations.map(noteInfo){it.topicList}
 
     init {
         loadPage(1)
+        loadNoteInfo()
     }
 
     private fun loadPage(pageId: Int) {
@@ -40,7 +42,7 @@ class PageViewModel(noteId: Int) : ViewModel() {
         //TODO: Load the Sub-information of note using "getNote" api
         viewModelScope.launch {
             try {
-                _noteInfo.setValue(NoteService.retrofitService.getNote(Integer.parseInt(noteIdString.toString())))
+                _noteInfo.setValue(NoteService.retrofitService.getNote(Integer.parseInt(_noteIdString.value.toString())))
             } catch (e: Exception) {
             }
         }

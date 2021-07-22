@@ -38,7 +38,9 @@
             android:background="@color/white"
             android:choiceMode="singleChoice"
             android:divider="@android:color/transparent"
-            android:dividerHeight="0dp" />
+            android:dividerHeight="0dp"
+            tools:listitem="@layout/topic_list_page"
+            app:data="@{pageViewModel.topicList}"/>
 
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

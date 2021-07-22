@@ -5,23 +5,14 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.FragmentPageBinding
 import kotlinx.android.synthetic.main.fragment_page.*
 
 class PageFragment : Fragment() {
 
-    lateinit var contextadapter : ListAdapter
-
-    var contentlist = arrayListOf<PageDao>(
-        PageDao(1,"asd1",1,"ddd"),
-        PageDao(1,"asd2",1,"ddd"),
-        PageDao(1,"asd3",1,"ddd"),
-        PageDao(1,"asd4",1,"ddd")
-    )
+    lateinit var topicListAdapter : TopicListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,9 +29,8 @@ class PageFragment : Fragment() {
 
         setHasOptionsMenu(true)
 
-        contextadapter = ListAdapter(contentlist)
-        binding.PageListRecyclerView.adapter = contextadapter
-
+        topicListAdapter = TopicListAdapter()
+        binding.PageListRecyclerView.adapter = topicListAdapter
 
         return binding.root
     }
@@ -51,13 +41,9 @@ class PageFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_settings -> {
-                // navigate to settings screen
-                //nv_main_navigation_root.setNavigationItemSelectedListener(this) //navigation 리스너
                 dl_main_drawer_root.openDrawer(GravityCompat.START)
-
                 true
             }
-
             else -> super.onOptionsItemSelected(item)
         }
     }
