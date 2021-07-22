@@ -23,13 +23,18 @@ class IssueListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding: FragmentIssueListBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_issue_list, container, false)
-        binding.apply {
-            issueViewModel = issuesViewModel
-            lifecycleOwner = this@IssueListFragment
-            IssueListRecyclerView.adapter = issueAdapter
-        }
+        val binding =
+            (DataBindingUtil.inflate(
+                inflater,
+                R.layout.fragment_issue_list,
+                container,
+                false
+            ) as FragmentIssueListBinding)
+                .apply {
+                    issueViewModel = issuesViewModel
+                    lifecycleOwner = this@IssueListFragment
+                    issueListRecyclerView.adapter = issueAdapter
+                }
         return binding.root
     }
 }

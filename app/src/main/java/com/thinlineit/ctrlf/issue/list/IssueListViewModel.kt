@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class IssueListViewModel : ViewModel() {
-    private val _issueList = MutableLiveData<List<IssueDao>>(listOf())
+    private val _issueList = MutableLiveData<List<IssueDao>>(emptyList())
     val issueList: LiveData<List<IssueDao>>
         get() = _issueList
 
@@ -20,10 +20,10 @@ class IssueListViewModel : ViewModel() {
 
     private fun loadIssue() {
         //TODO: Load the list of issue using "getIssue" api
-        _issueList.setValue(createIssue())
+        _issueList.value = createIssue()
     }
 
-    fun createIssue(): MutableList<IssueDao> {
+    private fun createIssue(): MutableList<IssueDao> {
         val imsiList: MutableList<IssueDao> = arrayListOf()
         var contentStr =
             "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"

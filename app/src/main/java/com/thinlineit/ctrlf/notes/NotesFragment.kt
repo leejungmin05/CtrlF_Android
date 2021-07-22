@@ -25,16 +25,22 @@ class NotesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding: FragmentNotesBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_notes, container, false)
-        binding.noteViewModel = notesViewModel
-        binding.lifecycleOwner = this
-        binding.NoteListRecyclerView.adapter = noteAdapter
-        binding.IssueButton.setOnClickListener {
-            this.findNavController().navigate(
-                NotesFragmentDirections.actionNotesFragmentToIssueListFragment()
-            )
-        }
+        val binding =
+            (DataBindingUtil.inflate(
+                inflater,
+                R.layout.fragment_notes,
+                container,
+                false
+            ) as FragmentNotesBinding).apply {
+                noteViewModel = notesViewModel
+                lifecycleOwner = this@NotesFragment
+                noteListRecyclerView.adapter = noteAdapter
+                issueButton.setOnClickListener {
+                    this@NotesFragment.findNavController().navigate(
+                        NotesFragmentDirections.actionNotesFragmentToIssueListFragment()
+                    )
+                }
+            }
         notesViewModel.alertLiveData.observe(viewLifecycleOwner) {
             //TODO: Check if response body is empty
             Toast.makeText(context, it, Toast.LENGTH_LONG).show()

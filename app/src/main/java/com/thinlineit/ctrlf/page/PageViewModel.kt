@@ -1,6 +1,5 @@
 package com.thinlineit.ctrlf.page
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.thinlineit.ctrlf.network.NoteService
 import com.thinlineit.ctrlf.network.PageService
@@ -40,7 +39,7 @@ class PageViewModel(noteId: Int) : ViewModel() {
         //TODO: Load the Sub-information of note using "getNote" api
         viewModelScope.launch {
             try {
-                _noteInfo.setValue(NoteService.retrofitService.getNote(Integer.parseInt(noteIdString.toString())))
+                _noteInfo.setValue(NoteService.retrofitService.getNote(Integer.parseInt(noteIdString.value.toString())))
             } catch (e: Exception) {
             }
         }

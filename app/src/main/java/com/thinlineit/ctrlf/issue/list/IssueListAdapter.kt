@@ -12,7 +12,7 @@ import com.thinlineit.ctrlf.util.BindingRecyclerViewAdapter
 class IssueListAdapter(private val clickListener: (IssueDao) -> Unit) :
     RecyclerView.Adapter<IssueListAdapter.ViewHolder>(),
     BindingRecyclerViewAdapter<List<IssueDao>> {
-    var issueList = emptyList<IssueDao>()
+    private var issueList = emptyList<IssueDao>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder.from(parent)

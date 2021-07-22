@@ -13,12 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".page.PageFragment">
+
         <com.mukesh.MarkdownView
-            android:id="@+id/markdown_view"
-            app:markdownString="@{pageViewModel.content}"
+            android:id="@+id/markdownView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            />
+            app:markdownString="@{pageViewModel.content}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

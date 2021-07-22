@@ -3,4 +3,12 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="notes_fragment">Notes</string>
+    <string name="Issue">Issue</string>
+    <string name="Note">Note</string>
+    <string name="Page">Page</string>
+    <string name="Title">Title</string>
+    <string name="Id">Id</string>
+    <string name="Content">Content</string>
+    <string name="RegistrationDate">RegistrationDate</string>
+
 </resources>
