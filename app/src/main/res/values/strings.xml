@@ -3,19 +3,22 @@
     <string name="notes_fragment">Notes</string>
 
     <!-- login & registration-->
-    <string name="email">Email</string>
-    <string name="pwd">Password</string>
-    <string name="pwdConfirm">Confirm Password</string>
+    <string name="email">E-mail</string>
+    <string name="pwd">PASSWORD</string>
+    <string name="pwdConfirm">PASSWORD 확인</string>
     <string name="login">로그인</string>
+    <string name="loginEng">log in</string>
     <string name="register">회원가입</string>
-    <string name="registerFin">완료</string>
-    <string name="nickname">Nickname</string>
-    <string name="phoneNum">Phone Number</string>
+    <string name="nickname">닉네임</string>
+    <string name="phoneNum">코드 입력</string>
+    <string name="duplicate">중복확인</string>
+    <string name="emailConfirm">이메일 인증</string>
 
 
     <string name="login_validation">회원가입</string>
+    <string name="passwordValidation">일치하지 않습니다</string>
 
-
+    <string name="completeRegistration">"환영합니다.\n가입이 완료되었습니다.\n\n로그인 후 이용해주세요."</string>
 
 
 </resources>
