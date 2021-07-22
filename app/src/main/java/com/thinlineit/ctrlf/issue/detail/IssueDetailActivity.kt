@@ -1,5 +1,6 @@
 package com.thinlineit.ctrlf.issue.detail
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -10,17 +11,17 @@ import com.thinlineit.ctrlf.issue.IssueDao
 
 class IssueDetailActivity : AppCompatActivity() {
 
+    companion object {
+        const val ISSUE_INFO = "issueInfo"
+    }
+
     private val binding: ActivityIssueDetailBinding by lazy {
         DataBindingUtil.setContentView(this, R.layout.activity_issue_detail)
     }
 
-    companion object {
-        lateinit var issue: IssueDao
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        issue = intent.getSerializableExtra("issueInfo") as IssueDao
+        val issue = intent.getSerializableExtra(ISSUE_INFO) as IssueDao
         val viewModelFactory = IssueDetailViewModelFactory(issue)
         val issueDetailViewModel =
             ViewModelProvider(this, viewModelFactory).get(IssueDetailViewModel::class.java)
