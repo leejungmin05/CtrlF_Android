@@ -12,7 +12,7 @@ import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.FragmentIssueListBinding
 
 class IssueListFragment : Fragment() {
-    private val issuesViewModel by viewModels<IssueListViewModel>()
+    private val issueViewModel by viewModels<IssueListViewModel>()
     private val issueAdapter = IssueListAdapter { issueInfo ->
         this.findNavController().navigate(
             IssueListFragmentDirections.actionIssueListFragmentToIssueDetailActivity(issueInfo)
@@ -31,7 +31,7 @@ class IssueListFragment : Fragment() {
                 false
             ) as FragmentIssueListBinding)
                 .apply {
-                    issueViewModel = issuesViewModel
+                    this.issueViewModel = this@IssueListFragment.issueViewModel
                     lifecycleOwner = this@IssueListFragment
                     issueListRecyclerView.adapter = issueAdapter
                 }

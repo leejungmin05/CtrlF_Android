@@ -18,10 +18,10 @@ class IssueDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val issue = intent.getSerializableExtra(ISSUE_INFO) as IssueDao
         val viewModelFactory = IssueDetailViewModelFactory(issue)
-        val issuesDetailViewModel =
+        val issueDetailViewModel =
             ViewModelProvider(this, viewModelFactory).get(IssueDetailViewModel::class.java)
         binding.apply {
-            issueDetailViewModel = issuesDetailViewModel
+            this.issueDetailViewModel = issueDetailViewModel
             lifecycleOwner = this@IssueDetailActivity
         }
     }

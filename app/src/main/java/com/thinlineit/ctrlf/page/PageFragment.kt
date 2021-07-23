@@ -17,12 +17,12 @@ class PageFragment : Fragment() {
     ): View {
         val noteId = PageFragmentArgs.fromBundle(requireArguments()).noteId
         val viewModelFactory = PageViewModelFactory(noteId)
-        val pagesViewModel =
+        val pageViewModel =
             ViewModelProvider(this, viewModelFactory).get(PageViewModel::class.java)
         val binding = (DataBindingUtil.inflate(
             inflater, R.layout.fragment_page, container, false
         ) as FragmentPageBinding).apply {
-            pageViewModel = pagesViewModel
+            this.pageViewModel = pageViewModel
             lifecycleOwner = this@PageFragment
         }
         return binding.root
