@@ -16,6 +16,11 @@
             app:destination="@id/page_fragment"
             app:enterAnim="@anim/slide_in_right"
             app:popEnterAnim="@anim/slide_in_right" />
+        <action
+            android:id="@+id/action_notes_fragment_to_issue_list_fragment"
+            app:destination="@id/issue_list_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_right" />
     </fragment>
     <fragment
         android:id="@+id/page_fragment"
@@ -31,5 +36,25 @@
             app:enterAnim="@anim/slide_in_right"
             app:popEnterAnim="@anim/slide_in_right" />
     </fragment>
+    <fragment
+        android:id="@+id/issue_list_fragment"
+        android:name="com.thinlineit.ctrlf.issue.list.IssueListFragment"
+        android:label="IssueList"
+        tools:layout="@layout/fragment_issue_list">
+        <action
+            android:id="@+id/action_issue_list_fragment_to_issue_detail_activity"
+            app:destination="@id/issue_detail_activity"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_right" />
+    </fragment>
+    <activity
+        android:id="@+id/issue_detail_activity"
+        android:name="com.thinlineit.ctrlf.issue.detail.IssueDetailActivity"
+        android:label="IssueDetail"
+        tools:layout="@layout/activity_issue_detail">
+        <argument
+            android:name="issueInfo"
+            app:argType="com.thinlineit.ctrlf.issue.IssueDao"/>
+    </activity>
 
 </navigation>

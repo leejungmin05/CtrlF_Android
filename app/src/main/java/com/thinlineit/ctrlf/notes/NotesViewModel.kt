@@ -21,7 +21,7 @@ class NotesViewModel : ViewModel() {
     private fun loadNote() {
         viewModelScope.launch {
             try {
-                _noteList.setValue(NoteService.retrofitService.listNote(""))
+                _noteList.value = NoteService.retrofitService.listNote("")
             } catch (e: Exception) {
                 alertLiveData.postValue(e.toString())
             }
