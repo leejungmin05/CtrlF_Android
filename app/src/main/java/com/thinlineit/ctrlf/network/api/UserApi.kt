@@ -26,11 +26,11 @@ interface UserApi {
     ): AuthEmailResponse
 
     @GET("auth/signup/nickname/duplicate")
-    suspend fun nicknameChk(@Query("data") data: String): chkResponse
+    suspend fun chkNickname(@Query("data") data: String): chkResponse
 
 
     @GET("auth/signup/email/duplicate")
-    suspend fun emailChk(@Query("data") data: String): chkResponse
+    suspend fun chkEmail(@Query("data") data: String): chkResponse
 
 
 }
