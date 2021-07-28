@@ -40,20 +40,10 @@ class SplashActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.Default).launch {
             delay(1500L)
             if (checkLogin()) {
-                this@SplashActivity.startActivity(
-                    Intent(
-                        this@SplashActivity,
-                        MainActivity::class.java
-                    )
-                )
+                MainActivity.start(this@SplashActivity)
                 finish()
             } else {
-                this@SplashActivity.startActivity(
-                    Intent(
-                        this@SplashActivity,
-                        LoginActivity::class.java
-                    )
-                )
+                LoginActivity.start(this@SplashActivity)
                 finish()
             }
         }
