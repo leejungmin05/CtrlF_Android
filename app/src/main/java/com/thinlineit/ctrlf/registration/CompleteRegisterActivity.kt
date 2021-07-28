@@ -9,11 +9,12 @@ import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.ActivityCompleteRegisterBinding
 
 class CompleteRegisterActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityCompleteRegisterBinding
+    private val binding: ActivityCompleteRegisterBinding by lazy {
+        DataBindingUtil.setContentView(this, R.layout.activity_complete_register)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_complete_register)
         binding.lifecycleOwner = this
 
         binding.loginBtn.setOnClickListener {
