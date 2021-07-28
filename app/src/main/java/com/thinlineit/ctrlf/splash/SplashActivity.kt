@@ -1,6 +1,5 @@
 package com.thinlineit.ctrlf.splash
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
@@ -24,7 +23,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun checkLogin(): Boolean {
-        val email = Application.prefs.getString("email", "")
+        val email = Application.preferenceUtil.getString(EMAIL, "")
         return email != ""
     }
 
@@ -41,11 +40,14 @@ class SplashActivity : AppCompatActivity() {
             delay(1500L)
             if (checkLogin()) {
                 MainActivity.start(this@SplashActivity)
-                finish()
             } else {
                 LoginActivity.start(this@SplashActivity)
-                finish()
             }
+            finish()
         }
+    }
+
+    companion object {
+        private val EMAIL = "email"
     }
 }

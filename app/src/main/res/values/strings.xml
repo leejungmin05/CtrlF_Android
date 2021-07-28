@@ -3,7 +3,8 @@
     <string name="notes_fragment">Notes</string>
 
     <!-- login & registration-->
-    <string name="email">E-mail</string>
+    <string name="e_mail">E-mail</string>
+    <string name="email">email</string>
     <string name="pwd">PASSWORD</string>
     <string name="pwdConfirm">PASSWORD 확인</string>
     <string name="login">로그인</string>

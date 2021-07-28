@@ -8,7 +8,6 @@
         <variable
             name="viewModel"
             type="com.thinlineit.ctrlf.registration.LoginViewModel" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,15 +15,14 @@
         android:layout_height="match_parent"
         tools:context=".registration.LoginActivity">
 
-
         <EditText
             android:id="@+id/loginEmail"
             android:layout_width="300dp"
             android:layout_height="40dp"
             android:layout_marginStart="55dp"
             android:layout_marginTop="300dp"
-            android:hint="@string/email"
-            android:text="@={viewModel._email}"
+            android:hint="@string/e_mail"
+            android:text="@={viewModel.email}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,7 +33,7 @@
             android:layout_marginTop="8dp"
             android:hint="@string/pwd"
             android:inputType="textPassword"
-            android:text="@={viewModel._password}"
+            android:text="@={viewModel.password}"
             app:layout_constraintStart_toStartOf="@+id/loginEmail"
             app:layout_constraintTop_toBottomOf="@+id/loginEmail" />
 
@@ -45,16 +43,16 @@
             android:layout_height="wrap_content"
             android:text="@{viewModel.loginMessage}"
             android:textColor="@color/red"
-            tools:text = "로그인 확인 text"
             app:layout_constraintStart_toStartOf="@+id/loginPwd"
             app:layout_constraintTop_toBottomOf="@+id/loginPwd"
-            />
+            tools:text="로그인 확인 text" />
+
         <Button
             android:id="@+id/loginBtn"
             android:layout_width="145dp"
             android:layout_height="48dp"
             android:layout_marginTop="15dp"
-            android:onClick="@{() -> viewModel.loginChk()}"
+            android:onClick="@{() -> viewModel.checkLogin()}"
             android:text="@string/login"
             app:layout_constraintStart_toStartOf="@+id/loginPwd"
             app:layout_constraintTop_toBottomOf="@+id/loginPwd" />

@@ -26,7 +26,7 @@
             android:layout_marginStart="55dp"
             android:layout_marginTop="200dp"
             android:background="@drawable/border_edittext_default"
-            android:hint="@string/email"
+            android:hint="@string/e_mail"
             android:paddingStart="10dp"
             android:text="@={viewModel.email}"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +48,7 @@
             android:layout_height="40dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/button_enable"
-            android:onClick="@{()->viewModel.duplicateEmail()}"
+            android:onClick="@{()->viewModel.checkDuplicateEmail()}"
             android:text="@string/duplicate"
             app:layout_constraintStart_toStartOf="@+id/regEmailText"
             app:layout_constraintTop_toBottomOf="@+id/regEmailText" />
@@ -58,7 +58,7 @@
             android:layout_width="300dp"
             android:layout_height="40dp"
             android:enabled="@{viewModel.isEmailEnabled()}"
-            android:onClick="@{()->viewModel.authEmail()}"
+            android:onClick="@{()->viewModel.sendAuthEmail()}"
             android:text="@string/emailConfirm"
             android:background="@drawable/button_default"
             app:layout_constraintStart_toStartOf="@+id/emailDuplicateBtn"
@@ -85,7 +85,7 @@
             android:text="@={viewModel.code}"
             app:layout_constraintStart_toStartOf="@+id/regEmailAuthText"
             app:layout_constraintTop_toBottomOf="@+id/regEmailAuthText"
-            app:onFocusLost="@{viewModel.isCodeValid}" />
+            app:onFocusLost="@{viewModel.checkCodeValid}" />
 
         <TextView
             android:id="@+id/regCodeText"
@@ -108,7 +108,7 @@
             android:text="@={viewModel.nickName}"
             app:layout_constraintStart_toStartOf="@+id/regCodeText"
             app:layout_constraintTop_toBottomOf="@+id/regCodeText"
-            app:onFocusLost="@{viewModel.duplicateNickname}" />
+            app:onFocusLost="@{viewModel.checkDuplicateNickname}" />
 
         <TextView
             android:id="@+id/regNameText"
@@ -145,7 +145,7 @@
             android:text="@={viewModel.passwordConfirm}"
             app:layout_constraintStart_toStartOf="@+id/regPassword"
             app:layout_constraintTop_toBottomOf="@+id/regPassword"
-            app:onFocusLost="@{viewModel.chkPasswordValid}" />
+            app:onFocusLost="@{viewModel.checkPasswordValid}" />
 
         <TextView
             android:id="@+id/regPasswordText"

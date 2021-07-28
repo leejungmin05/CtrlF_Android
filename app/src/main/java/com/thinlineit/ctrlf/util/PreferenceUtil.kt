@@ -4,13 +4,13 @@ import android.content.Context
 import android.content.SharedPreferences
 
 class PreferenceUtil(context: Context) {
-    private val prefs: SharedPreferences = context.getSharedPreferences("login",0)
+    private val sharedPreferences: SharedPreferences = context.getSharedPreferences("prefs_name",0)
 
     fun getString(key: String, defValue: String): String {
-        return prefs.getString(key,defValue).toString()
+        return sharedPreferences.getString(key,defValue).toString()
     }
 
     fun setString(key:String, str: String) {
-        prefs.edit().putString(key,str).apply()
+        sharedPreferences.edit().putString(key,str).apply()
     }
 }

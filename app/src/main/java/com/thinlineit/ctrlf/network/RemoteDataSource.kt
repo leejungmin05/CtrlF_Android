@@ -16,5 +16,4 @@ object RegistrationService {
     val USER_API: UserApi by lazy {
         retrofit.create(UserApi::class.java)
     }
-
 }
