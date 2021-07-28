@@ -1,5 +1,5 @@
 package com.thinlineit.ctrlf.data.response
 
-data class chkResponse(
+data class EmailCheckResponse(
     val message: String
 )

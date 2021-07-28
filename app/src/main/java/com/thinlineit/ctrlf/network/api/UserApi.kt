@@ -13,12 +13,10 @@ interface UserApi {
         @Body request: User
     ): LoginResponse
 
-
     @POST("auth/signup")
     suspend fun requestSignUp(
         @Body request: SignUpRequest
     ): SignUpResponse
-
 
     @POST("auth/signup/email")
     suspend fun authEmail(
@@ -26,11 +24,8 @@ interface UserApi {
     ): AuthEmailResponse
 
     @GET("auth/signup/nickname/duplicate")
-    suspend fun chkNickname(@Query("data") data: String): chkResponse
-
+    suspend fun checkNickname(@Query("data") data: String): EmailCheckResponse
 
     @GET("auth/signup/email/duplicate")
-    suspend fun chkEmail(@Query("data") data: String): chkResponse
-
-
+    suspend fun checkEmail(@Query("data") data: String): EmailCheckResponse
 }

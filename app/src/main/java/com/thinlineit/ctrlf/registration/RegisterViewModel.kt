@@ -4,10 +4,12 @@ import androidx.lifecycle.*
 import com.thinlineit.ctrlf.data.request.AuthEmailRequest
 import com.thinlineit.ctrlf.data.request.SignUpRequest
 import com.thinlineit.ctrlf.network.RegistrationService
+import com.thinlineit.ctrlf.util.Event
+import com.thinlineit.ctrlf.util.addSourceList
+import com.thinlineit.ctrlf.util.isValid
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception
-import java.util.regex.Pattern
 
 class RegisterViewModel : ViewModel() {
 
@@ -16,15 +18,16 @@ class RegisterViewModel : ViewModel() {
     val passwordConfirm = MutableLiveData<String>()
     val nickName = MutableLiveData<String>()
     val code = MutableLiveData<String>()
-
     val emailStatus = MutableLiveData<Int>()
     val codeStatus = MutableLiveData<Int>()
     val nicknameStatus = MutableLiveData<Int>()
     val pwdStatus = MutableLiveData<Int>()
+    val registerClick = MutableLiveData<Event<Boolean>>()
+
 
     val liveDataMerger = MediatorLiveData<Boolean>().apply {
         addSourceList(emailStatus, codeStatus, nicknameStatus, pwdStatus) {
-            signUpValid()
+            isSignUpValid()
         }
     }
 
@@ -34,29 +37,29 @@ class RegisterViewModel : ViewModel() {
     val codeMessage = MutableLiveData<String>()
     val emailAuthMessage = MutableLiveData<String>()
 
-    val isEmailEnabled = MutableLiveData(false)
+    val isEmailEnabled = Transformations.map(emailStatus) { it == Success }
 
-    val duplicateNickname: () -> Unit = {
-        if (nickName.value.toString().isValid(NICKNAMEREGEX)) {
+    val checkDuplicateNickname: () -> Unit = {
+        if (nickName.value?.isValid(NICKNAMEREGEX) == true) {
             viewModelScope.launch(Dispatchers.IO) {
                 try {
-                    RegistrationService.USER_API.chkNickname(nickName.value.toString())
-                    nicknameStatus.value = Success
+                    RegistrationService.USER_API.checkNickname(nickName.value.toString())
+                    nicknameStatus.postValue(Success)
                     nicknameMessage.postValue("")
                 } catch (e: Exception) {
-                    nicknameStatus.value = Failure
+                    nicknameStatus.postValue(Failure)
                     nicknameMessage.postValue(e.message)
                 }
             }
         } else {
             nicknameMessage.postValue(NICKNAMEMESSAGE)
-            nicknameStatus.value = Failure
+            nicknameStatus.postValue(Failure)
         }
     }
 
-    val isCodeValid: () -> Unit = {
+    val checkCodeValid: () -> Unit = {
         if (code.value.toString() != "") {
-            if (code.value!!.isValid(CODEREGEX)) {
+            if (code.value?.isValid(CODEREGEX) == true) {
                 codeStatus.value = Success
                 codeMessage.postValue("")
             } else {
@@ -69,8 +72,8 @@ class RegisterViewModel : ViewModel() {
         }
     }
 
-    val chkPasswordValid: () -> Unit = {
-        if (password.value!!.isValid(PWDREGEX)) {
+    val checkPasswordValid: () -> Unit = {
+        if (password.value?.isValid(PWDREGEX) == true) {
             if (password.value == passwordConfirm.value) {
                 pwdStatus.value = Success
                 pwdMessage.postValue("")
@@ -84,37 +87,27 @@ class RegisterViewModel : ViewModel() {
         }
     }
 
-    private fun String.isValid(expression: String): Boolean {
-        val pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE)
-        val matcher = pattern.matcher(this)
-        return matcher.matches()
-    }
-
-
-    fun duplicateEmail() {
-        viewModelScope.launch(Dispatchers.IO) {
-            if (email.value.toString().isValid(EMAILREGEX)) {
+    fun checkDuplicateEmail() {
+        viewModelScope.launch {
+            if (email.value?.isValid(EMAILREGEX) == true) {
                 try {
-                    RegistrationService.USER_API.chkEmail(email.value.toString())
-                    isEmailEnabled.postValue(true)
-                    emailStatus.value = Success
+                    RegistrationService.USER_API.checkEmail(email.value.toString())
+                    emailStatus.postValue(Success)
                     emailMessage.postValue("")
                 } catch (e: Exception) {
-                    emailStatus.value = Failure
-                    isEmailEnabled.postValue(false)
+                    emailStatus.postValue(Failure)
                     emailMessage.postValue(e.message)
                 }
             } else {
-                emailStatus.value = Failure
+                emailStatus.postValue(Failure)
                 emailMessage.postValue(EMAILMESSAGE)
-                isEmailEnabled.postValue(false)
             }
         }
     }
 
 
-    fun authEmail() {
-        viewModelScope.launch(Dispatchers.IO) {
+    fun sendAuthEmail() {
+        viewModelScope.launch {
             try {
                 RegistrationService.USER_API.authEmail(AuthEmailRequest(email.value.toString()))
                 emailAuthMessage.postValue(EMAILAUTH)
@@ -124,53 +117,44 @@ class RegisterViewModel : ViewModel() {
         }
     }
 
-    private fun signUpValid(): Boolean =
+    private fun isSignUpValid(): Boolean =
         emailStatus.value == Success && codeStatus.value == Success && nicknameStatus.value == Success && pwdStatus.value == Success
 
-
-    private fun <T> MediatorLiveData<T>.addSourceList(
-        vararg liveDataArgument: MutableLiveData<*>,
-        onChange: () -> T
-    ) {
-        liveDataArgument.forEach {
-            this.addSource(it) { value = onChange() }
-        }
-    }
-
     fun requestSignUp() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             try {
                 RegistrationService.USER_API.requestSignUp(
                     SignUpRequest(
-                        email.value.toString(),
-                        code.value.toString(),
-                        nickName.value.toString(),
-                        password.value.toString(),
-                        passwordConfirm.value.toString()
+                        email.value ?: return@launch,
+                        code.value ?: return@launch,
+                        nickName.value ?: return@launch,
+                        password.value ?: return@launch,
+                        passwordConfirm.value ?: return@launch
                     )
                 )
+                registerClick.postValue(Event(true))
             } catch (e: Exception) {
-                codeStatus.value = Failure
+                codeStatus.postValue(Failure)
                 codeMessage.postValue(CODEMESSAGE2)
             }
-
         }
     }
 
-    private val EMAILMESSAGE = "이메일 형식이 올바르지 않습니다."
-    private val EMAILAUTH = "인증 코드를 발송했습니다."
-    private val NICKNAMEMESSAGE = "닉네임은 2~10자, 공백이나 특수문자는 허용하지 않습니다"
-    private val PWDMESSAGE = "영문, 숫자, 특수문자 중 2가지 이상 조합하여 8~20자이내로 기입해주세요"
-    private val PWDMESSAGE2 = "비밀번호가 일치하지 않습니다"
-    private val CODEMESSAGE = "코드를 입력하세요"
-    private val CODEMESSAGE2 = "코드가 일치하지 않습니다"
-    private val EMAILREGEX = "^[\\w.-]+@([\\w\\-]+\\.)+[A-Z]{2,8}$"
-
-    // 8~20 영문 대소문자와 최소 1개의 숫자 혹은 특수문자 포함
-    private val PWDREGEX =
-        "^(?=.*[a-zA-Z])((?=.*\\d)|(?=.*\\W)).{8,20}\$"
-    private val NICKNAMEREGEX = "^[a-zA-Z0-9가-힣ㄱ-ㅎㅏ-ㅣ]{2,10}$"
-    private val CODEREGEX = "^[0-9]{6}$"
-    private val Success = 0
-    private val Failure = 1
+    companion object {
+        // 8~20 영문 대소문자와 최소 1개의 숫자 혹은 특수문자 포함
+        private const val PWDREGEX =
+            "^(?=.*[a-zA-Z])((?=.*\\d)|(?=.*\\W)).{8,20}\$"
+        private const val EMAILMESSAGE = "이메일 형식이 올바르지 않습니다."
+        private const val EMAILAUTH = "인증 코드를 발송했습니다."
+        private const val NICKNAMEMESSAGE = "닉네임은 2~10자, 공백이나 특수문자는 허용하지 않습니다"
+        private const val PWDMESSAGE = "영문, 숫자, 특수문자 중 2가지 이상 조합하여 8~20자이내로 기입해주세요"
+        private const val PWDMESSAGE2 = "비밀번호가 일치하지 않습니다"
+        private const val CODEMESSAGE = "코드를 입력하세요"
+        private const val CODEMESSAGE2 = "코드가 일치하지 않습니다"
+        private const val EMAILREGEX = "^[\\w.-]+@([\\w\\-]+\\.)+[A-Z]{2,8}$"
+        private const val NICKNAMEREGEX = "^[a-zA-Z0-9가-힣ㄱ-ㅎㅏ-ㅣ]{2,10}$"
+        private const val CODEREGEX = "^[0-9]{6}$"
+        private const val Success = 0
+        private const val Failure = 1
+    }
 }

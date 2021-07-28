@@ -4,12 +4,12 @@ import android.app.Application
 
 class Application : Application() {
 
-    companion object {
-        lateinit var prefs: PreferenceUtil
+    override fun onCreate() {
+        preferenceUtil = PreferenceUtil(applicationContext)
+        super.onCreate()
     }
 
-    override fun onCreate() {
-        prefs = PreferenceUtil(applicationContext)
-        super.onCreate()
+    companion object {
+        lateinit var preferenceUtil: PreferenceUtil
     }
 }
