@@ -14,11 +14,15 @@
     <string name="duplicate">중복확인</string>
     <string name="emailConfirm">이메일 인증</string>
 
-
+    <string name="alert_text">이메일과 비밀번호를 입력해주세요</string>
+    <string name="alert_pwd">비밀번호가 일치하지 않습니다.</string>
+    
     <string name="login_validation">회원가입</string>
     <string name="passwordValidation">일치하지 않습니다</string>
 
     <string name="completeRegistration">"환영합니다.\n가입이 완료되었습니다.\n\n로그인 후 이용해주세요."</string>
+
+
 
 
 </resources>
