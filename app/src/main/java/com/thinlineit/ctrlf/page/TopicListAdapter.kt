@@ -13,8 +13,8 @@ import com.thinlineit.ctrlf.util.BindingRecyclerViewAdapter
 
 class TopicListAdapter() :
     RecyclerView.Adapter<TopicListAdapter.ViewHolder>(), BindingRecyclerViewAdapter<List<TopicDao>> {
-    var topicList = listOf<TopicDao>()
-
+    var topicList = emptyList<TopicDao>()
+    /*
     interface OnItemClickListener{
         fun onItemClick(v:View, data: TopicDao, pos : Int)
     }
@@ -23,30 +23,31 @@ class TopicListAdapter() :
     fun setOnItemClickListener(listener : OnItemClickListener) {
         this.listener = listener
     }
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder.from(parent)
 
     override fun getItemCount(): Int = topicList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val p = topicList.get(position)
-        holder.bind(p)
+        val topicDao = topicList[position]
+        holder.bind(topicDao)
     }
 
     class ViewHolder(private val dataBinding: TopicListPageBinding) :
         RecyclerView.ViewHolder(dataBinding.root) {
         fun bind(topicDao: TopicDao) {
             dataBinding.page = topicDao
-
+            /*
             val pos = adapterPosition
             val tag = "ActivityLife"
             if(pos!= RecyclerView.NO_POSITION)
             {
                 itemView.setOnClickListener {
                     Log.d(tag,"checklist()")
-
                 }
             }
+             */
         }
 
         companion object {
