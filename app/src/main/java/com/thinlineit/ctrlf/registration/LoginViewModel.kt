@@ -27,14 +27,14 @@ class LoginViewModel : ViewModel() {
     val loginMessage = MutableLiveData<String>()
 
     private fun doLogin() {
-        viewModelScope.launch{
+        viewModelScope.launch {
             try {
                 val loginResponse = RegistrationService.USER_API.requestLogin(
-                    User(email.value?:"", password.value?:"")
+                    User(email.value ?: "", password.value ?: "")
                 )
                 Application.preferenceUtil.setString(TOKEN, loginResponse.token)
-                Application.preferenceUtil.setString(EMAIL, email.value?:"")
-                Application.preferenceUtil.setString(PASSWORD, password.value?:"")
+                Application.preferenceUtil.setString(EMAIL, email.value ?: "")
+                Application.preferenceUtil.setString(PASSWORD, password.value ?: "")
                 _loginStatus.value = Event(true)
             } catch (e: Exception) {
                 loginMessage.postValue(e.message)
@@ -57,12 +57,12 @@ class LoginViewModel : ViewModel() {
     }
 
     companion object {
-        private val NULLMESSAGE = "비밀번호와 아이디를 입력해주세요."
-        private val EMAILMESSAGE = "이메일 형식이 올바르지 않습니다."
-        private val TOKEN = "token"
-        private val EMAIL = "email"
-        private val PASSWORD = "password"
-        private val EMAILREGEX = "^[\\w.-]+@([\\w\\-]+\\.)+[A-Z]{2,8}$"
+        private const val NULLMESSAGE = "비밀번호와 아이디를 입력해주세요."
+        private const val EMAILMESSAGE = "이메일 형식이 올바르지 않습니다."
+        private const val TOKEN = "token"
+        private const val EMAIL = "email"
+        private const val PASSWORD = "password"
+        private const val EMAILREGEX = "^[\\w.-]+@([\\w\\-]+\\.)+[A-Z]{2,8}$"
     }
 
 }

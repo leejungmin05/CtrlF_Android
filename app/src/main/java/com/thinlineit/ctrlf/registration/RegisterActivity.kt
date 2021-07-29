@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.ActivityRegisterBinding
+import com.thinlineit.ctrlf.util.observeIfNotHandled
 import com.thinlineit.ctrlf.util.setBackground
 
 class RegisterActivity : AppCompatActivity() {
@@ -58,11 +59,15 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
+        viewModel.registerClick.observeIfNotHandled(this) {
+            CompleteRegisterActivity.start(this)
+            finish()
+        }
     }
 
     companion object {
-        private val Success = 0
-        private val Failure = 1
+        private const val Success = 0
+        private const val Failure = 1
 
         fun start(context: Context) {
             val intent = Intent(context, RegisterActivity::class.java)
