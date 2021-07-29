@@ -24,7 +24,7 @@ class PageActivity : AppCompatActivity(){
         val viewModelFactory = PageViewModelFactory(noteId)
         val pageViewModel = ViewModelProvider(this,viewModelFactory).get(PageViewModel::class.java)
         binding.apply {
-            this.pageViewModel =pageViewModel
+            this.pageViewModel = pageViewModel
             lifecycleOwner = this@PageActivity
         }
         PageListRecyclerView.adapter = topicListAdapter
