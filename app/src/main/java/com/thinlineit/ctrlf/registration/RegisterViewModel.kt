@@ -1,10 +1,12 @@
 package com.thinlineit.ctrlf.registration
 
 import androidx.lifecycle.*
+import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.data.request.AuthEmailRequest
 import com.thinlineit.ctrlf.data.request.SignUpRequest
 import com.thinlineit.ctrlf.network.RegistrationService
 import com.thinlineit.ctrlf.util.Event
+import com.thinlineit.ctrlf.util.ResourceProvider
 import com.thinlineit.ctrlf.util.addSourceList
 import com.thinlineit.ctrlf.util.isValid
 import kotlinx.coroutines.Dispatchers
@@ -12,18 +14,19 @@ import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class RegisterViewModel : ViewModel() {
+    lateinit var resourceProvider: ResourceProvider
 
     val email = MutableLiveData("")
     val password = MutableLiveData("")
-    val passwordConfirm = MutableLiveData<String>()
-    val nickName = MutableLiveData<String>()
-    val code = MutableLiveData<String>()
+    val passwordConfirm = MutableLiveData("")
+    val nickName = MutableLiveData("")
+    val code = MutableLiveData("")
+
     val emailStatus = MutableLiveData<Int>()
     val codeStatus = MutableLiveData<Int>()
     val nicknameStatus = MutableLiveData<Int>()
     val pwdStatus = MutableLiveData<Int>()
     val registerClick = MutableLiveData<Event<Boolean>>()
-
 
     val liveDataMerger = MediatorLiveData<Boolean>().apply {
         addSourceList(emailStatus, codeStatus, nicknameStatus, pwdStatus) {
@@ -37,88 +40,87 @@ class RegisterViewModel : ViewModel() {
     val codeMessage = MutableLiveData<String>()
     val emailAuthMessage = MutableLiveData<String>()
 
-    val isEmailEnabled = Transformations.map(emailStatus) { it == Success }
+    val isEmailEnabled = Transformations.map(emailStatus) { it == SUCCESS }
 
     val checkDuplicateNickname: () -> Unit = {
-        if (nickName.value?.isValid(NICKNAMEREGEX) == true) {
+        if (nickName.value.isValid(NICKNAMEREGEX)) {
             viewModelScope.launch(Dispatchers.IO) {
                 try {
                     RegistrationService.USER_API.checkNickname(nickName.value.toString())
-                    nicknameStatus.postValue(Success)
+                    nicknameStatus.postValue(SUCCESS)
                     nicknameMessage.postValue("")
                 } catch (e: Exception) {
-                    nicknameStatus.postValue(Failure)
+                    nicknameStatus.postValue(FAILURE)
                     nicknameMessage.postValue(e.message)
                 }
             }
         } else {
-            nicknameMessage.postValue(NICKNAMEMESSAGE)
-            nicknameStatus.postValue(Failure)
+            nicknameMessage.postValue(resourceProvider.getString(R.string.alert_nickname_valid))
+            nicknameStatus.postValue(FAILURE)
         }
     }
 
     val checkCodeValid: () -> Unit = {
         if (code.value.toString() != "") {
-            if (code.value?.isValid(CODEREGEX) == true) {
-                codeStatus.value = Success
+            if (code.value.isValid(CODEREGEX)) {
+                codeStatus.value = SUCCESS
                 codeMessage.postValue("")
             } else {
-                codeMessage.postValue(CODEMESSAGE2)
-                codeStatus.value = Failure
+                codeMessage.postValue(resourceProvider.getString(R.string.alert_code_valid))
+                codeStatus.value = FAILURE
             }
         } else {
-            codeStatus.value = Failure
-            codeMessage.postValue(CODEMESSAGE)
+            codeStatus.value = FAILURE
+            codeMessage.postValue(resourceProvider.getString(R.string.alert_code))
         }
     }
 
     val checkPasswordValid: () -> Unit = {
-        if (password.value?.isValid(PWDREGEX) == true) {
+        if (password.value.isValid(PWDREGEX)) {
             if (password.value == passwordConfirm.value) {
-                pwdStatus.value = Success
+                pwdStatus.value = SUCCESS
                 pwdMessage.postValue("")
             } else {
                 pwdStatus.value = 1
-                pwdMessage.postValue(PWDMESSAGE2)
+                pwdMessage.postValue(resourceProvider.getString(R.string.alert_pwd))
             }
         } else {
-            pwdMessage.postValue(PWDMESSAGE)
+            pwdMessage.postValue(resourceProvider.getString(R.string.alert_pwd_valid))
             pwdStatus.value = 1
         }
     }
 
     fun checkDuplicateEmail() {
         viewModelScope.launch {
-            if (email.value?.isValid(EMAILREGEX) == true) {
+            if (email.value.isValid(EMAILREGEX)) {
                 try {
                     RegistrationService.USER_API.checkEmail(email.value.toString())
-                    emailStatus.postValue(Success)
+                    emailStatus.postValue(SUCCESS)
                     emailMessage.postValue("")
                 } catch (e: Exception) {
-                    emailStatus.postValue(Failure)
+                    emailStatus.postValue(FAILURE)
                     emailMessage.postValue(e.message)
                 }
             } else {
-                emailStatus.postValue(Failure)
-                emailMessage.postValue(EMAILMESSAGE)
+                emailStatus.postValue(FAILURE)
+                emailMessage.postValue(resourceProvider.getString(R.string.alert_email))
             }
         }
     }
-
 
     fun sendAuthEmail() {
         viewModelScope.launch {
             try {
                 RegistrationService.USER_API.authEmail(AuthEmailRequest(email.value.toString()))
-                emailAuthMessage.postValue(EMAILAUTH)
+                emailAuthMessage.postValue(resourceProvider.getString(R.string.alert_email_auth))
             } catch (e: Exception) {
-                emailMessage.postValue(EMAILMESSAGE)
+                emailMessage.postValue(resourceProvider.getString(R.string.alert_email))
             }
         }
     }
 
     private fun isSignUpValid(): Boolean =
-        emailStatus.value == Success && codeStatus.value == Success && nicknameStatus.value == Success && pwdStatus.value == Success
+        emailStatus.value == SUCCESS && codeStatus.value == SUCCESS && nicknameStatus.value == SUCCESS && pwdStatus.value == SUCCESS
 
     fun requestSignUp() {
         viewModelScope.launch {
@@ -134,8 +136,8 @@ class RegisterViewModel : ViewModel() {
                 )
                 registerClick.postValue(Event(true))
             } catch (e: Exception) {
-                codeStatus.postValue(Failure)
-                codeMessage.postValue(CODEMESSAGE2)
+                codeStatus.postValue(FAILURE)
+                codeMessage.postValue(resourceProvider.getString(R.string.alert_code_valid))
             }
         }
     }
@@ -144,17 +146,10 @@ class RegisterViewModel : ViewModel() {
         // 8~20 영문 대소문자와 최소 1개의 숫자 혹은 특수문자 포함
         private const val PWDREGEX =
             "^(?=.*[a-zA-Z])((?=.*\\d)|(?=.*\\W)).{8,20}\$"
-        private const val EMAILMESSAGE = "이메일 형식이 올바르지 않습니다."
-        private const val EMAILAUTH = "인증 코드를 발송했습니다."
-        private const val NICKNAMEMESSAGE = "닉네임은 2~10자, 공백이나 특수문자는 허용하지 않습니다"
-        private const val PWDMESSAGE = "영문, 숫자, 특수문자 중 2가지 이상 조합하여 8~20자이내로 기입해주세요"
-        private const val PWDMESSAGE2 = "비밀번호가 일치하지 않습니다"
-        private const val CODEMESSAGE = "코드를 입력하세요"
-        private const val CODEMESSAGE2 = "코드가 일치하지 않습니다"
         private const val EMAILREGEX = "^[\\w.-]+@([\\w\\-]+\\.)+[A-Z]{2,8}$"
         private const val NICKNAMEREGEX = "^[a-zA-Z0-9가-힣ㄱ-ㅎㅏ-ㅣ]{2,10}$"
         private const val CODEREGEX = "^[0-9]{6}$"
-        private const val Success = 0
-        private const val Failure = 1
+        private const val SUCCESS = 0
+        private const val FAILURE = 1
     }
 }

@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.thinlineit.ctrlf.R
@@ -26,34 +25,34 @@ class RegisterActivity : AppCompatActivity() {
         binding.viewModel = viewModel
 
         viewModel.emailStatus.observe(this) {
-            if (it == Failure) {
+            if (it == FAILURE) {
                 binding.regEmail.setBackground(R.drawable.border_edittext_error)
-            } else if (it == Success) {
+            } else if (it == SUCCESS) {
                 binding.regEmail.setBackground(R.drawable.border_edittext)
             }
         }
 
         viewModel.codeStatus.observe(this) {
-            if (it == Failure) {
+            if (it == FAILURE) {
                 binding.regCode.setBackground(R.drawable.border_edittext_error)
-            } else if (it == Success) {
+            } else if (it == SUCCESS) {
                 binding.regCode.setBackground(R.drawable.border_edittext)
             }
         }
 
         viewModel.nicknameStatus.observe(this) {
-            if (it == Failure) {
+            if (it == FAILURE) {
                 binding.regName.setBackground(R.drawable.border_edittext_error)
-            } else if (it == Success) {
+            } else if (it == SUCCESS) {
                 binding.regName.setBackground(R.drawable.border_edittext)
             }
         }
 
         viewModel.pwdStatus.observe(this) {
-            if (it == Failure) {
+            if (it == FAILURE) {
                 binding.regPassword.setBackground(R.drawable.border_edittext_error)
                 binding.regPassword2.setBackground(R.drawable.border_edittext_error)
-            } else if (it == Success) {
+            } else if (it == SUCCESS) {
                 binding.regPassword.setBackground(R.drawable.border_edittext)
                 binding.regPassword2.setBackground(R.drawable.border_edittext)
             }
@@ -66,14 +65,12 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val Success = 0
-        private const val Failure = 1
+        private const val SUCCESS = 0
+        private const val FAILURE = 1
 
         fun start(context: Context) {
             val intent = Intent(context, RegisterActivity::class.java)
             context.startActivity(intent)
         }
     }
-
-
 }

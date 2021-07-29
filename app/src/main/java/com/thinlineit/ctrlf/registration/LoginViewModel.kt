@@ -4,16 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.model.User
 import com.thinlineit.ctrlf.network.RegistrationService
 import com.thinlineit.ctrlf.util.Application
 import com.thinlineit.ctrlf.util.Event
+import com.thinlineit.ctrlf.util.ResourceProvider
 import com.thinlineit.ctrlf.util.isValid
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.regex.Pattern
 
 class LoginViewModel : ViewModel() {
+    lateinit var resourceProvider: ResourceProvider
+
     private val _loginStatus = MutableLiveData<Event<Boolean>>()
     val loginStatus: LiveData<Event<Boolean>>
         get() = _loginStatus
@@ -48,17 +50,15 @@ class LoginViewModel : ViewModel() {
 
     fun checkLogin() {
         if (email.value == "" || password.value == "") {
-            loginMessage.value = NULLMESSAGE
-        } else if (!email.value.toString().isValid(EMAILREGEX)) {
-            loginMessage.value = EMAILMESSAGE
+            loginMessage.value = resourceProvider.getString(R.string.alert_text)
+        } else if (!email.value.isValid(EMAILREGEX)) {
+            loginMessage.value = resourceProvider.getString(R.string.alert_email)
         } else {
             doLogin()
         }
     }
 
     companion object {
-        private const val NULLMESSAGE = "비밀번호와 아이디를 입력해주세요."
-        private const val EMAILMESSAGE = "이메일 형식이 올바르지 않습니다."
         private const val TOKEN = "token"
         private const val EMAIL = "email"
         private const val PASSWORD = "password"
