@@ -9,26 +9,28 @@ import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.ActivityPageBinding
 import kotlinx.android.synthetic.main.activity_page.*
 
-class PageActivity : AppCompatActivity(){
-    var topicListAdapter = TopicListAdapter()
+class PageActivity : AppCompatActivity() {
+    private var topicListAdapter = TopicListAdapter()
 
-    val binding: ActivityPageBinding by lazy{
+    private val binding: ActivityPageBinding by lazy {
         DataBindingUtil.setContentView(
             this,
             R.layout.activity_page
         )
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val noteId = intent.getIntExtra(NOTE_ID,0)
+        val noteId = intent.getIntExtra(NOTE_ID, 0)
         val viewModelFactory = PageViewModelFactory(noteId)
-        val pageViewModel = ViewModelProvider(this,viewModelFactory).get(PageViewModel::class.java)
+        val pageViewModel = ViewModelProvider(this, viewModelFactory).get(PageViewModel::class.java)
         binding.apply {
             this.pageViewModel = pageViewModel
             lifecycleOwner = this@PageActivity
         }
         PageListRecyclerView.adapter = topicListAdapter
     }
+
     companion object {
         const val NOTE_ID = "noteId"
     }
