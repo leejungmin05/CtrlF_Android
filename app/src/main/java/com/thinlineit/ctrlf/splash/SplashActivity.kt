@@ -23,7 +23,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun checkLogin(): Boolean {
-        val email = Application.preferenceUtil.getString(EMAIL, "")
+        val email = Application.preferenceUtil.getString(resources.getString(R.string.email), "")
         return email != ""
     }
 
@@ -45,9 +45,5 @@ class SplashActivity : AppCompatActivity() {
             }
             finish()
         }
-    }
-
-    companion object {
-        private val EMAIL = "email"
     }
 }
