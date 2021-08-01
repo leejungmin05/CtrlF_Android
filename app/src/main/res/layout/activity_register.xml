@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.thinlineit.ctrlf.registration.RegisterViewModel" />
+
+        <variable
+            name="bindingAdapter"
+            type="com.thinlineit.ctrlf.util.BindingAdapterKt" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".registration.RegisterActivity">
+
+        <EditText
+            android:id="@+id/regEmail"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="200dp"
+            android:background="@drawable/border_edittext_default"
+            android:hint="@string/e_mail"
+            android:paddingStart="10dp"
+            android:text="@={viewModel.email}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/regEmailText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.emailMessage}"
+            android:textColor="@color/red"
+            app:layout_constraintStart_toStartOf="@+id/regEmail"
+            app:layout_constraintTop_toBottomOf="@+id/regEmail"
+            tools:text="이메일 확인 text" />
+
+        <Button
+            android:id="@+id/emailDuplicateBtn"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button_enable"
+            android:onClick="@{()->viewModel.checkDuplicateEmail()}"
+            android:text="@string/duplicate"
+            app:layout_constraintStart_toStartOf="@+id/regEmailText"
+            app:layout_constraintTop_toBottomOf="@+id/regEmailText" />
+
+        <Button
+            android:id="@+id/emailConfirmBtn"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:enabled="@{viewModel.isEmailEnabled()}"
+            android:onClick="@{()->viewModel.sendAuthEmail()}"
+            android:text="@string/emailConfirm"
+            android:background="@drawable/button_default"
+            app:layout_constraintStart_toStartOf="@+id/emailDuplicateBtn"
+            app:layout_constraintTop_toBottomOf="@+id/emailDuplicateBtn" />
+
+        <TextView
+            android:id="@+id/regEmailAuthText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.emailAuthMessage}"
+            android:textColor="@color/gray"
+            app:layout_constraintStart_toStartOf="@+id/emailConfirmBtn"
+            app:layout_constraintTop_toBottomOf="@+id/emailConfirmBtn"
+            tools:text="코드 전송 text" />
+
+        <EditText
+            android:id="@+id/regCode"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/border_edittext_default"
+            android:hint="@string/phoneNum"
+            android:paddingStart="10dp"
+            android:text="@={viewModel.code}"
+            app:layout_constraintStart_toStartOf="@+id/regEmailAuthText"
+            app:layout_constraintTop_toBottomOf="@+id/regEmailAuthText"
+            app:onFocusLost="@{viewModel.checkCodeValid}" />
+
+        <TextView
+            android:id="@+id/regCodeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.codeMessage}"
+            android:textColor="@color/red"
+            app:layout_constraintStart_toStartOf="@+id/regCode"
+            app:layout_constraintTop_toBottomOf="@+id/regCode"
+            tools:text="코드 null text" />
+
+        <EditText
+            android:id="@+id/regName"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/border_edittext_default"
+            android:hint="@string/nickname"
+            android:paddingStart="10dp"
+            android:text="@={viewModel.nickName}"
+            app:layout_constraintStart_toStartOf="@+id/regCodeText"
+            app:layout_constraintTop_toBottomOf="@+id/regCodeText"
+            app:onFocusLost="@{viewModel.checkDuplicateNickname}" />
+
+        <TextView
+            android:id="@+id/regNameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.nicknameMessage}"
+            android:textColor="@color/red"
+            app:layout_constraintStart_toStartOf="@+id/regName"
+            app:layout_constraintTop_toBottomOf="@+id/regName"
+            tools:text="닉네임중복여부" />
+
+        <EditText
+            android:id="@+id/regPassword"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/border_edittext_default"
+            android:hint="@string/pwd"
+            android:inputType="textPassword"
+            android:paddingStart="10dp"
+            android:text="@={viewModel.password}"
+            app:layout_constraintStart_toStartOf="@+id/regNameText"
+            app:layout_constraintTop_toBottomOf="@+id/regNameText" />
+
+        <EditText
+            android:id="@+id/regPassword2"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/border_edittext_default"
+            android:hint="@string/pwdConfirm"
+            android:inputType="textPassword"
+            android:paddingStart="10dp"
+            android:text="@={viewModel.passwordConfirm}"
+            app:layout_constraintStart_toStartOf="@+id/regPassword"
+            app:layout_constraintTop_toBottomOf="@+id/regPassword"
+            app:onFocusLost="@{viewModel.checkPasswordValid}" />
+
+        <TextView
+            android:id="@+id/regPasswordText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.pwdMessage}"
+            android:textColor="@color/red"
+            app:layout_constraintStart_toStartOf="@id/regPassword2"
+            app:layout_constraintTop_toBottomOf="@+id/regPassword2"
+            tools:text="비밀번호 일치 여부" />
+
+        <Button
+            android:id="@+id/registerBtn"
+            android:layout_width="145dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="50dp"
+            android:enabled="@{viewModel.liveDataMerger}"
+            android:onClick="@{()->viewModel.requestSignUp()}"
+            android:text="@string/register"
+            app:layout_constraintEnd_toEndOf="@id/regPassword2"
+            app:layout_constraintTop_toBottomOf="@+id/regPassword2" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
