@@ -1,6 +1,44 @@
 <resources>
     <string name="app_name">CtrlF</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="notes_fragment">Notes</string>
+    
+    <!-- login & registration-->
+    <string name="e_mail">E-mail</string>
+    <string name="email">email</string>
+    <string name="pwd">PASSWORD</string>
+    <string name="pwdConfirm">PASSWORD 확인</string>
+    <string name="login">로그인</string>
+    <string name="loginEng">log in</string>
+    <string name="register">회원가입</string>
+    <string name="nickname">닉네임</string>
+    <string name="phoneNum">코드 입력</string>
+    <string name="duplicate">중복확인</string>
+    <string name="emailConfirm">이메일 인증</string>
+
+    <!-- login viewModel-->
+    <string name="alert_email">이메일 형식이 올바르지 않습니다.</string>
+    <string name="alert_text">이메일과 비밀번호를 입력해주세요.</string>
+    <string name="alert_pwd">비밀번호가 일치하지 않습니다.</string>
+
+    <!-- register viewModel-->
+    <string name="alert_email_auth">인증 코드를 발송했습니다.</string>
+    <string name="alert_nickname_valid">닉네임은 2~10자, 공백이나 특수문자는 허용하지 않습니다.</string>
+    <string name="alert_pwd_valid">영문, 숫자, 특수문자 중 2가지 이상 조합하여 8~20자이내로 기입해주세요.</string>
+    <string name="alert_code">코드를 입력하세요.</string>
+    <string name="alert_code_valid">코드가 일치하지 않습니다.</string>
+
+    <string name="login_validation">회원가입</string>
+    <string name="passwordValidation">일치하지 않습니다</string>
+
+    <string name="completeRegistration">"환영합니다.\n가입이 완료되었습니다.\n\n로그인 후 이용해주세요."</string>
+
+    <string name="Issue">Issue</string>
+    <string name="Note">Note</string>
+    <string name="Page">Page</string>
+    <string name="Title">Title</string>
+    <string name="Id">Id</string>
+    <string name="Content">Content</string>
+    <string name="RegistrationDate">RegistrationDate</string>
+
+
 </resources>

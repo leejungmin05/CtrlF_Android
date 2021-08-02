@@ -1,6 +1,6 @@
 package com.thinlineit.ctrlf.network
 
-import com.thinlineit.ctrlf.network.api.IssueApi
+import com.thinlineit.ctrlf.issue.IssueApi
 import com.thinlineit.ctrlf.notes.NoteApi
 import com.thinlineit.ctrlf.page.PageApi
 import com.thinlineit.ctrlf.network.api.TopicApi
@@ -16,25 +16,25 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 object PageService {
-    val retrofitService : PageApi by lazy {
+    val retrofitService: PageApi by lazy {
         retrofit.create(PageApi::class.java)
     }
 }
 
 object NoteService {
-    val retrofitService : NoteApi by lazy {
+    val retrofitService: NoteApi by lazy {
         retrofit.create(NoteApi::class.java)
     }
 }
 
 object IssueService {
-    val retrofitService : IssueApi by lazy {
+    val retrofitService: IssueApi by lazy {
         retrofit.create(IssueApi::class.java)
     }
 }
 
 object TopicService {
-    val retrofitService : TopicApi by lazy {
+    val retrofitService: TopicApi by lazy {
         retrofit.create(TopicApi::class.java)
     }
 }
