@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.activity_page.*
 class PageActivity : AppCompatActivity() {
     private var topicListAdapter = TopicListAdapter()
 
+
     private val binding: ActivityPageBinding by lazy {
         DataBindingUtil.setContentView(
             this,
@@ -21,6 +22,7 @@ class PageActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_page)
         val noteId = intent.getIntExtra(NOTE_ID, 0)
         val viewModelFactory = PageViewModelFactory(noteId)
         val pageViewModel = ViewModelProvider(this, viewModelFactory).get(PageViewModel::class.java)
