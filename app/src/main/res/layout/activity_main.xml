@@ -6,7 +6,7 @@
     <data>
         <variable
             name="mainViewModel"
-            type="com.thinlineit.ctrlf.notes.NotesViewModel" />
+            type="com.thinlineit.ctrlf.main.MainViewModel" />
     </data>
 
    <merge>

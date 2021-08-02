@@ -5,25 +5,25 @@
 
     <data>
         <variable
-            name="note"
-            type="com.thinlineit.ctrlf.notes.NoteDao" />
+            name="issue"
+            type="com.thinlineit.ctrlf.issue.IssueDao" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="100dp"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         android:layout_margin="3dp"
+        android:padding="5dp"
         android:background="@color/teal_200">
 
         <TextView
-            android:id="@+id/noteName"
+            android:id="@+id/issueTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{note.title}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@{issue.title}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tool:text="@string/note" />
+            tool:text="@string/title" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

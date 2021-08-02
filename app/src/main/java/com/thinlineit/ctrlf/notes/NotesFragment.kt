@@ -36,11 +36,6 @@ class NotesFragment : Fragment() {
                 this.noteViewModel = this@NotesFragment.noteViewModel
                 lifecycleOwner = this@NotesFragment
                 noteListRecyclerView.adapter = noteAdapter
-                issueButton.setOnClickListener {
-                    this@NotesFragment.findNavController().navigate(
-                        NotesFragmentDirections.actionNotesFragmentToIssueListFragment()
-                    )
-                }
             }
         noteViewModel.alertLiveData.observe(viewLifecycleOwner) {
             //TODO: Check if response body is empty

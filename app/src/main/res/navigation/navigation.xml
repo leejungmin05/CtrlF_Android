@@ -4,28 +4,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/notes_fragment">
+    app:startDestination="@id/main_fragment">
+
+    <fragment
+        android:id="@+id/main_fragment"
+        android:name="com.thinlineit.ctrlf.main.MainFragment"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_main_fragment_to_notes_fragment"
+            app:destination="@id/notes_fragment" />
+        <action
+            android:id="@+id/action_main_fragment_to_issue_list_fragment"
+            app:destination="@id/issue_list_fragment" />
+        <action
+            android:id="@+id/action_main_fragment_to_page_fragment"
+            app:destination="@id/page_fragment" />
+        <action
+            android:id="@+id/action_main_fragment_to_issue_detail_activity"
+            app:destination="@id/issue_detail_activity" />
+    </fragment>
 
     <fragment
         android:id="@+id/notes_fragment"
         android:name="com.thinlineit.ctrlf.notes.NotesFragment"
-        android:label="@string/notes_fragment"
         tools:layout="@layout/fragment_notes">
         <action
             android:id="@+id/action_notes_fragment_to_page_fragment"
             app:destination="@id/page_fragment"
             app:enterAnim="@anim/slide_in_right"
             app:popEnterAnim="@anim/slide_in_right" />
-        <action
-            android:id="@+id/action_notes_fragment_to_issue_list_fragment"
-            app:destination="@id/issue_list_fragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:popEnterAnim="@anim/slide_in_right" />
+
     </fragment>
     <fragment
         android:id="@+id/page_fragment"
         android:name="com.thinlineit.ctrlf.page.PageFragment"
-        android:label="@string/notes_fragment"
         tools:layout="@layout/fragment_page">
         <argument
             android:name="noteId"
@@ -39,7 +51,6 @@
     <fragment
         android:id="@+id/issue_list_fragment"
         android:name="com.thinlineit.ctrlf.issue.list.IssueListFragment"
-        android:label="IssueList"
         tools:layout="@layout/fragment_issue_list">
         <action
             android:id="@+id/action_issue_list_fragment_to_issue_detail_activity"
@@ -50,7 +61,6 @@
     <activity
         android:id="@+id/issue_detail_activity"
         android:name="com.thinlineit.ctrlf.issue.detail.IssueDetailActivity"
-        android:label="IssueDetail"
         tools:layout="@layout/activity_issue_detail">
         <argument
             android:name="issueInfo"
