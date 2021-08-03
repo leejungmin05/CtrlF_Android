@@ -10,9 +10,6 @@ import com.thinlineit.ctrlf.databinding.ActivityPageBinding
 import kotlinx.android.synthetic.main.activity_page.*
 
 class PageActivity : AppCompatActivity() {
-    private var topicListAdapter = TopicListAdapter()
-
-
     private val binding: ActivityPageBinding by lazy {
         DataBindingUtil.setContentView(
             this,
@@ -30,7 +27,7 @@ class PageActivity : AppCompatActivity() {
             this.pageViewModel = pageViewModel
             lifecycleOwner = this@PageActivity
         }
-        PageListRecyclerView.adapter = topicListAdapter
+        pageListRecyclerView.adapter = TopicListAdapter()
     }
 
     companion object {

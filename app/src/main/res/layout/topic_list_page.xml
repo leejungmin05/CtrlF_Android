@@ -5,7 +5,7 @@
 
     <data>
         <variable
-            name="page"
+            name="topic"
             type="com.thinlineit.ctrlf.notes.TopicDao" />
     </data>
 
@@ -24,7 +24,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="@{page.title}"
+            android:text="@{topic.title}"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

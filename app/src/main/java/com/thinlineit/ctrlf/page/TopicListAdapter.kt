@@ -1,6 +1,5 @@
 package com.thinlineit.ctrlf.page
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,16 +13,7 @@ import com.thinlineit.ctrlf.util.BindingRecyclerViewAdapter
 class TopicListAdapter() :
     RecyclerView.Adapter<TopicListAdapter.ViewHolder>(), BindingRecyclerViewAdapter<List<TopicDao>> {
     var topicList = emptyList<TopicDao>()
-    /*
-    interface OnItemClickListener{
-        fun onItemClick(v:View, data: TopicDao, pos : Int)
-    }
-    private var listener : OnItemClickListener? = null
 
-    fun setOnItemClickListener(listener : OnItemClickListener) {
-        this.listener = listener
-    }
-     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder.from(parent)
 
@@ -37,17 +27,7 @@ class TopicListAdapter() :
     class ViewHolder(private val dataBinding: TopicListPageBinding) :
         RecyclerView.ViewHolder(dataBinding.root) {
         fun bind(topicDao: TopicDao) {
-            dataBinding.page = topicDao
-            /*
-            val pos = adapterPosition
-            val tag = "ActivityLife"
-            if(pos!= RecyclerView.NO_POSITION)
-            {
-                itemView.setOnClickListener {
-                    Log.d(tag,"checklist()")
-                }
-            }
-             */
+            dataBinding.topic = topicDao
         }
 
         companion object {
@@ -64,7 +44,6 @@ class TopicListAdapter() :
         }
     }
     override fun setData(data: List<TopicDao>) {
-        //TODO("Not yet implemented")
         topicList = data
         notifyDataSetChanged()
     }
