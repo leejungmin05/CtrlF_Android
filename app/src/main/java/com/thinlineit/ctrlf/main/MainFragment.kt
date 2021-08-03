@@ -29,7 +29,7 @@ class MainFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding =
             (DataBindingUtil.inflate(
                 inflater,
@@ -41,13 +41,13 @@ class MainFragment : Fragment() {
                 lifecycleOwner = this@MainFragment
                 noteListRecyclerView.adapter = noteAdapter
                 issueListRecyclerView.adapter = issueAdapter
-                textNoteAllView.setOnClickListener {
+                showAllNoteTextView.setOnClickListener {
                     findNavController().navigate(
                         MainFragmentDirections.actionMainFragmentToNotesFragment()
                     )
                 }
 
-                textIssueAllView.setOnClickListener {
+                showAllIssueTextView.setOnClickListener {
                     findNavController().navigate(
                         MainFragmentDirections.actionMainFragmentToIssueListFragment()
                     )

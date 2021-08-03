@@ -24,11 +24,11 @@
         </TextView>
 
         <TextView
-            android:id="@+id/textNoteAllView"
+            android:id="@+id/showAllNoteTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/allView"
-            android:textSize="20dp"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
         </TextView>
@@ -55,11 +55,11 @@
         </TextView>
 
         <TextView
-            android:id="@+id/textIssueAllView"
+            android:id="@+id/showAllIssueTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/allView"
-            android:textSize="20dp"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/noteListRecyclerView">
         </TextView>
@@ -74,12 +74,6 @@
             app:layout_constraintTop_toBottomOf="@id/textIssue"
             app:layout_constraintStart_toStartOf="parent"
             tools:listitem="@layout/list_item_main_issue" />
-
-
-
-
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
