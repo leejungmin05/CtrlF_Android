@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.thinlineit.ctrlf.MainActivity
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.ActivityLoginBinding
+import com.thinlineit.ctrlf.util.ResourceProvider
 import com.thinlineit.ctrlf.util.observeIfNotHandled
 
 class LoginActivity : AppCompatActivity() {
@@ -16,7 +17,9 @@ class LoginActivity : AppCompatActivity() {
         DataBindingUtil.setContentView(this, R.layout.activity_login)
     }
     private val viewModel: LoginViewModel by lazy {
-        ViewModelProvider(this).get(LoginViewModel::class.java)
+        ViewModelProvider(this).get(LoginViewModel::class.java).apply {
+            resourceProvider = ResourceProvider(this@LoginActivity)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
