@@ -31,14 +31,16 @@
     <string name="passwordValidation">일치하지 않습니다</string>
 
     <string name="completeRegistration">"환영합니다.\n가입이 완료되었습니다.\n\n로그인 후 이용해주세요."</string>
-
-    <string name="Issue">Issue</string>
-    <string name="Note">Note</string>
-    <string name="Page">Page</string>
-    <string name="Title">Title</string>
-    <string name="Id">Id</string>
-    <string name="Content">Content</string>
-    <string name="RegistrationDate">RegistrationDate</string>
+    
+    <string name="issue">Issue</string>
+    <string name="note">Note</string>
+    <string name="topic">Topic</string>
+    <string name="page">Page</string>
+    <string name="title">Title</string>
+    <string name="id">Id</string>
+    <string name="content">Content</string>
+    <string name="registrationDate">RegistrationDate</string>
+    <string name="allView">전체보기</string>
 
 
 </resources>

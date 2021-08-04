@@ -11,19 +11,17 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".notes.NotesFragment">
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".MainActivity">
+            android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/issueButton"
+            <TextView
+                android:id="@+id/noteText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/Issue"
+                android:text="@string/note"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -36,7 +34,7 @@
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/issueButton"
+                app:layout_constraintTop_toBottomOf="@+id/noteText"
                 app:spanCount="3"
                 tools:listitem="@layout/list_item_note" />
         </androidx.constraintlayout.widget.ConstraintLayout>
