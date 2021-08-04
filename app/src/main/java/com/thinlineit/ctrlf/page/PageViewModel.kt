@@ -21,9 +21,11 @@ class PageViewModel(noteId: Int) : ViewModel() {
         get() = _pageInfo
 
     val content = Transformations.map(pageInfo) { it.content }
+    val topicList = Transformations.map(noteInfo) { it.topicList }
 
     init {
         loadPage(1)
+        loadNoteInfo()
     }
 
     private fun loadPage(pageId: Int) {

@@ -7,8 +7,9 @@ import com.mukesh.MarkdownView
 
 @BindingAdapter("app:data")
 fun <T> setRecyclerViewData(recyclerView: RecyclerView, data: T) {
-    if (recyclerView.adapter is BindingRecyclerViewAdapter<*>)
-        (recyclerView.adapter as BindingRecyclerViewAdapter<T>).setData(data)
+    if (recyclerView.adapter is BindingRecyclerViewAdapter<*> && data != null){
+            (recyclerView.adapter as BindingRecyclerViewAdapter<T>).setData(data)
+    }
 }
 
 @BindingAdapter("app:onFocusLost")
