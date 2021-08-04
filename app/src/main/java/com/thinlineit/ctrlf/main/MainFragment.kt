@@ -17,7 +17,7 @@ class MainFragment : Fragment() {
     private val mainViewModel by viewModels<MainViewModel>()
     private val noteAdapter = NotesAdapter { noteId ->
         this.findNavController().navigate(
-            MainFragmentDirections.actionMainFragmentToPageFragment(noteId)
+            MainFragmentDirections.actionMainFragmentToPageActivity(noteId)
         )
     }
     private val issueAdapter = MainIssueAdapter { issueInfo ->

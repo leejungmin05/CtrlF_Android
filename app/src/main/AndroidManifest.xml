@@ -25,6 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".page.PageActivity"/>
         <activity android:name=".MainActivity" />
     </application>
 

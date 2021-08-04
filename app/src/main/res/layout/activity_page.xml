@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="pageViewModel"
+            type="com.thinlineit.ctrlf.page.PageViewModel" />
+    </data>
+
+    <androidx.slidingpanelayout.widget.SlidingPaneLayout
+        android:id="@+id/slidingPaneLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/pageListRecyclerView"
+            android:layout_width="400dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="@color/white"
+            android:choiceMode="singleChoice"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp"
+            app:data="@{pageViewModel.topicList}"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            tools:listitem="@layout/topic_list_page" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            tools:context=".page.PageActivity">
+
+            <com.mukesh.MarkdownView
+                android:id="@+id/markdown_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:markdownString="@{pageViewModel.content}" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.slidingpanelayout.widget.SlidingPaneLayout>
+</layout>

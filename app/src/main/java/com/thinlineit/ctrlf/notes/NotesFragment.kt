@@ -18,7 +18,7 @@ class NotesFragment : Fragment() {
     private val noteViewModel by viewModels<NotesViewModel>()
     private val noteAdapter = NotesAdapter { noteId ->
         this.findNavController().navigate(
-            NotesFragmentDirections.actionNotesFragmentToPageFragment(noteId)
+            NotesFragmentDirections.actionNotesFragmentToPageActivity(noteId)
         )
     }
 

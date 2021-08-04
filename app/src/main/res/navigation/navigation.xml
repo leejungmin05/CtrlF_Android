@@ -17,8 +17,8 @@
             android:id="@+id/action_main_fragment_to_issue_list_fragment"
             app:destination="@id/issue_list_fragment" />
         <action
-            android:id="@+id/action_main_fragment_to_page_fragment"
-            app:destination="@id/page_fragment" />
+            android:id="@+id/action_main_fragment_to_page_activity"
+            app:destination="@id/page_activity" />
         <action
             android:id="@+id/action_main_fragment_to_issue_detail_activity"
             app:destination="@id/issue_detail_activity" />
@@ -29,25 +29,20 @@
         android:name="com.thinlineit.ctrlf.notes.NotesFragment"
         tools:layout="@layout/fragment_notes">
         <action
-            android:id="@+id/action_notes_fragment_to_page_fragment"
-            app:destination="@id/page_fragment"
+            android:id="@+id/action_notes_fragment_to_page_activity"
+            app:destination="@id/page_activity"
             app:enterAnim="@anim/slide_in_right"
             app:popEnterAnim="@anim/slide_in_right" />
-
     </fragment>
-    <fragment
-        android:id="@+id/page_fragment"
-        android:name="com.thinlineit.ctrlf.page.PageFragment"
-        tools:layout="@layout/fragment_page">
+    <activity
+        android:id="@+id/page_activity"
+        android:name="com.thinlineit.ctrlf.page.PageActivity"
+        android:label="@string/notes_fragment"
+        tools:layout="@layout/activity_page">
         <argument
             android:name="noteId"
             app:argType="integer" />
-        <action
-            android:id="@+id/action_page_fragment_to_page_fragment"
-            app:destination="@id/notes_fragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:popEnterAnim="@anim/slide_in_right" />
-    </fragment>
+    </activity>
     <fragment
         android:id="@+id/issue_list_fragment"
         android:name="com.thinlineit.ctrlf.issue.list.IssueListFragment"
@@ -64,7 +59,7 @@
         tools:layout="@layout/activity_issue_detail">
         <argument
             android:name="issueInfo"
-            app:argType="com.thinlineit.ctrlf.issue.IssueDao"/>
+            app:argType="com.thinlineit.ctrlf.issue.IssueDao" />
     </activity>
 
 </navigation>
