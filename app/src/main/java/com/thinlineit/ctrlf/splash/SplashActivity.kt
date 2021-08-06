@@ -6,6 +6,7 @@ import com.bumptech.glide.Glide
 import com.thinlineit.ctrlf.MainActivity
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.registration.LoginActivity
+import com.thinlineit.ctrlf.repository.UserRepository
 import com.thinlineit.ctrlf.util.Application
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_splash.*
@@ -15,16 +16,15 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class SplashActivity : AppCompatActivity() {
+    private val userRepository: UserRepository by lazy {
+        UserRepository()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         loadSplashView()
         startFirstActivity()
-    }
-
-    private fun checkLogin(): Boolean {
-        val email = Application.preferenceUtil.getString(resources.getString(R.string.email), "")
-        return email != ""
     }
 
     private fun loadSplashView() {
@@ -38,7 +38,7 @@ class SplashActivity : AppCompatActivity() {
     private fun startFirstActivity() {
         CoroutineScope(Dispatchers.Default).launch {
             delay(1500L)
-            if (checkLogin()) {
+            if (userRepository.mayLogin()) {
                 MainActivity.start(this@SplashActivity)
             } else {
                 LoginActivity.start(this@SplashActivity)

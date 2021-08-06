@@ -6,15 +6,20 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.model.User
-import com.thinlineit.ctrlf.network.RegistrationService
+import com.thinlineit.ctrlf.repository.UserRepository
+import com.thinlineit.ctrlf.repository.network.RegistrationService
 import com.thinlineit.ctrlf.util.Application
 import com.thinlineit.ctrlf.util.Event
 import com.thinlineit.ctrlf.util.ResourceProvider
 import com.thinlineit.ctrlf.util.isValid
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class LoginViewModel : ViewModel() {
     lateinit var resourceProvider: ResourceProvider
+    private val userRepository: UserRepository by lazy {
+        UserRepository()
+    }
 
     private val _loginStatus = MutableLiveData<Event<Boolean>>()
     val loginStatus: LiveData<Event<Boolean>>
@@ -28,15 +33,10 @@ class LoginViewModel : ViewModel() {
     val password = MutableLiveData("")
     val loginMessage = MutableLiveData<String>()
 
-    private fun doLogin() {
+    private fun doLogin(email: String, password: String) {
         viewModelScope.launch {
             try {
-                val loginResponse = RegistrationService.USER_API.requestLogin(
-                    User(email.value ?: "", password.value ?: "")
-                )
-                Application.preferenceUtil.setString(TOKEN, loginResponse.token)
-                Application.preferenceUtil.setString(EMAIL, email.value ?: "")
-                Application.preferenceUtil.setString(PASSWORD, password.value ?: "")
+                userRepository.doLogin(email, password)
                 _loginStatus.value = Event(true)
             } catch (e: Exception) {
                 loginMessage.postValue(e.message)
@@ -54,7 +54,7 @@ class LoginViewModel : ViewModel() {
         } else if (!email.value.isValid(EMAILREGEX)) {
             loginMessage.value = resourceProvider.getString(R.string.alert_email)
         } else {
-            doLogin()
+            doLogin(email.value!!, password.value!!)
         }
     }
 
