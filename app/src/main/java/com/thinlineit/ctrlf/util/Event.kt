@@ -3,7 +3,7 @@ package com.thinlineit.ctrlf.util
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 
-open class Event<out T>(private val content: T) {
+class Event<out T>(private val content: T) {
 
     var hasBeenHandled = false
         private set
