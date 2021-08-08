@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class RegisterViewModel : ViewModel() {
-    lateinit var resourceProvider: ResourceProvider
+    lateinit var resourceProvider : ResourceProvider
 
     val email = MutableLiveData("")
     val password = MutableLiveData("")

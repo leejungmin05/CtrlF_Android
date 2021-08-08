@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.ActivityRegisterBinding
+import com.thinlineit.ctrlf.util.ResourceProvider
 import com.thinlineit.ctrlf.util.observeIfNotHandled
 import com.thinlineit.ctrlf.util.setBackground
 
@@ -16,9 +17,10 @@ class RegisterActivity : AppCompatActivity() {
         DataBindingUtil.setContentView(this, R.layout.activity_register)
     }
     private val viewModel: RegisterViewModel by lazy {
-        ViewModelProvider(this).get(RegisterViewModel::class.java)
+        ViewModelProvider(this).get(RegisterViewModel::class.java).apply {
+            resourceProvider = ResourceProvider(this@RegisterActivity)
+        }
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.lifecycleOwner = this
