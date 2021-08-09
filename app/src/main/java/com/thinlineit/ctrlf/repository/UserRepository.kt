@@ -7,7 +7,7 @@ import java.lang.Exception
 
 class UserRepository {
 
-    suspend fun doLogin(email: String = "", password: String): Boolean =
+    suspend fun doLogin(email: String, password: String): Boolean =
         try {
             val loginResponse = RegistrationService.USER_API.requestLogin(
                 User(email, password)
@@ -33,14 +33,12 @@ class UserRepository {
         }
 
     fun checkLogin(): Boolean {
-        val email = Application.preferenceUtil.getString(EMAIL, "")
-        return email != ""
+        return Application.preferenceUtil.getString(EMAIL, "") != ""
     }
 
     companion object {
         private const val TOKEN = "token"
         private const val EMAIL = "email"
         private const val PASSWORD = "password"
-        private const val EMAILREGEX = "^[\\w.-]+@([\\w\\-]+\\.)+[A-Z]{2,8}$"
     }
 }

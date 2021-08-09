@@ -33,7 +33,7 @@ class LoginViewModel : ViewModel() {
     val password = MutableLiveData("")
     val loginMessage = MutableLiveData<String>()
 
-    private fun doLogin(email: String, password: String) {
+    private fun Login(email: String, password: String) {
         viewModelScope.launch {
             try {
                 userRepository.doLogin(email, password)
@@ -49,12 +49,15 @@ class LoginViewModel : ViewModel() {
     }
 
     fun checkLogin() {
-        if (email.value == "" || password.value == "") {
+        val emailValue = email.value ?: ""
+        val passwordValue = password.value ?: ""
+
+        if (emailValue == "" || passwordValue == "") {
             loginMessage.value = resourceProvider.getString(R.string.alert_text)
-        } else if (!email.value.isValid(EMAILREGEX)) {
+        } else if (!emailValue.isValid(EMAILREGEX)) {
             loginMessage.value = resourceProvider.getString(R.string.alert_email)
         } else {
-            doLogin(email.value!!, password.value!!)
+            Login(emailValue,passwordValue)
         }
     }
 
