@@ -5,10 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thinlineit.ctrlf.R
-import com.thinlineit.ctrlf.model.User
 import com.thinlineit.ctrlf.repository.UserRepository
-import com.thinlineit.ctrlf.repository.network.RegistrationService
-import com.thinlineit.ctrlf.util.Application
 import com.thinlineit.ctrlf.util.Event
 import com.thinlineit.ctrlf.util.ResourceProvider
 import com.thinlineit.ctrlf.util.isValid
@@ -33,7 +30,7 @@ class LoginViewModel : ViewModel() {
     val password = MutableLiveData("")
     val loginMessage = MutableLiveData<String>()
 
-    private fun Login(email: String, password: String) {
+    private fun login(email: String, password: String) {
         viewModelScope.launch {
             try {
                 userRepository.doLogin(email, password)
@@ -57,7 +54,7 @@ class LoginViewModel : ViewModel() {
         } else if (!emailValue.isValid(EMAILREGEX)) {
             loginMessage.value = resourceProvider.getString(R.string.alert_email)
         } else {
-            Login(emailValue,passwordValue)
+            login(emailValue,passwordValue)
         }
     }
 

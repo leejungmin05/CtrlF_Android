@@ -7,7 +7,6 @@ import com.thinlineit.ctrlf.MainActivity
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.registration.LoginActivity
 import com.thinlineit.ctrlf.repository.UserRepository
-import com.thinlineit.ctrlf.util.Application
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_splash.*
 import kotlinx.coroutines.CoroutineScope
