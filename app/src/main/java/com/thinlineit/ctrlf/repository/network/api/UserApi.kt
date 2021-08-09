@@ -1,4 +1,4 @@
-package com.thinlineit.ctrlf.network.api
+package com.thinlineit.ctrlf.repository.network.api
 
 import com.thinlineit.ctrlf.data.request.AuthEmailRequest
 import com.thinlineit.ctrlf.data.request.SignUpRequest

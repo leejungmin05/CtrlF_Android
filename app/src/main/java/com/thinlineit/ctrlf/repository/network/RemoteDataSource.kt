@@ -1,6 +1,6 @@
-package com.thinlineit.ctrlf.network
+package com.thinlineit.ctrlf.repository.network
 
-import com.thinlineit.ctrlf.network.api.UserApi
+import com.thinlineit.ctrlf.repository.network.api.UserApi
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
