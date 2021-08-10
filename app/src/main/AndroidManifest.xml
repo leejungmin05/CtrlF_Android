@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CtrlF"
         android:usesCleartextTraffic="true">
+        <activity android:name=".registration.RegisterViewActivity"/>
         <activity android:name=".registration.CompleteRegisterActivity" />
         <activity android:name=".registration.RegisterActivity" />
         <activity android:name=".registration.LoginActivity" />
@@ -22,6 +23,7 @@
             android:theme="@style/Theme.Design.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

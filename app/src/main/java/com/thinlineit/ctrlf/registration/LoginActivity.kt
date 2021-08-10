@@ -2,8 +2,8 @@ package com.thinlineit.ctrlf.registration
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.thinlineit.ctrlf.MainActivity
@@ -33,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         viewModel.eventClick.observeIfNotHandled(this) {
-            RegisterActivity.start(this)
+            RegisterViewActivity.start(this)
             finish()
         }
     }

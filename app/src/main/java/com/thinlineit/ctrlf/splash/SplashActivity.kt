@@ -1,7 +1,7 @@
 package com.thinlineit.ctrlf.splash
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.thinlineit.ctrlf.MainActivity
 import com.thinlineit.ctrlf.R
