@@ -4,7 +4,6 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 
 class Event<out T>(private val content: T) {
-
     var hasBeenHandled = false
         private set
 
@@ -26,4 +25,9 @@ fun <T> LiveData<Event<T>>.observeIfNotHandled(owner: LifecycleOwner, onChanged:
             onChanged(value)
         }
     }
+}
+
+enum class Status {
+    SUCCESS,
+    FAILURE;
 }

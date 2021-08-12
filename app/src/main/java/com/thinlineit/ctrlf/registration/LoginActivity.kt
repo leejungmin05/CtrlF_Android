@@ -33,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         viewModel.eventClick.observeIfNotHandled(this) {
-            RegisterViewActivity.start(this)
+            RegisterActivity.start(this)
             finish()
         }
     }

@@ -12,7 +12,7 @@ import com.thinlineit.ctrlf.databinding.FragmentRegisterBackBinding
 import com.thinlineit.ctrlf.util.base.BaseFragment
 
 
-class RegisterBackFragment : BaseFragment<FragmentRegisterBackBinding>(R.layout.fragment_register_back) {
+class ConfirmBackToEmailFragment : BaseFragment<FragmentRegisterBackBinding>(R.layout.fragment_register_back) {
     private lateinit var navController: NavController
     private val viewModel by activityViewModels<RegisterViewModel>()
 
@@ -21,7 +21,7 @@ class RegisterBackFragment : BaseFragment<FragmentRegisterBackBinding>(R.layout.
         savedInstanceState: Bundle?
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
-        binding.viewModel = this@RegisterBackFragment.viewModel
+        binding.viewModel = this@ConfirmBackToEmailFragment.viewModel
 
         binding.backBtn.setOnClickListener {
             navController.navigate(R.id.action_registerBackFragment_to_registerEmailFragment)
@@ -38,6 +38,4 @@ class RegisterBackFragment : BaseFragment<FragmentRegisterBackBinding>(R.layout.
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
     }
-
-
 }

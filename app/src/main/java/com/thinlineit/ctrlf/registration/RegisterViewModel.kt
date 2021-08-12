@@ -11,6 +11,7 @@ import com.thinlineit.ctrlf.util.isValid
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+
 class RegisterViewModel : ViewModel() {
 
     val email = MutableLiveData("")
@@ -22,25 +23,24 @@ class RegisterViewModel : ViewModel() {
     val emailStatus = MutableLiveData<Event<Int>>()
     val codeStatus = MutableLiveData<Event<Int>>()
     val nicknameStatus = MutableLiveData<Event<Int>>()
-    val pwdStatus = MutableLiveData<Event<Int>>()
-    val pwdConfirmStatus = MutableLiveData<Event<Int>>()
+    val passwordStatus = MutableLiveData<Event<Int>>()
+    val passwordConfirmStatus = MutableLiveData<Event<Int>>()
     val registerClick = MutableLiveData<Event<Boolean>>()
 
     val liveDataMerger = MediatorLiveData<Boolean>().apply {
-        addSourceList(emailStatus, codeStatus, nicknameStatus, pwdStatus) {
+        addSourceList(emailStatus, codeStatus, nicknameStatus, passwordStatus) {
             isSignUpValid()
         }
     }
 
     val emailMessage = MutableLiveData<Int>(R.string.default_text)
     val nicknameMessage = MutableLiveData<Int>(R.string.default_text)
-    val pwdMessage = MutableLiveData<Int>(R.string.default_text)
-    val pwd2Message = MutableLiveData<Int>(R.string.default_text)
+    val passwordMessage = MutableLiveData<Int>(R.string.default_text)
+    val passwordConfirmMessage = MutableLiveData<Int>(R.string.default_text)
     val codeMessage = MutableLiveData<Int>(R.string.default_text)
-    val emailAuthMessage = MutableLiveData<Int>(R.string.default_text)
 
     fun checkDuplicateNickname() {
-        if (nickName.value.isValid(NICKNAMEREGEX)) {
+        if (nickName.value.isValid(NICKNAME_REGEX)) {
             viewModelScope.launch(Dispatchers.IO) {
                 try {
                     RegistrationService.USER_API.checkNickname(nickName.value.toString())
@@ -58,7 +58,7 @@ class RegisterViewModel : ViewModel() {
 
     fun checkCodeValid() {
         if (code.value.toString() != "") {
-            if (code.value.isValid(CODEREGEX)) {
+            if (code.value.isValid(CODE_REGEX)) {
                 viewModelScope.launch {
                     try {
                         //TODO : code check API
@@ -77,34 +77,33 @@ class RegisterViewModel : ViewModel() {
         }
     }
 
-
     val checkPasswordSame: () -> Unit = {
-        if (passwordConfirm.value.isValid(PWDREGEX)) {
+        if (passwordConfirm.value.isValid(PASSWORD_REGEX)) {
             if (password.value == passwordConfirm.value) {
-                pwdConfirmStatus.value = Event(SUCCESS)
+                passwordConfirmStatus.value = Event(SUCCESS)
             } else {
-                pwdConfirmStatus.value = Event(FAILURE)
-                pwd2Message.postValue(R.string.alert_pwd)
+                passwordConfirmStatus.value = Event(FAILURE)
+                passwordConfirmMessage.postValue(R.string.alert_pwd)
             }
         }
     }
 
 
     fun checkPasswordValid() {
-        if (password.value.isValid(PWDREGEX)) {
-            pwdStatus.value = Event(SUCCESS)
+        if (password.value.isValid(PASSWORD_REGEX)) {
+            passwordStatus.value = Event(SUCCESS)
         } else {
-            pwdMessage.postValue(R.string.alert_pwd_valid)
-            pwdStatus.value = Event(FAILURE)
+            passwordMessage.postValue(R.string.alert_pwd_valid)
+            passwordStatus.value = Event(FAILURE)
         }
     }
 
     fun checkDuplicateEmail() {
         viewModelScope.launch {
-            if (email.value.isValid(EMAILREGEX)) {
+            if (email.value.isValid(EMAIL_REGEX)) {
                 try {
                     RegistrationService.USER_API.checkEmail(email.value.toString())
-                    emailStatus.postValue(Event(SUCCESS))
+                    sendAuthEmail()
                 } catch (e: Exception) {
                     emailStatus.postValue(Event(FAILURE))
                     emailMessage.postValue(R.string.error_email)
@@ -130,7 +129,7 @@ class RegisterViewModel : ViewModel() {
     private fun isSignUpValid(): Boolean =
         emailStatus.value == Event(SUCCESS) && codeStatus.value == Event(SUCCESS) && nicknameStatus.value == Event(
             SUCCESS
-        ) && pwdStatus.value == Event(SUCCESS) && pwdConfirmStatus.value == Event(SUCCESS)
+        ) && passwordStatus.value == Event(SUCCESS) && passwordConfirmStatus.value == Event(SUCCESS)
 
     fun requestSignUp() {
         viewModelScope.launch {
@@ -152,11 +151,11 @@ class RegisterViewModel : ViewModel() {
 
     companion object {
         // 숫자, 문자, 특수문자 중 2가지 포함(8~20자)
-        private const val PWDREGEX =
+        private const val PASSWORD_REGEX =
             "^(?=.*[a-zA-Z0-9])(?=.*[a-zA-Z!@#\$%^&*])(?=.*[0-9!@#\$%^&*]).{8,20}\$"
-        private const val EMAILREGEX = "^[\\w.-]+@([\\w\\-]+\\.)+[A-Z]{2,8}$"
-        private const val NICKNAMEREGEX = "^[a-zA-Z0-9가-힣ㄱ-ㅎㅏ-ㅣ]{2,10}$"
-        private const val CODEREGEX = "^[0-9]{6}$"
+        private const val EMAIL_REGEX = "^[\\w.-]+@([\\w\\-]+\\.)+[A-Z]{2,8}$"
+        private const val NICKNAME_REGEX = "^[a-zA-Z0-9가-힣ㄱ-ㅎㅏ-ㅣ]{2,10}$"
+        private const val CODE_REGEX = "^[0-9]{6}$"
         private const val SUCCESS = 0
         private const val FAILURE = 1
     }

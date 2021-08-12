@@ -9,11 +9,12 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.FragmentEmailBinding
+import com.thinlineit.ctrlf.util.Status
 import com.thinlineit.ctrlf.util.base.BaseFragment
 import com.thinlineit.ctrlf.util.observeIfNotHandled
 import com.thinlineit.ctrlf.util.setBackground
 
-class RegisterEmailFragment : BaseFragment<FragmentEmailBinding>(R.layout.fragment_email) {
+class EnterEmailFragment : BaseFragment<FragmentEmailBinding>(R.layout.fragment_email) {
     private lateinit var navController: NavController
     private val viewModel by activityViewModels<RegisterViewModel>()
 
@@ -22,7 +23,7 @@ class RegisterEmailFragment : BaseFragment<FragmentEmailBinding>(R.layout.fragme
         savedInstanceState: Bundle?
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
-        binding.viewModel = this@RegisterEmailFragment.viewModel
+        binding.viewModel = this@EnterEmailFragment.viewModel
         return binding.root
     }
 
@@ -31,7 +32,7 @@ class RegisterEmailFragment : BaseFragment<FragmentEmailBinding>(R.layout.fragme
         navController = Navigation.findNavController(view)
 
         viewModel.emailStatus.observeIfNotHandled(viewLifecycleOwner) {
-            if (it == FAILURE) {
+            if (it == Status.FAILURE.ordinal) {
                 binding.regEmail.setBackground(R.drawable.border_edittext_error)
             } else {
                 navController.navigate(R.id.action_registerEmailFragment_to_registerCodeFragment)
@@ -41,9 +42,5 @@ class RegisterEmailFragment : BaseFragment<FragmentEmailBinding>(R.layout.fragme
         binding.backBtn.setOnClickListener {
             navController.navigate(R.id.action_registerEmailFragment_to_loginActivity)
         }
-    }
-
-    companion object {
-        private const val FAILURE = 1
     }
 }

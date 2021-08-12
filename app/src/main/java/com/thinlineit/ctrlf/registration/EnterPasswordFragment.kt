@@ -8,13 +8,15 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.thinlineit.ctrlf.R
-import com.thinlineit.ctrlf.databinding.FragmentNicknameBinding
+import com.thinlineit.ctrlf.databinding.FragmentPasswordBinding
+import com.thinlineit.ctrlf.util.Status
 import com.thinlineit.ctrlf.util.base.BaseFragment
 import com.thinlineit.ctrlf.util.observeIfNotHandled
 import com.thinlineit.ctrlf.util.setBackground
-import kotlinx.android.synthetic.main.fragment_nickname.*
+import kotlinx.android.synthetic.main.fragment_password.*
 
-class RegisterNicknameFragment : BaseFragment<FragmentNicknameBinding>(R.layout.fragment_nickname) {
+
+class EnterPasswordFragment : BaseFragment<FragmentPasswordBinding>(R.layout.fragment_password) {
     private lateinit var navController: NavController
     private val viewModel by activityViewModels<RegisterViewModel>()
 
@@ -23,7 +25,7 @@ class RegisterNicknameFragment : BaseFragment<FragmentNicknameBinding>(R.layout.
         savedInstanceState: Bundle?
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
-        binding.viewModel = this@RegisterNicknameFragment.viewModel
+        binding.viewModel = this@EnterPasswordFragment.viewModel
         return binding.root
     }
 
@@ -32,20 +34,16 @@ class RegisterNicknameFragment : BaseFragment<FragmentNicknameBinding>(R.layout.
 
         navController = Navigation.findNavController(view)
 
-        viewModel.nicknameStatus.observeIfNotHandled(viewLifecycleOwner) {
-            if (it == FAILURE) {
-                binding.regNickname.setBackground(R.drawable.border_edittext_error)
+        viewModel.passwordStatus.observeIfNotHandled(viewLifecycleOwner) {
+            if (it == Status.FAILURE.ordinal) {
+                binding.regPassword.setBackground(R.drawable.border_edittext_error)
             } else {
-                navController.navigate(R.id.action_registerNicknameFragment_to_registerPasswordFragment)
+                navController.navigate(R.id.action_registerPasswordFragment_to_registerConfirmPasswordFragment)
             }
         }
 
         binding.backBtn.setOnClickListener {
-            navController.navigate(R.id.action_registerNicknameFragment_to_registerBackFragment)
+            navController.navigate(R.id.action_registerPasswordFragment_to_registerNicknameFragment)
         }
-    }
-
-    companion object {
-        private const val FAILURE = 1
     }
 }
