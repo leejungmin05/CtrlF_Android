@@ -14,21 +14,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/pageListRecyclerView"
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/pageTopicFragmentContainerView"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="400dp"
             android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:background="@color/white"
-            android:choiceMode="singleChoice"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="0dp"
-            app:data="@{pageViewModel.topicList}"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            tools:listitem="@layout/topic_list_page" />
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/navigation_page">
+        </androidx.fragment.app.FragmentContainerView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="200dp"
+            android:layout_width="400dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             tools:context=".page.PageActivity">

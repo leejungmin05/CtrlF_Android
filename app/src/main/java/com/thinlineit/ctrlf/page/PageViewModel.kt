@@ -20,12 +20,17 @@ class PageViewModel(noteId: Int) : ViewModel() {
     val pageInfo: LiveData<PageDao>
         get() = _pageInfo
 
+    private val _slidingOpen = MutableLiveData<Int>()
+    val slidingOpen : LiveData<Int>
+        get() = _slidingOpen
+
     val content = Transformations.map(pageInfo) { it.content }
     val topicList = Transformations.map(noteInfo) { it.topicList }
 
     init {
         loadPage(1)
         loadNoteInfo()
+        _slidingOpen.value = 0
     }
 
     private fun loadPage(pageId: Int) {
@@ -45,5 +50,17 @@ class PageViewModel(noteId: Int) : ViewModel() {
             } catch (e: Exception) {
             }
         }
+    }
+
+    fun selectTopic(topicId: Int) {
+        loadPageList(topicId)
+    }
+
+    private fun loadPageList(topicId: Int) {
+        //TODO: Load the list of the pagetitle using "?" api
+
+    }
+    fun openSliding(){
+        _slidingOpen.value = _slidingOpen.value?.plus(1)
     }
 }

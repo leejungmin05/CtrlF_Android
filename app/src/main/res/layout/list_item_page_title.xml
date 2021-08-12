@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="topic"
-            type="com.thinlineit.ctrlf.notes.TopicDao" />
+            name="page"
+            type="com.thinlineit.ctrlf.page.PageDao" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,7 +14,7 @@
         android:layout_height="40dp">
 
         <TextView
-            android:id="@+id/content"
+            android:id="@+id/contentPage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
@@ -24,7 +24,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="@{topic.title}"
+
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
