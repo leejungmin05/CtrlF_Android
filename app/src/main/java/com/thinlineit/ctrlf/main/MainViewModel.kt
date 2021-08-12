@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thinlineit.ctrlf.issue.IssueDao
-import com.thinlineit.ctrlf.network.NoteService
+import com.thinlineit.ctrlf.repository.network.NoteService
 import com.thinlineit.ctrlf.notes.NoteDao
 import kotlinx.coroutines.launch
 import java.lang.Exception

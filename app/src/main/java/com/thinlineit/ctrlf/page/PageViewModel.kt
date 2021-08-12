@@ -1,8 +1,8 @@
 package com.thinlineit.ctrlf.page
 
 import androidx.lifecycle.*
-import com.thinlineit.ctrlf.network.NoteService
-import com.thinlineit.ctrlf.network.PageService
+import com.thinlineit.ctrlf.repository.network.NoteService
+import com.thinlineit.ctrlf.repository.network.PageService
 import com.thinlineit.ctrlf.notes.NoteDao
 import kotlinx.coroutines.launch
 import java.lang.Exception

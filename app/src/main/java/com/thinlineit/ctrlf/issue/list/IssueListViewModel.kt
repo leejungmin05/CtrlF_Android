@@ -3,11 +3,7 @@ package com.thinlineit.ctrlf.issue.list
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.thinlineit.ctrlf.issue.IssueDao
-import com.thinlineit.ctrlf.network.IssueService
-import kotlinx.coroutines.launch
-import java.lang.Exception
 
 class IssueListViewModel : ViewModel() {
     private val _issueList = MutableLiveData<List<IssueDao>>(emptyList())

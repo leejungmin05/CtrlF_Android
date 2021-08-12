@@ -4,7 +4,7 @@ import androidx.lifecycle.*
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.data.request.AuthEmailRequest
 import com.thinlineit.ctrlf.data.request.SignUpRequest
-import com.thinlineit.ctrlf.network.RegistrationService
+import com.thinlineit.ctrlf.repository.network.RegistrationService
 import com.thinlineit.ctrlf.util.Event
 import com.thinlineit.ctrlf.util.addSourceList
 import com.thinlineit.ctrlf.util.isValid
