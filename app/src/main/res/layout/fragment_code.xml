@@ -38,7 +38,9 @@
                     android:backgroundTint="@color/white"
                     android:src="@drawable/ic_backbtn"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/accountText"
+                    android:layout_marginTop="10dp"/>
 
                 <TextView
                     android:id="@+id/accountText"
