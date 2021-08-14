@@ -17,6 +17,10 @@ class Event<out T>(private val content: T) {
     }
 
     fun peekContent(): T = content
+
+    override fun equals(other: Any?): Boolean {
+        return super.equals(other)
+    }
 }
 
 fun <T> LiveData<Event<T>>.observeIfNotHandled(owner: LifecycleOwner, onChanged: (T) -> Unit) {

@@ -1,11 +1,13 @@
 package com.thinlineit.ctrlf.registration
 
-import androidx.lifecycle.*
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.thinlineit.ctrlf.R
-import com.thinlineit.ctrlf.data.request.AuthEmailRequest
-import com.thinlineit.ctrlf.data.request.SignUpRequest
-import com.thinlineit.ctrlf.repository.network.RegistrationService
+import com.thinlineit.ctrlf.repository.UserRepository
 import com.thinlineit.ctrlf.util.Event
+import com.thinlineit.ctrlf.util.Status
 import com.thinlineit.ctrlf.util.addSourceList
 import com.thinlineit.ctrlf.util.isValid
 import kotlinx.coroutines.Dispatchers
@@ -13,13 +15,13 @@ import kotlinx.coroutines.launch
 
 
 class RegisterViewModel : ViewModel() {
+    private val userRepository = UserRepository()
 
     val email = MutableLiveData("")
     val password = MutableLiveData("")
     val passwordConfirm = MutableLiveData("")
     val nickName = MutableLiveData("")
     val code = MutableLiveData("")
-
     val emailStatus = MutableLiveData<Event<Int>>()
     val codeStatus = MutableLiveData<Event<Int>>()
     val nicknameStatus = MutableLiveData<Event<Int>>()
@@ -28,7 +30,7 @@ class RegisterViewModel : ViewModel() {
     val registerClick = MutableLiveData<Event<Boolean>>()
 
     val liveDataMerger = MediatorLiveData<Boolean>().apply {
-        addSourceList(emailStatus, codeStatus, nicknameStatus, passwordStatus) {
+        addSourceList(emailStatus, codeStatus, nicknameStatus, passwordStatus, passwordConfirmStatus) {
             isSignUpValid()
         }
     }
@@ -39,112 +41,114 @@ class RegisterViewModel : ViewModel() {
     val passwordConfirmMessage = MutableLiveData<Int>(R.string.default_text)
     val codeMessage = MutableLiveData<Int>(R.string.default_text)
 
-    fun checkDuplicateNickname() {
-        if (nickName.value.isValid(NICKNAME_REGEX)) {
-            viewModelScope.launch(Dispatchers.IO) {
-                try {
-                    RegistrationService.USER_API.checkNickname(nickName.value.toString())
-                    nicknameStatus.postValue(Event(SUCCESS))
-                } catch (e: Exception) {
-                    nicknameStatus.postValue(Event(FAILURE))
-                    nicknameMessage.postValue(R.string.error_nickname)
-                }
-            }
+    fun checkPasswordSame() {
+        if (!passwordConfirm.value.isValid(PASSWORD_REGEX)) {
+            passwordConfirmStatus.value = Event(Status.FAILURE.ordinal)
+            passwordConfirmMessage.postValue(R.string.alert_pwd_valid)
+            return
+        }
+        if (password.value == passwordConfirm.value) {
+            passwordConfirmStatus.value = Event(SUCCESS)
+            passwordConfirmMessage.postValue(R.string.default_text)
         } else {
+            passwordConfirmMessage.postValue(R.string.alert_pwd)
+            passwordConfirmStatus.value = Event(Status.FAILURE.ordinal)
+        }
+    }
+
+    private fun isSignUpValid(): Boolean =
+        emailStatus.value!!.equals(SUCCESS) &&
+                codeStatus.value!!.equals(SUCCESS) &&
+                nicknameStatus.value!!.equals(SUCCESS) &&
+                passwordStatus.value!!.equals(SUCCESS) &&
+                passwordConfirmStatus.value!!.equals(SUCCESS)
+
+
+    
+    fun checkDuplicateNickname() {
+        if (!nickName.value.isValid(NICKNAME_REGEX)) {
             nicknameMessage.postValue(R.string.alert_nickname_valid)
-            nicknameStatus.postValue(Event(FAILURE))
+            nicknameStatus.postValue(Event(Status.FAILURE.ordinal))
+            return
+        }
+        viewModelScope.launch(Dispatchers.IO) {
+            if (userRepository.checkNickname(nickName.value.toString())) {
+                nicknameStatus.postValue(Event(SUCCESS))
+            } else {
+                nicknameStatus.postValue(Event(Status.FAILURE.ordinal))
+                nicknameMessage.postValue(R.string.error_nickname)
+            }
         }
     }
 
     fun checkCodeValid() {
-        if (code.value.toString() != "") {
-            if (code.value.isValid(CODE_REGEX)) {
-                viewModelScope.launch {
-                    try {
-                        //TODO : code check API
-                        codeStatus.value = Event(SUCCESS)
-                    } catch (e: Exception) {
-                        codeMessage.postValue(R.string.error_code)
-                    }
-                }
-            } else {
-                codeMessage.postValue(R.string.alert_code_valid)
-                codeStatus.value = Event(FAILURE)
-            }
-        } else {
-            codeStatus.value = Event(FAILURE)
+        if (code.value.toString() == "") {
+            codeStatus.value = Event(Status.FAILURE.ordinal)
             codeMessage.postValue(R.string.alert_code)
+            return
         }
-    }
-
-    val checkPasswordSame: () -> Unit = {
-        if (passwordConfirm.value.isValid(PASSWORD_REGEX)) {
-            if (password.value == passwordConfirm.value) {
-                passwordConfirmStatus.value = Event(SUCCESS)
+        if (!code.value.isValid(CODE_REGEX)) {
+            codeMessage.postValue(R.string.alert_code_valid)
+            codeStatus.value = Event(Status.FAILURE.ordinal)
+            return
+        }
+        viewModelScope.launch {
+            if (userRepository.checkCode(code.value.toString())) {
+                codeStatus.postValue(Event(Status.SUCCESS.ordinal))
             } else {
-                passwordConfirmStatus.value = Event(FAILURE)
-                passwordConfirmMessage.postValue(R.string.alert_pwd)
+                codeMessage.postValue(R.string.error_code)
+                codeStatus.value = Event(Status.FAILURE.ordinal)
             }
         }
     }
-
 
     fun checkPasswordValid() {
         if (password.value.isValid(PASSWORD_REGEX)) {
             passwordStatus.value = Event(SUCCESS)
         } else {
             passwordMessage.postValue(R.string.alert_pwd_valid)
-            passwordStatus.value = Event(FAILURE)
+            passwordStatus.value = Event(Status.FAILURE.ordinal)
         }
     }
 
     fun checkDuplicateEmail() {
+        if (!email.value.isValid(EMAIL_REGEX)) {
+            emailStatus.postValue(Event(Status.FAILURE.ordinal))
+            emailMessage.postValue(R.string.alert_email)
+            return
+        }
         viewModelScope.launch {
-            if (email.value.isValid(EMAIL_REGEX)) {
-                try {
-                    RegistrationService.USER_API.checkEmail(email.value.toString())
-                    sendAuthEmail()
-                } catch (e: Exception) {
-                    emailStatus.postValue(Event(FAILURE))
-                    emailMessage.postValue(R.string.error_email)
-                }
+            if (userRepository.checkDuplicateEmail(email.value.toString())) {
+                sendAuthEmail()
             } else {
-                emailStatus.postValue(Event(FAILURE))
-                emailMessage.postValue(R.string.alert_email)
+                emailStatus.postValue(Event(Status.FAILURE.ordinal))
+                emailMessage.postValue(R.string.error_email)
             }
         }
     }
 
     fun sendAuthEmail() {
         viewModelScope.launch {
-            try {
-                RegistrationService.USER_API.authEmail(AuthEmailRequest(email.value.toString()))
+            if (userRepository.sendAuthCode(email.value.toString())) {
                 emailStatus.postValue(Event(SUCCESS))
-            } catch (e: Exception) {
+            } else {
                 emailMessage.postValue(R.string.alert_email)
+                emailStatus.postValue(Event(Status.FAILURE.ordinal))
             }
         }
     }
 
-    private fun isSignUpValid(): Boolean =
-        emailStatus.value == Event(SUCCESS) && codeStatus.value == Event(SUCCESS) && nicknameStatus.value == Event(
-            SUCCESS
-        ) && passwordStatus.value == Event(SUCCESS) && passwordConfirmStatus.value == Event(SUCCESS)
-
     fun requestSignUp() {
         viewModelScope.launch {
-            try {
-                RegistrationService.USER_API.requestSignUp(
-                    SignUpRequest(
-                        email.value ?: return@launch,
-                        code.value ?: return@launch,
-                        nickName.value ?: return@launch,
-                        password.value ?: return@launch,
-                        passwordConfirm.value ?: return@launch
-                    )
+            if (userRepository.requestSignUp(
+                    email.value.toString(),
+                    code.value.toString(),
+                    nickName.value.toString(),
+                    password.value.toString(),
+                    passwordConfirm.value.toString()
                 )
+            ) {
                 registerClick.postValue(Event(true))
-            } catch (e: Exception) {
             }
         }
     }
