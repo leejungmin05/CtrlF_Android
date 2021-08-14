@@ -76,6 +76,7 @@
                     android:background="@drawable/border_edittext_default"
                     android:hint="@string/code"
                     android:paddingStart="10dp"
+                    android:singleLine="true"
                     android:text="@={viewModel.code}"
                     app:layout_constraintEnd_toEndOf="@+id/codeText"
                     app:layout_constraintStart_toStartOf="@+id/codeText"
