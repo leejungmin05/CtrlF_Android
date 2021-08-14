@@ -159,7 +159,7 @@ class RegisterViewModel : ViewModel() {
             "^(?=.*[a-zA-Z0-9])(?=.*[a-zA-Z!@#\$%^&*])(?=.*[0-9!@#\$%^&*]).{8,20}\$"
         private const val EMAIL_REGEX = "^[\\w.-]+@([\\w\\-]+\\.)+[A-Z]{2,8}$"
         private const val NICKNAME_REGEX = "^[a-zA-Z0-9가-힣ㄱ-ㅎㅏ-ㅣ]{2,10}$"
-        private const val CODE_REGEX = "^[0-9]{6}$"
+        private const val CODE_REGEX = "^[a-zA-Z0-9]{8}$"
         private const val SUCCESS = 0
         private const val FAILURE = 1
     }
