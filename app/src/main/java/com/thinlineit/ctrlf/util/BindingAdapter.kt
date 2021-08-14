@@ -12,15 +12,15 @@ import com.thinlineit.ctrlf.registration.RegisterViewModel
 
 @BindingAdapter("app:data")
 fun <T> setRecyclerViewData(recyclerView: RecyclerView, data: T) {
-    if (recyclerView.adapter is BindingRecyclerViewAdapter<*> && data != null){
-            (recyclerView.adapter as BindingRecyclerViewAdapter<T>).setData(data)
+    if (recyclerView.adapter is BindingRecyclerViewAdapter<*> && data != null) {
+        (recyclerView.adapter as BindingRecyclerViewAdapter<T>).setData(data)
     }
 }
 
 @BindingAdapter("app:onFocusLost")
 fun EditText.onFocusLost(callback: () -> Unit) {
     setOnFocusChangeListener { v, hasFocus ->
-        if(!hasFocus ) callback.invoke()
+        if (!hasFocus) callback.invoke()
     }
 }
 

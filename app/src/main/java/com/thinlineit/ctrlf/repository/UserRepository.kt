@@ -46,8 +46,8 @@ class UserRepository {
             false
         }
 
-    suspend fun checkCode(code: String) : Boolean =
-        try{
+    suspend fun checkCode(code: String): Boolean =
+        try {
             RegistrationService.USER_API.requestCodeCheck(CodeCheckRequest(code))
             true
         } catch (e: Exception) {
@@ -70,13 +70,19 @@ class UserRepository {
             false
         }
 
-    suspend fun requestSignUp(email: String, code: String, nickName: String, password: String, passwordConfirm: String) : Boolean =
-        try{
+    suspend fun requestSignUp(
+        email: String,
+        code: String,
+        nickName: String,
+        password: String,
+        passwordConfirm: String
+    ): Boolean =
+        try {
             RegistrationService.USER_API.requestSignUp(
-                SignUpRequest(email,code,nickName, password, passwordConfirm)
+                SignUpRequest(email, code, nickName, password, passwordConfirm)
             )
             true
-        } catch(e : Exception) {
+        } catch (e: Exception) {
             false
         }
 
