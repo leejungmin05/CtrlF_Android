@@ -34,7 +34,7 @@ class RegisterViewModel : ViewModel() {
             isSignUpValid()
         }
     }
-
+    
     val emailMessage = MutableLiveData<Int>(R.string.default_text)
     val nicknameMessage = MutableLiveData<Int>(R.string.default_text)
     val passwordMessage = MutableLiveData<Int>(R.string.default_text)
@@ -127,7 +127,7 @@ class RegisterViewModel : ViewModel() {
         }
     }
 
-    fun sendAuthEmail() {
+    private fun sendAuthEmail() {
         viewModelScope.launch {
             if (userRepository.sendAuthCode(email.value.toString())) {
                 emailStatus.postValue(Event(SUCCESS))
