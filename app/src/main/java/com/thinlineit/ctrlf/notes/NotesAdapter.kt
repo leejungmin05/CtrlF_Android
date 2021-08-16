@@ -1,13 +1,13 @@
 package com.thinlineit.ctrlf.notes
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.thinlineit.ctrlf.util.BindingRecyclerViewAdapter
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.ListItemNoteBinding
+import com.thinlineit.ctrlf.util.setBackground
 
 class NotesAdapter(private val clickListener: (Int) -> Unit) :
     RecyclerView.Adapter<NotesAdapter.ViewHolder>(), BindingRecyclerViewAdapter<List<NoteDao>> {
@@ -20,16 +20,26 @@ class NotesAdapter(private val clickListener: (Int) -> Unit) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val noteDao = noteList[position]
-        holder.bind(noteDao, clickListener)
+        holder.bind(noteDao, clickListener, position)
     }
 
     class ViewHolder(private val dataBinding: ListItemNoteBinding) :
         RecyclerView.ViewHolder(dataBinding.root) {
-        fun bind(noteDao: NoteDao, clickListener: (Int) -> Unit) {
-            dataBinding.note = noteDao
-            dataBinding.root.setOnClickListener {
-                clickListener(noteDao.id)
+        fun bind(noteDao: NoteDao, clickListener: (Int) -> Unit, position: Int) {
+            var resourceId: Int
+            when (position % 3) {
+                1 -> resourceId = R.drawable.ic_note_2
+                2 -> resourceId = R.drawable.ic_note_3
+                else -> resourceId = R.drawable.ic_note_1
             }
+            dataBinding.apply {
+                noteItem.setBackground(resourceId)
+                note = noteDao
+                root.setOnClickListener {
+                    clickListener(noteDao.id)
+                }
+            }
+
         }
 
         companion object {

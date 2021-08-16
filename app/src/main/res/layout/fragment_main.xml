@@ -20,7 +20,9 @@
             android:text="@string/note"
             android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="12dp">
         </TextView>
 
         <TextView
@@ -30,7 +32,9 @@
             android:text="@string/allView"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="12dp">
         </TextView>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -51,7 +55,9 @@
             android:text="@string/issue"
             android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/noteListRecyclerView">
+            app:layout_constraintTop_toBottomOf="@id/noteListRecyclerView"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="22dp">
         </TextView>
 
         <TextView
@@ -61,7 +67,9 @@
             android:text="@string/allView"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/noteListRecyclerView">
+            app:layout_constraintTop_toBottomOf="@id/noteListRecyclerView"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="22dp">
         </TextView>
 
         <androidx.recyclerview.widget.RecyclerView

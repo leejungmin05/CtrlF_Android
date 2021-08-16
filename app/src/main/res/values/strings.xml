@@ -40,7 +40,7 @@
     <string name="id">Id</string>
     <string name="content">Content</string>
     <string name="registrationDate">RegistrationDate</string>
-    <string name="allView">전체보기</string>
+    <string name="allView">전체보기 ></string>
 
 
 </resources>

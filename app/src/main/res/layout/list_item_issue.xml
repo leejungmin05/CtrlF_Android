@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="3dp"
-        android:background="@drawable/item_layout_shape">
+        android:background="@drawable/ic_issue_1">
 
         <TextView
             android:id="@+id/issueTitle"
