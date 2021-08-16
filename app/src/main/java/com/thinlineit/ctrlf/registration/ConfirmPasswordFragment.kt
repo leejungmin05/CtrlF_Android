@@ -51,5 +51,9 @@ class ConfirmPasswordFragment :
         binding.backBtn.setOnClickListener {
             navController.navigate(R.id.action_registerConfirmPasswordFragment_to_registerPasswordFragment)
         }
+
+        viewModel.liveDataMerger.observe(viewLifecycleOwner){
+            binding.registerBtn.isEnabled = it
+        }
     }
 }

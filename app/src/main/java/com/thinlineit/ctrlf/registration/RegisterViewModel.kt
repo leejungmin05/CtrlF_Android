@@ -22,6 +22,7 @@ class RegisterViewModel : ViewModel() {
     val passwordConfirm = MutableLiveData("")
     val nickName = MutableLiveData("")
     val code = MutableLiveData("")
+
     val emailStatus = MutableLiveData<Event<Int>>()
     val codeStatus = MutableLiveData<Event<Int>>()
     val nicknameStatus = MutableLiveData<Event<Int>>()
@@ -30,11 +31,17 @@ class RegisterViewModel : ViewModel() {
     val registerClick = MutableLiveData<Event<Boolean>>()
 
     val liveDataMerger = MediatorLiveData<Boolean>().apply {
-        addSourceList(emailStatus, codeStatus, nicknameStatus, passwordStatus, passwordConfirmStatus) {
+        addSourceList(
+            emailStatus,
+            codeStatus,
+            nicknameStatus,
+            passwordStatus,
+            passwordConfirmStatus
+        ) {
             isSignUpValid()
         }
     }
-    
+
     val emailMessage = MutableLiveData<Int>(R.string.default_text)
     val nicknameMessage = MutableLiveData<Int>(R.string.default_text)
     val passwordMessage = MutableLiveData<Int>(R.string.default_text)
@@ -63,14 +70,12 @@ class RegisterViewModel : ViewModel() {
     }
 
     private fun isSignUpValid(): Boolean =
-        emailStatus.value!!.equals(SUCCESS) &&
-                codeStatus.value!!.equals(SUCCESS) &&
-                nicknameStatus.value!!.equals(SUCCESS) &&
-                passwordStatus.value!!.equals(SUCCESS) &&
-                passwordConfirmStatus.value!!.equals(SUCCESS)
+        emailStatus.value?.equalContent(SUCCESS)?:false &&
+                codeStatus.value?.equalContent(SUCCESS)?:false &&
+                nicknameStatus.value?.equalContent(SUCCESS)?:false &&
+                passwordStatus.value?.equalContent(SUCCESS)?:false &&
+                passwordConfirmStatus.value?.equalContent(SUCCESS)?:false
 
-
-    
     fun checkDuplicateNickname() {
         if (!nickName.value.isValid(NICKNAME_REGEX)) {
             nicknameMessage.postValue(R.string.alert_nickname_valid)
@@ -125,6 +130,7 @@ class RegisterViewModel : ViewModel() {
         }
         viewModelScope.launch {
             if (userRepository.checkDuplicateEmail(email.value.toString())) {
+                emailMessage.postValue(R.string.default_text)
                 sendAuthEmail()
             } else {
                 emailStatus.postValue(Event(Status.FAILURE.ordinal))

@@ -3,7 +3,7 @@ package com.thinlineit.ctrlf.util
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 
-class Event<out T>(private val content: T) {
+class Event<T>(private val content: T) {
     var hasBeenHandled = false
         private set
 
@@ -18,9 +18,11 @@ class Event<out T>(private val content: T) {
 
     fun peekContent(): T = content
 
-    override fun equals(other: Any?): Boolean {
-        return super.equals(other)
+    @Suppress("UNCHECKED_CAST")
+    fun equalContent(other: Any?): Boolean {
+        return (other as T) == this.peekContent()
     }
+
 }
 
 fun <T> LiveData<Event<T>>.observeIfNotHandled(owner: LifecycleOwner, onChanged: (T) -> Unit) {
