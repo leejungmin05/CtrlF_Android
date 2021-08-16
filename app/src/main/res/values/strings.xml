@@ -32,6 +32,7 @@
     <!-- login viewModel-->
     <string name="alert_email">이메일 형식이 올바르지 않습니다.</string>
     <string name="alert_text">이메일과 비밀번호를 입력해주세요.</string>
+    <string name="alert_login">이메일과 비밀번호를 확인해주세요.</string>
     <string name="alert_pwd">비밀번호가 일치하지 않습니다.</string>
 
     <!-- register viewModel-->
