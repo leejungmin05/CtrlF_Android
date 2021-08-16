@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -32,10 +33,12 @@ class ConfirmPasswordFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
+        val anim = AnimationUtils.loadAnimation(context,R.anim.shake_animation)
 
         viewModel.passwordConfirmStatus.observeIfNotHandled(viewLifecycleOwner) {
             if (it == Status.FAILURE.ordinal) {
                 binding.regPassword2.setBackground(R.drawable.border_edittext_error)
+                binding.regPassword2.startAnimation(anim)
             } else {
                 binding.regPassword2.setBackground(R.drawable.border_edittext_default)
             }

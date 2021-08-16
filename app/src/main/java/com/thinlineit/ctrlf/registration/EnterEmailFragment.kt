@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -30,10 +31,12 @@ class EnterEmailFragment : BaseFragment<FragmentEmailBinding>(R.layout.fragment_
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
+        val anim = AnimationUtils.loadAnimation(context,R.anim.shake_animation)
 
         viewModel.emailStatus.observeIfNotHandled(viewLifecycleOwner) {
             if (it == Status.FAILURE.ordinal) {
                 binding.regEmail.setBackground(R.drawable.border_edittext_error)
+                binding.regEmail.startAnimation(anim)
             } else {
                 navController.navigate(R.id.action_registerEmailFragment_to_registerCodeFragment)
             }
