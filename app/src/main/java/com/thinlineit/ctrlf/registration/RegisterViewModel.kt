@@ -41,6 +41,12 @@ class RegisterViewModel : ViewModel() {
     val passwordConfirmMessage = MutableLiveData<Int>(R.string.default_text)
     val codeMessage = MutableLiveData<Int>(R.string.default_text)
 
+    val emailInvoke : () -> Unit = this::checkDuplicateEmail
+    val codeInvoke : () -> Unit = this::checkCodeValid
+    val nicknameInvoke : () -> Unit = this::checkDuplicateNickname
+    val passwordInvoke: () -> Unit = this::checkPasswordValid
+    val passwordConfirmInvoke: () -> Unit = this::checkPasswordSame
+
     fun checkPasswordSame() {
         if (!passwordConfirm.value.isValid(PASSWORD_REGEX)) {
             passwordConfirmStatus.value = Event(Status.FAILURE.ordinal)

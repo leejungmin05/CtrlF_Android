@@ -2,6 +2,7 @@ package com.thinlineit.ctrlf.util
 
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.ViewModel
@@ -46,4 +47,15 @@ fun addTextChangeListener(view: EditText, viewModel: ViewModel) {
             }
         }
     })
+}
+
+@BindingAdapter("app:onEditorActionListener")
+fun EditText.onEditorAction(callback: () -> Unit) {
+    setOnEditorActionListener { _, actionId, _ ->
+        if (actionId == EditorInfo.IME_ACTION_DONE) {
+            callback.invoke()
+            true
+        }
+        false
+    }
 }
