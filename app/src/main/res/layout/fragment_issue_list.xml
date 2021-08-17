@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="issueViewModel"
             type="com.thinlineit.ctrlf.issue.list.IssueListViewModel" />
@@ -32,6 +33,7 @@
                 android:id="@+id/issueListRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_marginLeft="22dp"
                 android:orientation="vertical"
                 app:data="@{issueViewModel.issueList}"
                 app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"

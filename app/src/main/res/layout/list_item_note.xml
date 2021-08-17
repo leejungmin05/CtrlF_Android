@@ -4,6 +4,7 @@
     xmlns:tool="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="note"
             type="com.thinlineit.ctrlf.notes.NoteDao" />
@@ -13,20 +14,21 @@
         android:id="@+id/noteItem"
         android:layout_width="100dp"
         android:layout_height="137dp"
-        android:background="@drawable/ic_note_1"
         android:layout_marginLeft="22dp"
-        android:layout_marginTop="15dp">
+        android:layout_marginTop="15dp"
+        android:background="@drawable/ic_note_1">
 
         <TextView
             android:id="@+id/noteName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="65dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="25dp"
+            android:gravity="center"
             android:text="@{note.title}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="32dp"
             tool:text="@string/note" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

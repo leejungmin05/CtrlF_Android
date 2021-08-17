@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="mainViewModel"
             type="com.thinlineit.ctrlf.main.MainViewModel" />
@@ -17,70 +18,66 @@
             android:id="@+id/textNote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="12dp"
             android:text="@string/note"
             android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginLeft="22dp"
-            android:layout_marginTop="12dp">
-        </TextView>
+            app:layout_constraintTop_toTopOf="parent"></TextView>
 
         <TextView
             android:id="@+id/showAllNoteTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="12dp"
             android:text="@string/allView"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginRight="12dp"
-            android:layout_marginTop="12dp">
-        </TextView>
+            app:layout_constraintTop_toTopOf="parent"></TextView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/noteListRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:data="@{mainViewModel.noteList}"
             android:orientation="horizontal"
+            app:data="@{mainViewModel.noteList}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/textNote"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textNote"
             tools:listitem="@layout/list_item_note" />
 
         <TextView
             android:id="@+id/textIssue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="22dp"
             android:text="@string/issue"
             android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/noteListRecyclerView"
-            android:layout_marginLeft="22dp"
-            android:layout_marginTop="22dp">
-        </TextView>
+            app:layout_constraintTop_toBottomOf="@id/noteListRecyclerView"></TextView>
 
         <TextView
             android:id="@+id/showAllIssueTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:layout_marginRight="12dp"
             android:text="@string/allView"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/noteListRecyclerView"
-            android:layout_marginRight="12dp"
-            android:layout_marginTop="22dp">
-        </TextView>
+            app:layout_constraintTop_toBottomOf="@id/noteListRecyclerView"></TextView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/issueListRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:data="@{mainViewModel.issueList}"
             android:orientation="horizontal"
+            app:data="@{mainViewModel.issueList}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/textIssue"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textIssue"
             tools:listitem="@layout/list_item_main_issue" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
