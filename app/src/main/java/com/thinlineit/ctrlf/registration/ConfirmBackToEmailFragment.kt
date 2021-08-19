@@ -23,14 +23,14 @@ class ConfirmBackToEmailFragment :
         super.onCreateView(inflater, container, savedInstanceState)
         binding.viewModel = this@ConfirmBackToEmailFragment.viewModel
 
-        binding.backBtn.setOnClickListener {
-            navController.navigate(R.id.action_registerBackFragment_to_registerEmailFragment)
+        binding.apply {
+            backBtn.setOnClickListener {
+                navController.navigate(R.id.action_registerBackFragment_to_registerEmailFragment)
+            }
+            cancelBtn.setOnClickListener {
+                navController.navigate(R.id.action_registerBackFragment_to_registerNicknameFragment)
+            }
         }
-
-        binding.cancelBtn.setOnClickListener {
-            navController.navigate(R.id.action_registerBackFragment_to_registerNicknameFragment)
-        }
-
         return binding.root
     }
 
