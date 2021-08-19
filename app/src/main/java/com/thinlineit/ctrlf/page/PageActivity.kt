@@ -19,6 +19,7 @@ class PageActivity : AppCompatActivity() {
             R.layout.activity_page
         )
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val noteId = intent.getIntExtra(NOTE_ID, 0)
@@ -29,11 +30,21 @@ class PageActivity : AppCompatActivity() {
             lifecycleOwner = this@PageActivity
         }
         pageViewModel.slidingOpen.observe(this, Observer {
-            if (it > 0){
+            if (it == 1 && slidingPaneLayout.isSlideable) {
                 slidingPaneLayout.open()
+                pageViewModel.closeSliding()
             }
         })
     }
+
+    override fun onBackPressed() {
+        if (slidingPaneLayout.isOpen && slidingPaneLayout.isSlideable) {
+            slidingPaneLayout.close()
+        } else {
+            super.onBackPressed()
+        }
+    }
+
     companion object {
         const val NOTE_ID = "noteId"
     }

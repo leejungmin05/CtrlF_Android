@@ -7,7 +7,7 @@ interface PageApi {
     //해당하는 페이지에 대한 정보를 조회
     @GET("pages/{page_id}")
     suspend fun getPage(
-        @Path("page_id") pageId: Int,
+        @Path("page_id") pageId: String,
     ): PageDao
 
     //Page 생성

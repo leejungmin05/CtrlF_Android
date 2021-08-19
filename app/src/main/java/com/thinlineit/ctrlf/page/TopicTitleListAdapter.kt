@@ -30,7 +30,6 @@ class TopicTitleListAdapter(private val clickListener: (Int) -> Unit) :
             dataBinding.topic = topicDao
             dataBinding.root.setOnClickListener {
                 clickListener(topicDao.id)
-                Log.d("abcd","click!")
             }
         }
 

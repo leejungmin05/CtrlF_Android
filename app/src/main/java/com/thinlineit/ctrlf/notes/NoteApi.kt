@@ -7,14 +7,14 @@ interface NoteApi {
     // 모든 노트들을 조회, (search) 쿼리 값에 따라 결과 값을 걸러냄
     @GET("notes")
     suspend fun listNote(
-        @Query("search") search: String
-    ): List<NoteDao>
+        @Query("cursor") cursor: Int
+    ): AllNoteDao
 
     //해당하는 노트에 대한 모든 하위의 정보들까지 모두 조회
-    @GET("notes/{note_id}")
+    @GET("notes/{note_id}/topics")
     suspend fun getNote(
-        @Path("note_id") noteId: Int,
-    ): NoteDao
+        @Path("note_id") noteId: String,
+    ): List<TopicDao>
 
     //note 생성
     @FormUrlEncoded

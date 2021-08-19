@@ -15,17 +15,11 @@ import com.thinlineit.ctrlf.databinding.FragmentTopicTitleBinding
 import kotlinx.android.synthetic.main.fragment_topic_title.*
 
 class PageTitleListFragment : Fragment() {
-    val mock : List<PageTitle> = listOf(
-        PageTitle("one"),
-        PageTitle("two"),
-        PageTitle("three"),
-        PageTitle("four"),
-        PageTitle("five")
-    )
-    private val pageTitleListAdapter = PageTitleListAdapter(mock){ pageId ->
+    private val pageTitleListAdapter = PageTitleListAdapter(){ pageId ->
         pageViewModel.openSliding()
+        pageViewModel.openPage(pageId)
     }
-    val pageViewModel by activityViewModels<PageViewModel>()
+    private val pageViewModel by activityViewModels<PageViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

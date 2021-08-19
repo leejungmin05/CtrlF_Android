@@ -14,12 +14,12 @@ import kotlinx.android.synthetic.main.activity_page.*
 
 class TopicTitleListFragment : Fragment() {
     private val topicListAdapter = TopicTitleListAdapter { topicId ->
-        //pageViewModel.selectTopic(topicId)
+        pageViewModel.selectTopic(topicId)
         this.findNavController().navigate(
             TopicTitleListFragmentDirections.actionNotesFragmentToPageFragment()
         )
     }
-    val pageViewModel by activityViewModels<PageViewModel>()
+    private val pageViewModel by activityViewModels<PageViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

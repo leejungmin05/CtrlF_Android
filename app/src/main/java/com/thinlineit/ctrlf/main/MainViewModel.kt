@@ -1,23 +1,24 @@
 package com.thinlineit.ctrlf.main
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.util.Log
+import androidx.lifecycle.*
 import com.thinlineit.ctrlf.issue.IssueDao
 import com.thinlineit.ctrlf.network.NoteService
+import com.thinlineit.ctrlf.notes.AllNoteDao
 import com.thinlineit.ctrlf.notes.NoteDao
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class MainViewModel : ViewModel() {
-    private val _noteList = MutableLiveData<List<NoteDao>>(listOf())
-    val noteList: LiveData<List<NoteDao>>
+    private val _noteList = MutableLiveData<AllNoteDao>()
+    val noteList: LiveData<AllNoteDao>
         get() = _noteList
 
     private val _issueList = MutableLiveData<List<IssueDao>>(emptyList())
     val issueList: LiveData<List<IssueDao>>
         get() = _issueList
+
+    val notes = Transformations.map(noteList) { it.notes}
 
     init {
         loadNote()
@@ -27,7 +28,7 @@ class MainViewModel : ViewModel() {
     private fun loadNote() {
         viewModelScope.launch {
             try {
-                _noteList.value = NoteService.retrofitService.listNote("")
+                _noteList.value = NoteService.retrofitService.listNote(0)
             } catch (e: Exception) {
             }
         }
