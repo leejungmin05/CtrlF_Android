@@ -19,13 +19,16 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/regCardView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             app:cardCornerRadius="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -60,9 +63,11 @@
 
                 <Button
                     android:id="@+id/backBtn"
-                    android:layout_width="300dp"
+                    android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="15dp"
+                    android:layout_marginEnd="20dp"
                     android:backgroundTint="@color/skyblue"
                     android:text="@string/back_text"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -71,9 +76,11 @@
 
                 <Button
                     android:id="@+id/cancelBtn"
-                    android:layout_width="300dp"
+                    android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginEnd="20dp"
                     android:backgroundTint="@color/skyblue"
                     android:text="@string/cancel_text"
                     app:layout_constraintEnd_toEndOf="parent"
