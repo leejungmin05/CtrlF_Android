@@ -48,9 +48,9 @@ class RegisterViewModel : ViewModel() {
     val passwordConfirmMessage = MutableLiveData<Int>(R.string.default_text)
     val codeMessage = MutableLiveData<Int>(R.string.default_text)
 
-    val emailInvoke : () -> Unit = this::checkDuplicateEmail
-    val codeInvoke : () -> Unit = this::checkCodeValid
-    val nicknameInvoke : () -> Unit = this::checkDuplicateNickname
+    val emailInvoke: () -> Unit = this::checkDuplicateEmail
+    val codeInvoke: () -> Unit = this::checkCodeValid
+    val nicknameInvoke: () -> Unit = this::checkDuplicateNickname
     val passwordInvoke: () -> Unit = this::checkPasswordValid
     val passwordConfirmInvoke: () -> Unit = this::checkPasswordSame
 
@@ -70,11 +70,11 @@ class RegisterViewModel : ViewModel() {
     }
 
     private fun isSignUpValid(): Boolean =
-        emailStatus.value?.equalContent(SUCCESS)?:false &&
-                codeStatus.value?.equalContent(SUCCESS)?:false &&
-                nicknameStatus.value?.equalContent(SUCCESS)?:false &&
-                passwordStatus.value?.equalContent(SUCCESS)?:false &&
-                passwordConfirmStatus.value?.equalContent(SUCCESS)?:false
+        emailStatus.value?.equalContent(SUCCESS) ?: false &&
+                codeStatus.value?.equalContent(SUCCESS) ?: false &&
+                nicknameStatus.value?.equalContent(SUCCESS) ?: false &&
+                passwordStatus.value?.equalContent(SUCCESS) ?: false &&
+                passwordConfirmStatus.value?.equalContent(SUCCESS) ?: false
 
     fun checkDuplicateNickname() {
         if (!nickName.value.isValid(NICKNAME_REGEX)) {

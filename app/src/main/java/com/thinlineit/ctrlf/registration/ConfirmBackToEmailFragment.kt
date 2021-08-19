@@ -11,8 +11,8 @@ import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.FragmentRegisterBackBinding
 import com.thinlineit.ctrlf.util.base.BaseFragment
 
-
-class ConfirmBackToEmailFragment : BaseFragment<FragmentRegisterBackBinding>(R.layout.fragment_register_back) {
+class ConfirmBackToEmailFragment :
+    BaseFragment<FragmentRegisterBackBinding>(R.layout.fragment_register_back) {
     private lateinit var navController: NavController
     private val viewModel by activityViewModels<RegisterViewModel>()
 

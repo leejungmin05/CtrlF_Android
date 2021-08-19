@@ -32,7 +32,7 @@ class EnterPasswordFragment : BaseFragment<FragmentPasswordBinding>(R.layout.fra
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val anim = AnimationUtils.loadAnimation(context,R.anim.shake_animation)
+        val anim = AnimationUtils.loadAnimation(context, R.anim.shake_animation)
         navController = Navigation.findNavController(view)
 
         viewModel.passwordStatus.observeIfNotHandled(viewLifecycleOwner) {

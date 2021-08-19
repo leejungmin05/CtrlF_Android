@@ -27,7 +27,7 @@ class LoginViewModel : ViewModel() {
 
     private fun login() {
         viewModelScope.launch {
-            if(userRepository.doLogin(email.value.toString(), password.value.toString())){
+            if (userRepository.doLogin(email.value.toString(), password.value.toString())) {
                 loginStatus.postValue(Event(Status.SUCCESS.ordinal))
             } else {
                 loginMessage.postValue(R.string.alert_login)

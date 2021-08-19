@@ -31,7 +31,7 @@ class EnterEmailFragment : BaseFragment<FragmentEmailBinding>(R.layout.fragment_
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-        val anim = AnimationUtils.loadAnimation(context,R.anim.shake_animation)
+        val anim = AnimationUtils.loadAnimation(context, R.anim.shake_animation)
 
         viewModel.emailStatus.observeIfNotHandled(viewLifecycleOwner) {
             if (it == Status.FAILURE.ordinal) {

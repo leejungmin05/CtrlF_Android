@@ -49,7 +49,7 @@ class ConfirmPasswordFragment :
             navController.navigate(R.id.action_registerConfirmPasswordFragment_to_registerPasswordFragment)
         }
 
-        viewModel.liveDataMerger.observe(viewLifecycleOwner){
+        viewModel.liveDataMerger.observe(viewLifecycleOwner) {
             binding.registerBtn.isEnabled = it
         }
     }

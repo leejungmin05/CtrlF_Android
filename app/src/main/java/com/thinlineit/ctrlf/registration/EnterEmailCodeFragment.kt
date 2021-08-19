@@ -32,7 +32,7 @@ class EnterEmailCodeFragment : BaseFragment<FragmentCodeBinding>(R.layout.fragme
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-        val anim = AnimationUtils.loadAnimation(context,R.anim.shake_animation)
+        val anim = AnimationUtils.loadAnimation(context, R.anim.shake_animation)
 
         viewModel.codeStatus.observeIfNotHandled(viewLifecycleOwner) {
             if (it == Status.FAILURE.ordinal) {
