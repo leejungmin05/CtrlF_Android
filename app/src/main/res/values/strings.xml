@@ -38,9 +38,9 @@
     <!-- register viewModel-->
     <string name="alert_email_auth">인증 코드를 발송했습니다.</string>
     <string name="alert_nickname_valid">닉네임은 2~10자, 공백이나 특수문자는 허용하지 않습니다.</string>
-    <string name="alert_pwd_valid">영문, 숫자, 특수문자 중 2가지 이상 조합하여 8~20자이내</string>
+    <string name="alert_pwd_valid">비밀 번호는 영문, 숫자, 특수문자 중 2가지 이상 조합하여 8~20자이내로 입력해주세요.</string>
     <string name="alert_code">코드를 입력하세요.</string>
-    <string name="alert_code_valid">코드는 숫자 6자리입니다.</string>
+    <string name="alert_code_valid">코드를 확인해주세요.</string>
     <string name="error_code">코드가 일치하지 않습니다.</string>
     <string name="code_confirm_text">입력하신 이메일에서 코드를 확인해주세요.</string>
     <string name="error_nickname">이미 존재하는 닉네임입니다.</string>
