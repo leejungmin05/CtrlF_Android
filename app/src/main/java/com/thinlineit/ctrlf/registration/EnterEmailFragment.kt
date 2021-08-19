@@ -39,6 +39,7 @@ class EnterEmailFragment : BaseFragment<FragmentEmailBinding>(R.layout.fragment_
                 binding.regEmail.startAnimation(anim)
             } else {
                 navController.navigate(R.id.action_registerEmailFragment_to_registerCodeFragment)
+                binding.regEmail.setText(R.string.default_text)
             }
         }
 
