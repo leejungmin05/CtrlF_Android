@@ -57,7 +57,7 @@ class RegisterViewModel : ViewModel() {
     fun checkPasswordSame() {
         if (!passwordConfirm.value.isValid(PASSWORD_REGEX)) {
             passwordConfirmStatus.value = Event(Status.FAILURE.ordinal)
-            passwordConfirmMessage.postValue(R.string.alert_pwd_valid)
+            passwordConfirmMessage.postValue(R.string.alert_pwd)
             return
         }
         if (password.value == passwordConfirm.value) {
@@ -85,6 +85,7 @@ class RegisterViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             if (userRepository.checkNickname(nickName.value.toString())) {
                 nicknameStatus.postValue(Event(SUCCESS))
+                nicknameMessage.postValue(R.string.default_text)
             } else {
                 nicknameStatus.postValue(Event(Status.FAILURE.ordinal))
                 nicknameMessage.postValue(R.string.error_nickname)
@@ -106,6 +107,7 @@ class RegisterViewModel : ViewModel() {
         viewModelScope.launch {
             if (userRepository.checkCode(code.value.toString())) {
                 codeStatus.postValue(Event(Status.SUCCESS.ordinal))
+                codeMessage.postValue(R.string.default_text)
             } else {
                 codeMessage.postValue(R.string.error_code)
                 codeStatus.value = Event(Status.FAILURE.ordinal)
@@ -116,6 +118,7 @@ class RegisterViewModel : ViewModel() {
     fun checkPasswordValid() {
         if (password.value.isValid(PASSWORD_REGEX)) {
             passwordStatus.value = Event(SUCCESS)
+            passwordMessage.postValue(R.string.default_text)
         } else {
             passwordMessage.postValue(R.string.alert_pwd_valid)
             passwordStatus.value = Event(Status.FAILURE.ordinal)
@@ -143,6 +146,7 @@ class RegisterViewModel : ViewModel() {
         viewModelScope.launch {
             if (userRepository.sendAuthCode(email.value.toString())) {
                 emailStatus.postValue(Event(SUCCESS))
+                emailMessage.postValue(R.string.default_text)
             } else {
                 emailMessage.postValue(R.string.alert_email)
                 emailStatus.postValue(Event(Status.FAILURE.ordinal))
