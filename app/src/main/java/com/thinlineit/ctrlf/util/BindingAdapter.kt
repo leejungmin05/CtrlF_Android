@@ -8,20 +8,13 @@ import androidx.databinding.BindingAdapter
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
 import com.mukesh.MarkdownView
-import com.thinlineit.ctrlf.registration.RegisterViewModel
+import com.thinlineit.ctrlf.registration.RegistrationViewmodel
 
 
 @BindingAdapter("app:data")
 fun <T> setRecyclerViewData(recyclerView: RecyclerView, data: T) {
     if (recyclerView.adapter is BindingRecyclerViewAdapter<*> && data != null) {
         (recyclerView.adapter as BindingRecyclerViewAdapter<T>).setData(data)
-    }
-}
-
-@BindingAdapter("app:onFocusLost")
-fun EditText.onFocusLost(callback: () -> Unit) {
-    setOnFocusChangeListener { v, hasFocus ->
-        if (!hasFocus) callback.invoke()
     }
 }
 
@@ -43,7 +36,7 @@ fun addTextChangeListener(view: EditText, viewModel: ViewModel) {
 
         override fun afterTextChanged(s: Editable?) {
             when (viewModel) {
-                is RegisterViewModel -> viewModel.checkPasswordSame()
+                is RegistrationViewmodel -> viewModel.checkPasswordSame()
             }
         }
     })

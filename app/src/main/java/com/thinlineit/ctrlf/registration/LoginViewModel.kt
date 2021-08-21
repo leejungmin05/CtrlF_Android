@@ -20,7 +20,7 @@ class LoginViewModel : ViewModel() {
     val eventClick: LiveData<Event<Boolean>>
         get() = _eventClick
 
-    val loginStatus = MutableLiveData<Event<Int>>()
+    val loginStatus = MutableLiveData<Event<Status>>()
     val email = MutableLiveData("")
     val password = MutableLiveData("")
     val loginMessage = MutableLiveData<Int>(R.string.default_text)
@@ -28,10 +28,10 @@ class LoginViewModel : ViewModel() {
     private fun login() {
         viewModelScope.launch {
             if (userRepository.doLogin(email.value.toString(), password.value.toString())) {
-                loginStatus.postValue(Event(Status.SUCCESS.ordinal))
+                loginStatus.postValue(Event(Status.SUCCESS))
             } else {
                 loginMessage.postValue(R.string.alert_login)
-                loginStatus.postValue(Event(Status.FAILURE.ordinal))
+                loginStatus.postValue(Event(Status.FAILURE))
             }
         }
     }

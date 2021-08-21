@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.thinlineit.ctrlf.registration.RegisterViewModel" />
+            type="com.thinlineit.ctrlf.registration.RegistrationViewmodel" />
 
     </data>
 

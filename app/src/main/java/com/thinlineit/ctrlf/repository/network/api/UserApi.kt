@@ -15,12 +15,12 @@ import retrofit2.http.Query
 
 interface UserApi {
 
-    @POST("auth/login/")
+    @POST("auth/login")
     suspend fun requestLogin(
         @Body request: User
     ): LoginResponse
 
-    @POST("auth/signup/")
+    @POST("auth/signup")
     suspend fun requestSignUp(
         @Body request: SignUpRequest
     ): SignUpResponse

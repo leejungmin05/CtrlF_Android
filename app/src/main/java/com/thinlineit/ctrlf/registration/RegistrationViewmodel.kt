@@ -6,15 +6,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.repository.UserRepository
-import com.thinlineit.ctrlf.util.Event
-import com.thinlineit.ctrlf.util.Status
-import com.thinlineit.ctrlf.util.addSourceList
-import com.thinlineit.ctrlf.util.isValid
+import com.thinlineit.ctrlf.util.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class RegisterViewModel : ViewModel() {
+class RegistrationViewmodel : ViewModel() {
     private val userRepository = UserRepository()
 
     val email = MutableLiveData("")
@@ -23,11 +20,11 @@ class RegisterViewModel : ViewModel() {
     val nickName = MutableLiveData("")
     val code = MutableLiveData("")
 
-    val emailStatus = MutableLiveData<Event<Int>>()
-    val codeStatus = MutableLiveData<Event<Int>>()
-    val nicknameStatus = MutableLiveData<Event<Int>>()
-    val passwordStatus = MutableLiveData<Event<Int>>()
-    val passwordConfirmStatus = MutableLiveData<Event<Int>>()
+    val emailStatus = MutableLiveData<Event<Status>>()
+    val codeStatus = MutableLiveData<Event<Status>>()
+    val nicknameStatus = MutableLiveData<Event<Status>>()
+    val passwordStatus = MutableLiveData<Event<Status>>()
+    val passwordConfirmStatus = MutableLiveData<Event<Status>>()
     val registerClick = MutableLiveData<Event<Boolean>>()
 
     val liveDataMerger = MediatorLiveData<Boolean>().apply {
@@ -56,16 +53,16 @@ class RegisterViewModel : ViewModel() {
 
     fun checkPasswordSame() {
         if (!passwordConfirm.value.isValid(PASSWORD_REGEX)) {
-            passwordConfirmStatus.value = Event(Status.FAILURE.ordinal)
+            passwordConfirmStatus.value = Event(Status.FAILURE)
             passwordConfirmMessage.postValue(R.string.alert_pwd)
             return
         }
         if (password.value == passwordConfirm.value) {
-            passwordConfirmStatus.value = Event(SUCCESS)
+            passwordConfirmStatus.postEvent(Status.SUCCESS)
             passwordConfirmMessage.postValue(R.string.default_text)
         } else {
             passwordConfirmMessage.postValue(R.string.alert_pwd)
-            passwordConfirmStatus.value = Event(Status.FAILURE.ordinal)
+            passwordConfirmStatus.postEvent(Status.FAILURE)
         }
     }
 
@@ -79,55 +76,55 @@ class RegisterViewModel : ViewModel() {
     fun checkDuplicateNickname() {
         if (!nickName.value.isValid(NICKNAME_REGEX)) {
             nicknameMessage.postValue(R.string.alert_nickname_valid)
-            nicknameStatus.postValue(Event(Status.FAILURE.ordinal))
+            nicknameStatus.postEvent(Status.FAILURE)
             return
         }
         viewModelScope.launch(Dispatchers.IO) {
             if (userRepository.checkNickname(nickName.value.toString())) {
-                nicknameStatus.postValue(Event(SUCCESS))
+                nicknameStatus.postEvent(Status.SUCCESS)
                 nicknameMessage.postValue(R.string.default_text)
             } else {
-                nicknameStatus.postValue(Event(Status.FAILURE.ordinal))
+                nicknameStatus.postEvent(Status.FAILURE)
                 nicknameMessage.postValue(R.string.error_nickname)
             }
         }
     }
 
     fun checkCodeValid() {
-        if (code.value.toString() == "") {
-            codeStatus.value = Event(Status.FAILURE.ordinal)
+        if (code.value.toString().isEmpty()) {
+            codeStatus.value = Event(Status.FAILURE)
             codeMessage.postValue(R.string.alert_code)
             return
         }
         if (!code.value.isValid(CODE_REGEX)) {
             codeMessage.postValue(R.string.alert_code_valid)
-            codeStatus.value = Event(Status.FAILURE.ordinal)
+            codeStatus.value = Event(Status.FAILURE)
             return
         }
         viewModelScope.launch {
             if (userRepository.checkCode(code.value.toString())) {
-                codeStatus.postValue(Event(Status.SUCCESS.ordinal))
+                codeStatus.postEvent(Status.SUCCESS)
                 codeMessage.postValue(R.string.default_text)
             } else {
                 codeMessage.postValue(R.string.error_code)
-                codeStatus.value = Event(Status.FAILURE.ordinal)
+                codeStatus.value = Event(Status.FAILURE)
             }
         }
     }
 
     fun checkPasswordValid() {
         if (password.value.isValid(PASSWORD_REGEX)) {
-            passwordStatus.value = Event(SUCCESS)
+            passwordStatus.value = Event(Status.SUCCESS)
             passwordMessage.postValue(R.string.default_text)
         } else {
             passwordMessage.postValue(R.string.alert_pwd_valid)
-            passwordStatus.value = Event(Status.FAILURE.ordinal)
+            passwordStatus.value = Event(Status.FAILURE)
         }
     }
 
     fun checkDuplicateEmail() {
         if (!email.value.isValid(EMAIL_REGEX)) {
-            emailStatus.postValue(Event(Status.FAILURE.ordinal))
+            emailStatus.postEvent(Status.FAILURE)
             emailMessage.postValue(R.string.alert_email)
             return
         }
@@ -136,7 +133,7 @@ class RegisterViewModel : ViewModel() {
                 emailMessage.postValue(R.string.default_text)
                 sendAuthEmail()
             } else {
-                emailStatus.postValue(Event(Status.FAILURE.ordinal))
+                emailStatus.postEvent(Status.FAILURE)
                 emailMessage.postValue(R.string.error_email)
             }
         }
@@ -145,11 +142,11 @@ class RegisterViewModel : ViewModel() {
     private fun sendAuthEmail() {
         viewModelScope.launch {
             if (userRepository.sendAuthCode(email.value.toString())) {
-                emailStatus.postValue(Event(SUCCESS))
+                emailStatus.postEvent(Status.SUCCESS)
                 emailMessage.postValue(R.string.default_text)
             } else {
                 emailMessage.postValue(R.string.alert_email)
-                emailStatus.postValue(Event(Status.FAILURE.ordinal))
+                emailStatus.postEvent(Status.FAILURE)
             }
         }
     }

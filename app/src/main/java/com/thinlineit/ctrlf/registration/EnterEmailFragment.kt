@@ -4,20 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.FragmentEmailBinding
 import com.thinlineit.ctrlf.util.Status
-import com.thinlineit.ctrlf.util.base.BaseFragment
+import com.thinlineit.ctrlf.util.base.RegistrationBaseFragment
 import com.thinlineit.ctrlf.util.observeIfNotHandled
 import com.thinlineit.ctrlf.util.setBackground
 
-class EnterEmailFragment : BaseFragment<FragmentEmailBinding>(R.layout.fragment_email) {
+class EnterEmailFragment : RegistrationBaseFragment<FragmentEmailBinding>(R.layout.fragment_email) {
     private lateinit var navController: NavController
-    private val viewModel by activityViewModels<RegisterViewModel>()
+    private val viewModel by activityViewModels<RegistrationViewmodel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,10 +30,9 @@ class EnterEmailFragment : BaseFragment<FragmentEmailBinding>(R.layout.fragment_
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-        val anim = AnimationUtils.loadAnimation(context, R.anim.shake_animation)
-
+        
         viewModel.emailStatus.observeIfNotHandled(viewLifecycleOwner) {
-            if (it == Status.FAILURE.ordinal) {
+            if (it == Status.FAILURE) {
                 binding.regEmail.setBackground(R.drawable.border_edittext_error)
                 binding.regEmail.startAnimation(anim)
             } else {

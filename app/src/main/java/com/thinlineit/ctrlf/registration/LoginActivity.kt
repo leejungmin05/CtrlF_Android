@@ -26,14 +26,14 @@ class LoginActivity : AppCompatActivity() {
         binding.viewModel = viewModel
 
         viewModel.loginStatus.observeIfNotHandled(this) {
-            if (it == Status.SUCCESS.ordinal) {
+            if (it == Status.SUCCESS) {
                 MainActivity.start(this)
                 finish()
             }
         }
 
         viewModel.eventClick.observeIfNotHandled(this) {
-            RegisterActivity.start(this)
+            RegistrationActivity.start(this)
             finish()
         }
     }

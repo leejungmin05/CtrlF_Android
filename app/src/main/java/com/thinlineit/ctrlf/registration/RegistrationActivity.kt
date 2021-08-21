@@ -6,15 +6,15 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.thinlineit.ctrlf.R
 
-class RegisterActivity : AppCompatActivity() {
+class RegistrationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register_view)
+        setContentView(R.layout.activity_registration)
     }
 
     companion object {
         fun start(context: Context) {
-            val intent = Intent(context, RegisterActivity::class.java)
+            val intent = Intent(context, RegistrationActivity::class.java)
             context.startActivity(intent)
         }
     }

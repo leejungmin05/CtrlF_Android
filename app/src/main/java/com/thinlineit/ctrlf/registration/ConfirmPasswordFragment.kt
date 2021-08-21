@@ -18,7 +18,7 @@ import com.thinlineit.ctrlf.util.setBackground
 class ConfirmPasswordFragment :
     BaseFragment<FragmentConfirmPasswordBinding>(R.layout.fragment_confirm_password) {
     private lateinit var navController: NavController
-    private val viewModel by activityViewModels<RegisterViewModel>()
+    private val viewModel by activityViewModels<RegistrationViewmodel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +34,7 @@ class ConfirmPasswordFragment :
         navController = Navigation.findNavController(view)
 
         viewModel.passwordConfirmStatus.observeIfNotHandled(viewLifecycleOwner) {
-            if (it == Status.FAILURE.ordinal) {
+            if (it == Status.FAILURE) {
                 binding.regPassword2.setBackground(R.drawable.border_edittext_error)
             } else {
                 binding.regPassword2.setBackground(R.drawable.border_edittext_default)
