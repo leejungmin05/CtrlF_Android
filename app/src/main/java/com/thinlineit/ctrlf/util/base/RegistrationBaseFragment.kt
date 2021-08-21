@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
@@ -14,7 +15,7 @@ import com.thinlineit.ctrlf.R
 abstract class RegistrationBaseFragment<T: ViewDataBinding>(
     @LayoutRes private val resId: Int
 ) : Fragment(resId) {
-    val anim = AnimationUtils.loadAnimation(context, R.anim.shake_animation)
+    lateinit var anim : Animation
 
     private var _binding: T? = null
     protected val binding
@@ -27,6 +28,7 @@ abstract class RegistrationBaseFragment<T: ViewDataBinding>(
     ): View {
         _binding = DataBindingUtil.inflate(inflater, resId, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
+        anim = AnimationUtils.loadAnimation(context, R.anim.shake_animation) 
         return binding.root
     }
 }
