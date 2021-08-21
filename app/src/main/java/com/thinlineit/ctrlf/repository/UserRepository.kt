@@ -1,9 +1,11 @@
 package com.thinlineit.ctrlf.repository
 
+import com.thinlineit.ctrlf.data.request.AuthEmailRequest
+import com.thinlineit.ctrlf.data.request.CodeCheckRequest
+import com.thinlineit.ctrlf.data.request.SignUpRequest
 import com.thinlineit.ctrlf.model.User
 import com.thinlineit.ctrlf.repository.network.RegistrationService
 import com.thinlineit.ctrlf.util.Application
-import java.lang.Exception
 
 class UserRepository {
 
@@ -35,6 +37,54 @@ class UserRepository {
     fun checkLogin(): Boolean {
         return Application.preferenceUtil.getString(EMAIL, "") != ""
     }
+
+    suspend fun checkNickname(nickName: String): Boolean =
+        try {
+            RegistrationService.USER_API.checkNickname(nickName)
+            true
+        } catch (e: Exception) {
+            false
+        }
+
+    suspend fun checkCode(code: String): Boolean =
+        try {
+            RegistrationService.USER_API.requestCodeCheck(CodeCheckRequest(code))
+            true
+        } catch (e: Exception) {
+            false
+        }
+
+    suspend fun checkDuplicateEmail(email: String): Boolean =
+        try {
+            RegistrationService.USER_API.checkEmail(email)
+            true
+        } catch (e: Exception) {
+            false
+        }
+
+    suspend fun sendAuthCode(email: String): Boolean =
+        try {
+            RegistrationService.USER_API.sendingAuthEmail(AuthEmailRequest(email))
+            true
+        } catch (e: Exception) {
+            false
+        }
+
+    suspend fun requestSignUp(
+        email: String,
+        code: String,
+        nickName: String,
+        password: String,
+        passwordConfirm: String
+    ): Boolean =
+        try {
+            RegistrationService.USER_API.requestSignUp(
+                SignUpRequest(email, code, nickName, password, passwordConfirm)
+            )
+            true
+        } catch (e: Exception) {
+            false
+        }
 
     companion object {
         private const val TOKEN = "token"

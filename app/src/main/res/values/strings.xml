@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">CtrlF</string>
     <string name="notes_fragment">Notes</string>
-    
+
     <!-- login & registration-->
     <string name="e_mail">E-mail</string>
+    <string name="log_in">Log in</string>
     <string name="email">email</string>
     <string name="pwd">PASSWORD</string>
     <string name="pwdConfirm">PASSWORD 확인</string>
@@ -11,27 +12,46 @@
     <string name="loginEng">log in</string>
     <string name="register">회원가입</string>
     <string name="nickname">닉네임</string>
-    <string name="phoneNum">코드 입력</string>
+    <string name="code">코드</string>
+    <string name="code_again">코드를 받지 못하셨나요?</string>
+    <string name="next">"다  음" </string>
     <string name="duplicate">중복확인</string>
     <string name="emailConfirm">이메일 인증</string>
+    <string name="account_text_email">이메일 입력 / 인증</string>
+    <string name="account_text_nickname">닉네임 입력 / 중복확인</string>
+    <string name="account_text_password">비밀번호 입력 / 확인</string>
+    <string name="find_id">ID 찾기</string>
+    <string name="find_pwd">"| PASSWORD 찾기"</string>
+    <string name="default_text">""</string>
+    <string name="back_text">"뒤로 가기"</string>
+    <string name="cancel_text">"취  소"</string>
+    <string name="alert_back">"[뒤로 가기]를 누르시면"</string>
+    <string name="alert_back2">"이메일 인증을 새로 받으셔야합니다."</string>
+
 
     <!-- login viewModel-->
     <string name="alert_email">이메일 형식이 올바르지 않습니다.</string>
     <string name="alert_text">이메일과 비밀번호를 입력해주세요.</string>
+    <string name="alert_login">이메일과 비밀번호를 확인해주세요.</string>
     <string name="alert_pwd">비밀번호가 일치하지 않습니다.</string>
 
     <!-- register viewModel-->
     <string name="alert_email_auth">인증 코드를 발송했습니다.</string>
     <string name="alert_nickname_valid">닉네임은 2~10자, 공백이나 특수문자는 허용하지 않습니다.</string>
-    <string name="alert_pwd_valid">영문, 숫자, 특수문자 중 2가지 이상 조합하여 8~20자이내로 기입해주세요.</string>
+    <string name="alert_pwd_valid">비밀 번호는 영문, 숫자, 특수문자 중 2가지 이상 조합하여 8~20자이내로 입력해주세요.</string>
     <string name="alert_code">코드를 입력하세요.</string>
-    <string name="alert_code_valid">코드가 일치하지 않습니다.</string>
+    <string name="alert_code_valid">코드를 확인해주세요.</string>
+    <string name="error_code">코드가 일치하지 않습니다.</string>
+    <string name="code_confirm_text">입력하신 이메일에서 코드를 확인해주세요.</string>
+    <string name="error_nickname">이미 존재하는 닉네임입니다.</string>
+    <string name="error_email">이미 존재하는 이메일입니다.</string>
+    <string name="error_login">이메일이 존재하지 않습니다.</string>
 
     <string name="login_validation">회원가입</string>
     <string name="passwordValidation">일치하지 않습니다</string>
 
     <string name="completeRegistration">"환영합니다.\n가입이 완료되었습니다.\n\n로그인 후 이용해주세요."</string>
-    
+
     <string name="issue">Issue</string>
     <string name="note">Note</string>
     <string name="topic">Topic</string>
@@ -41,6 +61,6 @@
     <string name="content">Content</string>
     <string name="registrationDate">RegistrationDate</string>
     <string name="allView">전체보기</string>
-
-
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
