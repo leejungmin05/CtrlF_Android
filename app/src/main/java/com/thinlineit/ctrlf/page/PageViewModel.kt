@@ -27,7 +27,6 @@ class PageViewModel(noteId: Int) : ViewModel() {
     val noteDetailInfo: LiveData<NoteDao>
         get() = _noteDetailInfo
 
-
     private val _slidingOpen = MutableLiveData<Int>()
     val slidingOpen: LiveData<Int>
         get() = _slidingOpen

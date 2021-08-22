@@ -16,8 +16,7 @@ import com.thinlineit.ctrlf.notes.TopicDao
 import com.thinlineit.ctrlf.util.BindingRecyclerViewAdapter
 
 class PageTitleListAdapter(private val clickListener: (Int) -> Unit) :
-    RecyclerView.Adapter<PageTitleListAdapter.ViewHolder>(),
-    BindingRecyclerViewAdapter<List<PageDao>> {
+    RecyclerView.Adapter<PageTitleListAdapter.ViewHolder>(), BindingRecyclerViewAdapter<List<PageDao>> {
     private var pageList = emptyList<PageDao>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
