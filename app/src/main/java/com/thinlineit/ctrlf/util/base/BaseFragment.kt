@@ -13,9 +13,9 @@ abstract class BaseFragment<T: ViewDataBinding>(
     @LayoutRes private val resId: Int
 ) : Fragment(resId) {
 
-    private var _binding: T? = null
+    private lateinit var _binding: T
     protected val binding
-        get() = _binding!!
+        get() = _binding
 
     override fun onCreateView(
         inflater: LayoutInflater,
