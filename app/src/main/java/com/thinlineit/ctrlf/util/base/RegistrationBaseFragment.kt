@@ -16,17 +16,14 @@ abstract class RegistrationBaseFragment<T: ViewDataBinding>(
     @LayoutRes private val resId: Int
 ) : Fragment(resId) {
     lateinit var anim : Animation
-
-    private lateinit var _binding: T
-    protected val binding
-        get() = _binding
-
+    lateinit var binding: T
+    
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = DataBindingUtil.inflate(inflater, resId, container, false)
+        binding = DataBindingUtil.inflate(inflater, resId, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         anim = AnimationUtils.loadAnimation(context, R.anim.shake_animation) 
         return binding.root
