@@ -21,11 +21,13 @@ class ConfirmBackToEmailFragment :
         savedInstanceState: Bundle?
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
-        binding.viewModel = this@ConfirmBackToEmailFragment.viewModel
 
         binding.apply {
+            viewModel = this@ConfirmBackToEmailFragment.viewModel
+
             backBtn.setOnClickListener {
                 navController.navigate(R.id.action_registerBackFragment_to_registerEmailFragment)
+                this@ConfirmBackToEmailFragment.viewModel.resetEmailCodeValue()
             }
             cancelBtn.setOnClickListener {
                 navController.navigate(R.id.action_registerBackFragment_to_registerNicknameFragment)
