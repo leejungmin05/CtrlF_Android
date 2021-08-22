@@ -23,6 +23,11 @@ class PageViewModel(noteId: Int) : ViewModel() {
     val pageInfo: LiveData<PageDao>
         get() = _pageInfo
 
+    private val _noteDetailInfo = MutableLiveData<NoteDao>()
+    val noteDetailInfo: LiveData<NoteDao>
+        get() = _noteDetailInfo
+
+
     private val _slidingOpen = MutableLiveData<Int>()
     val slidingOpen: LiveData<Int>
         get() = _slidingOpen
@@ -32,10 +37,15 @@ class PageViewModel(noteId: Int) : ViewModel() {
         get() = _topicInfo
 
     val content = Transformations.map(pageInfo) { it.content }
+    val noteDetailTitle = Transformations.map(noteDetailInfo) { it.title }
+
+    var topicDetailTitle = "a"
+    var topicDetailCreatedAt = "2000.00.00"
 
     init {
         loadPage(1)
         loadNoteInfo()
+        loadNoteDetailInfo()
         _slidingOpen.value = 0
     }
 
@@ -62,6 +72,15 @@ class PageViewModel(noteId: Int) : ViewModel() {
         }
     }
 
+    private fun loadNoteDetailInfo() {
+        viewModelScope.launch {
+            try {
+                _noteDetailInfo.setValue(NoteService.retrofitService.getNoteDetail(Integer.parseInt(noteIdString.value.toString())))
+            } catch (e: Exception) {
+            }
+        }
+    }
+
     fun closeSliding() {
         _slidingOpen.value = _slidingOpen.value?.plus(-1)
     }
@@ -71,17 +90,21 @@ class PageViewModel(noteId: Int) : ViewModel() {
     }
 
     private fun loadPageList(topicId: Int) {
-        //TODO: Load the list of the pagetitle using "?" api
+        //TODO: Load the list of the pagetitle using "getPageList" api
         viewModelScope.launch {
             try {
                 _topicInfo.setValue(TopicService.retrofitService.getPageList(topicId.toString()))
             } catch (e: Exception) {
             }
         }
-
     }
 
     fun openSliding() {
         _slidingOpen.value = _slidingOpen.value?.plus(1)
+    }
+
+    fun oneTopic(topicTitle: String, topicCreatedAt: String) {
+        topicDetailTitle = topicTitle
+        topicDetailCreatedAt = topicCreatedAt
     }
 }

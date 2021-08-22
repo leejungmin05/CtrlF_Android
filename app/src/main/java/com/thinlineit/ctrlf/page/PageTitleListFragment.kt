@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.FragmentPageTitleBinding
 import com.thinlineit.ctrlf.databinding.FragmentTopicTitleBinding
+import kotlinx.android.synthetic.main.fragment_page_title.*
 import kotlinx.android.synthetic.main.fragment_topic_title.*
 
 class PageTitleListFragment : Fragment() {

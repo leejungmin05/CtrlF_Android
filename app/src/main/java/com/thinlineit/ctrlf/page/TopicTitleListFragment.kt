@@ -13,8 +13,9 @@ import com.thinlineit.ctrlf.databinding.FragmentTopicTitleBinding
 import kotlinx.android.synthetic.main.activity_page.*
 
 class TopicTitleListFragment : Fragment() {
-    private val topicListAdapter = TopicTitleListAdapter { topicId ->
+    private val topicListAdapter = TopicTitleListAdapter { topicId, topicTitle, topicCreatedAt ->
         pageViewModel.selectTopic(topicId)
+        pageViewModel.oneTopic(topicTitle, topicCreatedAt)
         this.findNavController().navigate(
             TopicTitleListFragmentDirections.actionNotesFragmentToPageFragment()
         )
@@ -26,15 +27,15 @@ class TopicTitleListFragment : Fragment() {
     ): View {
         val binding =
             (DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_topic_title,
-            container,
-            false
-        ) as FragmentTopicTitleBinding).apply {
-            this.pageViewModel = this@TopicTitleListFragment.pageViewModel
-            lifecycleOwner = this@TopicTitleListFragment
-            topicListRecyclerView.adapter = topicListAdapter
-        }
+                inflater,
+                R.layout.fragment_topic_title,
+                container,
+                false
+            ) as FragmentTopicTitleBinding).apply {
+                this.pageViewModel = this@TopicTitleListFragment.pageViewModel
+                lifecycleOwner = this@TopicTitleListFragment
+                topicListRecyclerView.adapter = topicListAdapter
+            }
         return binding.root
     }
 }
