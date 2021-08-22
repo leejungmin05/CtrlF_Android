@@ -37,7 +37,6 @@ class EnterEmailFragment : RegistrationBaseFragment<FragmentEmailBinding>(R.layo
                 binding.regEmail.startAnimation(anim)
             } else {
                 navController.navigate(R.id.action_registerEmailFragment_to_registerCodeFragment)
-                binding.regEmail.setText(R.string.default_text)
             }
         }
 

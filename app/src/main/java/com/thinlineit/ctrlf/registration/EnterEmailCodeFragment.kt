@@ -40,7 +40,6 @@ class EnterEmailCodeFragment : RegistrationBaseFragment<FragmentCodeBinding>(R.l
                 binding.regCode.startAnimation(anim)
             } else {
                 navController.navigate(R.id.action_registerCodeFragment_to_registerNicknameFragment)
-                binding.regCode.setText(R.string.default_text)
             }
         }
 
