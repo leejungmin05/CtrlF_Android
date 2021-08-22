@@ -11,7 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class RegistrationViewmodel : ViewModel() {
+class RegistrationViewModel : ViewModel() {
     private val userRepository = UserRepository()
 
     val email = MutableLiveData("")

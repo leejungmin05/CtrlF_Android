@@ -18,7 +18,7 @@ import com.thinlineit.ctrlf.util.setBackground
 class ConfirmPasswordFragment :
     BaseFragment<FragmentConfirmPasswordBinding>(R.layout.fragment_confirm_password) {
     private lateinit var navController: NavController
-    private val viewModel by activityViewModels<RegistrationViewmodel>()
+    private val viewModel by activityViewModels<RegistrationViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_password.*
 
 class EnterPasswordFragment : RegistrationBaseFragment<FragmentPasswordBinding>(R.layout.fragment_password) {
     private lateinit var navController: NavController
-    private val viewModel by activityViewModels<RegistrationViewmodel>()
+    private val viewModel by activityViewModels<RegistrationViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

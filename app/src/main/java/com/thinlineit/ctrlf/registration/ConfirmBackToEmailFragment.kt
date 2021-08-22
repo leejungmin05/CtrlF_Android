@@ -14,7 +14,7 @@ import com.thinlineit.ctrlf.util.base.BaseFragment
 class ConfirmBackToEmailFragment :
     BaseFragment<FragmentRegisterBackBinding>(R.layout.fragment_register_back) {
     private lateinit var navController: NavController
-    private val viewModel by activityViewModels<RegistrationViewmodel>()
+    private val viewModel by activityViewModels<RegistrationViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

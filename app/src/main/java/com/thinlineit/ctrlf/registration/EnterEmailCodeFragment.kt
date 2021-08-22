@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_code.*
 
 class EnterEmailCodeFragment : RegistrationBaseFragment<FragmentCodeBinding>(R.layout.fragment_code) {
     private lateinit var navController: NavController
-    private val viewModel by activityViewModels<RegistrationViewmodel>()
+    private val viewModel by activityViewModels<RegistrationViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
