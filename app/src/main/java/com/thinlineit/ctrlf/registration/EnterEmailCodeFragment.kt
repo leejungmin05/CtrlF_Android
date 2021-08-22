@@ -4,14 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.FragmentCodeBinding
 import com.thinlineit.ctrlf.util.Status
-import com.thinlineit.ctrlf.util.base.BaseFragment
 import com.thinlineit.ctrlf.util.base.RegistrationBaseFragment
 import com.thinlineit.ctrlf.util.observeIfNotHandled
 import com.thinlineit.ctrlf.util.setBackground
@@ -19,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_code.*
 
 class EnterEmailCodeFragment : RegistrationBaseFragment<FragmentCodeBinding>(R.layout.fragment_code) {
     private lateinit var navController: NavController
-    private val viewModel by activityViewModels<RegistrationViewmodel>()
+    private val viewModel by activityViewModels<RegistrationViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,7 +38,6 @@ class EnterEmailCodeFragment : RegistrationBaseFragment<FragmentCodeBinding>(R.l
                 binding.regCode.startAnimation(anim)
             } else {
                 navController.navigate(R.id.action_registerCodeFragment_to_registerNicknameFragment)
-                binding.regCode.setText(R.string.default_text)
             }
         }
 

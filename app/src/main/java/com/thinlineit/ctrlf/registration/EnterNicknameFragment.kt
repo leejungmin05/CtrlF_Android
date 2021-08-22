@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_nickname.*
 
 class EnterNicknameFragment : RegistrationBaseFragment<FragmentNicknameBinding>(R.layout.fragment_nickname) {
     private lateinit var navController: NavController
-    private val viewModel by activityViewModels<RegistrationViewmodel>()
+    private val viewModel by activityViewModels<RegistrationViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

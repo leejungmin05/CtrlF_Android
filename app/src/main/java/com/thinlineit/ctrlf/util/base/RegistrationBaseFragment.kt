@@ -12,23 +12,20 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.thinlineit.ctrlf.R
 
-abstract class RegistrationBaseFragment<T: ViewDataBinding>(
+abstract class RegistrationBaseFragment<T : ViewDataBinding>(
     @LayoutRes private val resId: Int
 ) : Fragment(resId) {
-    lateinit var anim : Animation
-
-    private var _binding: T? = null
-    protected val binding
-        get() = _binding!!
+    lateinit var anim: Animation
+    lateinit var binding: T
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = DataBindingUtil.inflate(inflater, resId, container, false)
+        binding = DataBindingUtil.inflate(inflater, resId, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
-        anim = AnimationUtils.loadAnimation(context, R.anim.shake_animation) 
+        anim = AnimationUtils.loadAnimation(context, R.anim.shake_animation)
         return binding.root
     }
 }

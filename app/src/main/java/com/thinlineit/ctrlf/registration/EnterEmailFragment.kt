@@ -16,7 +16,7 @@ import com.thinlineit.ctrlf.util.setBackground
 
 class EnterEmailFragment : RegistrationBaseFragment<FragmentEmailBinding>(R.layout.fragment_email) {
     private lateinit var navController: NavController
-    private val viewModel by activityViewModels<RegistrationViewmodel>()
+    private val viewModel by activityViewModels<RegistrationViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +37,6 @@ class EnterEmailFragment : RegistrationBaseFragment<FragmentEmailBinding>(R.layo
                 binding.regEmail.startAnimation(anim)
             } else {
                 navController.navigate(R.id.action_registerEmailFragment_to_registerCodeFragment)
-                binding.regEmail.setText(R.string.default_text)
             }
         }
 
