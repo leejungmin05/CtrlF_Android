@@ -2,9 +2,9 @@ package com.thinlineit.ctrlf.page
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.thinlineit.ctrlf.network.NoteService
-import com.thinlineit.ctrlf.network.PageService
-import com.thinlineit.ctrlf.network.TopicService
+import com.thinlineit.ctrlf.repository.network.NoteService
+import com.thinlineit.ctrlf.repository.network.PageService
+import com.thinlineit.ctrlf.repository.network.TopicService
 import com.thinlineit.ctrlf.notes.NoteDao
 import com.thinlineit.ctrlf.notes.TopicDao
 import kotlinx.coroutines.launch

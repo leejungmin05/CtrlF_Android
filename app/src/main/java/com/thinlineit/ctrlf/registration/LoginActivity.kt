@@ -2,13 +2,14 @@ package com.thinlineit.ctrlf.registration
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.thinlineit.ctrlf.MainActivity
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.ActivityLoginBinding
+import com.thinlineit.ctrlf.util.Status
 import com.thinlineit.ctrlf.util.observeIfNotHandled
 
 class LoginActivity : AppCompatActivity() {
@@ -25,12 +26,14 @@ class LoginActivity : AppCompatActivity() {
         binding.viewModel = viewModel
 
         viewModel.loginStatus.observeIfNotHandled(this) {
-            MainActivity.start(this)
-            finish()
+            if (it == Status.SUCCESS) {
+                MainActivity.start(this)
+                finish()
+            }
         }
 
         viewModel.eventClick.observeIfNotHandled(this) {
-            RegisterActivity.start(this)
+            RegistrationActivity.start(this)
             finish()
         }
     }

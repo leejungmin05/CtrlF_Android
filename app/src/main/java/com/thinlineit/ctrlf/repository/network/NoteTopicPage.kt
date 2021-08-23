@@ -1,25 +1,19 @@
-package com.thinlineit.ctrlf.network
+package com.thinlineit.ctrlf.repository.network
 
-import com.thinlineit.ctrlf.network.api.TopicApi
-import com.thinlineit.ctrlf.network.api.UserApi
+import com.thinlineit.ctrlf.issue.IssueApi
 import com.thinlineit.ctrlf.notes.NoteApi
 import com.thinlineit.ctrlf.page.PageApi
+import com.thinlineit.ctrlf.page.TopicApi
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
+//TODO : Fix BASE URL To "http://testdeploy-dev.ap-northeast-2.elasticbeanstalk.com/api/"
 private const val BASE_URL = "https://thkwon.pythonanywhere.com/api/"
 
 private val retrofit = Retrofit.Builder()
-    .baseUrl(BASE_URL)
-    .addConverterFactory(GsonConverterFactory.create())
-    .build()
-
-object RegistrationService {
-    val USER_API: UserApi by lazy {
-        retrofit.create(UserApi::class.java)
-    }
-}
+        .addConverterFactory(GsonConverterFactory.create())
+        .baseUrl(BASE_URL)
+        .build()
 
 object NoteService {
     val retrofitService: NoteApi by lazy {

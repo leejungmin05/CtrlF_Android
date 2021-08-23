@@ -1,4 +1,4 @@
-package com.thinlineit.ctrlf.network.api
+package com.thinlineit.ctrlf.page
 
 import com.thinlineit.ctrlf.notes.TopicDao
 import com.thinlineit.ctrlf.page.PageDao

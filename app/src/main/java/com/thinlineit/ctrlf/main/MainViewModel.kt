@@ -3,8 +3,8 @@ package com.thinlineit.ctrlf.main
 import android.util.Log
 import androidx.lifecycle.*
 import com.thinlineit.ctrlf.issue.IssueDao
-import com.thinlineit.ctrlf.network.NoteService
 import com.thinlineit.ctrlf.notes.AllNoteDao
+import com.thinlineit.ctrlf.repository.network.NoteService
 import com.thinlineit.ctrlf.notes.NoteDao
 import kotlinx.coroutines.launch
 import java.lang.Exception
