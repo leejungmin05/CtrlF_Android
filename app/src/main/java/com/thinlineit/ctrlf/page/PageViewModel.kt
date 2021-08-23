@@ -37,9 +37,11 @@ class PageViewModel(noteId: Int) : ViewModel() {
 
     val content = Transformations.map(pageInfo) { it.content }
     val noteDetailTitle = Transformations.map(noteDetailInfo) { it.title }
+    //TODO : add noteDatail created_at and Topic,Page Num
 
     var topicDetailTitle = "a"
     var topicDetailCreatedAt = "2000.00.00"
+    //TODO : add Page Num
 
     init {
         loadPage(1)
@@ -62,7 +64,6 @@ class PageViewModel(noteId: Int) : ViewModel() {
     }
 
     private fun loadNoteInfo() {
-        //TODO: Load the Sub-information of note using "getNote" api
         viewModelScope.launch {
             try {
                 _noteInfo.setValue(NoteService.retrofitService.getNote(noteIdString.value.toString()))
@@ -89,7 +90,6 @@ class PageViewModel(noteId: Int) : ViewModel() {
     }
 
     private fun loadPageList(topicId: Int) {
-        //TODO: Load the list of the pagetitle using "getPageList" api
         viewModelScope.launch {
             try {
                 _topicInfo.setValue(TopicService.retrofitService.getPageList(topicId.toString()))
