@@ -1,24 +1,22 @@
 package com.thinlineit.ctrlf.main
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.thinlineit.ctrlf.issue.IssueDao
-import com.thinlineit.ctrlf.notes.AllNoteDao
+import com.thinlineit.ctrlf.notes.NoteListDao
 import com.thinlineit.ctrlf.repository.network.NoteService
-import com.thinlineit.ctrlf.notes.NoteDao
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class MainViewModel : ViewModel() {
-    private val _noteList = MutableLiveData<AllNoteDao>()
-    val noteList: LiveData<AllNoteDao>
+    private val _noteList = MutableLiveData<NoteListDao>()
+    val noteList: LiveData<NoteListDao>
         get() = _noteList
 
     private val _issueList = MutableLiveData<List<IssueDao>>(emptyList())
     val issueList: LiveData<List<IssueDao>>
         get() = _issueList
 
-    val notes = Transformations.map(noteList) { it.notes}
+    val notes = Transformations.map(noteList) { it.notes }
 
     init {
         loadNote()

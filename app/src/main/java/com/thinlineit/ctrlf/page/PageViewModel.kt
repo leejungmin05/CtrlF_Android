@@ -11,6 +11,19 @@ import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class PageViewModel(noteId: Int) : ViewModel() {
+
+    val noteIdString = MutableLiveData<String>(noteId.toString())
+    val noteInfo = MutableLiveData<List<TopicDao>>(listOf())
+    val pageInfo = MutableLiveData<PageDao>()
+    val noteDetailInfo = MutableLiveData<NoteDao>()
+
+    private val _slidingOpen = MutableLiveData<Boolean>()
+
+    val slidingOpen: LiveData<Boolean>
+        get() = _slidingOpen
+    val topicInfo = MutableLiveData<List<PageDao>>()
+
+    /*
     private val _noteIdString = MutableLiveData<String>(noteId.toString())
     val noteIdString: LiveData<String>
         get() = _noteIdString
@@ -27,27 +40,29 @@ class PageViewModel(noteId: Int) : ViewModel() {
     val noteDetailInfo: LiveData<NoteDao>
         get() = _noteDetailInfo
 
-    private val _slidingOpen = MutableLiveData<Int>()
-    val slidingOpen: LiveData<Int>
+    private val _slidingOpen = MutableLiveData<Boolean>()
+    val slidingOpen: LiveData<Boolean>
         get() = _slidingOpen
 
     private val _topicInfo = MutableLiveData<List<PageDao>>()
     val topicInfo: LiveData<List<PageDao>>
         get() = _topicInfo
 
+     */
     val content = Transformations.map(pageInfo) { it.content }
-    val noteDetailTitle = Transformations.map(noteDetailInfo) { it.title }
-    //TODO : add noteDatail created_at and Topic,Page Num
 
-    var topicDetailTitle = "a"
-    var topicDetailCreatedAt = "2000.00.00"
+    //TODO : add noteDatail created_at and Topic,Page Num
+    val noteDetailTitle = Transformations.map(noteDetailInfo) { it.title }
+
     //TODO : add Page Num
+    lateinit var topicDetailTitle: String
+    lateinit var topicDetailCreatedAt: String
 
     init {
         loadPage(1)
         loadNoteInfo()
         loadNoteDetailInfo()
-        _slidingOpen.value = 0
+        _slidingOpen.value = false
     }
 
     fun openPage(pageId: Int) {
@@ -57,7 +72,9 @@ class PageViewModel(noteId: Int) : ViewModel() {
     private fun loadPage(pageId: Int) {
         viewModelScope.launch {
             try {
-                _pageInfo.setValue(PageService.retrofitService.getPage(pageId.toString()))
+                if (PageService.retrofitService.getPage(pageId.toString()) != null) {
+                    pageInfo.setValue(PageService.retrofitService.getPage(pageId.toString()))
+                }
             } catch (e: Exception) {
             }
         }
@@ -66,7 +83,9 @@ class PageViewModel(noteId: Int) : ViewModel() {
     private fun loadNoteInfo() {
         viewModelScope.launch {
             try {
-                _noteInfo.setValue(NoteService.retrofitService.getNote(noteIdString.value.toString()))
+                if (NoteService.retrofitService.getNote(noteIdString.value.toString()) != null) {
+                    noteInfo.setValue(NoteService.retrofitService.getNote(noteIdString.value.toString()))
+                }
             } catch (e: Exception) {
             }
         }
@@ -75,35 +94,36 @@ class PageViewModel(noteId: Int) : ViewModel() {
     private fun loadNoteDetailInfo() {
         viewModelScope.launch {
             try {
-                _noteDetailInfo.setValue(NoteService.retrofitService.getNoteDetail(Integer.parseInt(noteIdString.value.toString())))
+                if (NoteService.retrofitService.getNoteDetail(Integer.parseInt(noteIdString.value.toString())) != null) {
+                    noteDetailInfo.setValue(NoteService.retrofitService.getNoteDetail(Integer.parseInt(noteIdString.value.toString())))
+                }
             } catch (e: Exception) {
             }
         }
     }
 
     fun closeSliding() {
-        _slidingOpen.value = _slidingOpen.value?.plus(-1)
+        _slidingOpen.value = false
     }
 
-    fun selectTopic(topicId: Int) {
+    fun selectTopic(topicId: Int, topicTitle: String, topicCreatedAt: String) {
         loadPageList(topicId)
+        topicDetailTitle = topicTitle
+        topicDetailCreatedAt = topicCreatedAt
     }
 
     private fun loadPageList(topicId: Int) {
         viewModelScope.launch {
             try {
-                _topicInfo.setValue(TopicService.retrofitService.getPageList(topicId.toString()))
+                if (TopicService.retrofitService.getPageList(topicId.toString()) != null) {
+                    topicInfo.setValue(TopicService.retrofitService.getPageList(topicId.toString()))
+                }
             } catch (e: Exception) {
             }
         }
     }
 
     fun openSliding() {
-        _slidingOpen.value = _slidingOpen.value?.plus(1)
-    }
-
-    fun oneTopic(topicTitle: String, topicCreatedAt: String) {
-        topicDetailTitle = topicTitle
-        topicDetailCreatedAt = topicCreatedAt
+        _slidingOpen.value = true
     }
 }

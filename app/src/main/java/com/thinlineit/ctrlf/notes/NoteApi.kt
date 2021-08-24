@@ -14,7 +14,7 @@ interface NoteApi {
     @GET("notes")
     suspend fun listNote(
         @Query("cursor") cursor: Int
-    ): AllNoteDao
+    ): NoteListDao
 
     //해당하는 노트에 대한 모든 하위의 정보들까지 모두 조회
     @GET("notes/{note_id}/topics")

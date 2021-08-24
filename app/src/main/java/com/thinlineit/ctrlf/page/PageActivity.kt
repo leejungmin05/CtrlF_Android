@@ -30,7 +30,7 @@ class PageActivity : AppCompatActivity() {
             lifecycleOwner = this@PageActivity
         }
         pageViewModel.slidingOpen.observe(this, Observer {
-            if (it == 1 && slidingPaneLayout.isSlideable) {
+            if (it == true && slidingPaneLayout.isSlideable) {
                 slidingPaneLayout.open()
                 pageViewModel.closeSliding()
             }

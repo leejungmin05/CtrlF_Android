@@ -1,6 +1,5 @@
 package com.thinlineit.ctrlf.page
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -29,7 +28,7 @@ class TopicTitleListAdapter(private val clickListener: (Int,String,String) -> Un
         fun bind(topicDao: TopicDao,clickListener: (Int,String,String) -> Unit) {
             dataBinding.topic = topicDao
             dataBinding.root.setOnClickListener {
-                clickListener(topicDao.id,topicDao.title,topicDao.created_at)
+                clickListener(topicDao.id,topicDao.title,topicDao.createdAt)
             }
         }
 

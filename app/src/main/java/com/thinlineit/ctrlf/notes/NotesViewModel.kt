@@ -10,12 +10,12 @@ import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class NotesViewModel : ViewModel() {
-    private val _noteList = MutableLiveData<AllNoteDao>()
-    val noteList: LiveData<AllNoteDao>
+    private val _noteList = MutableLiveData<NoteListDao>()
+    val noteList: LiveData<NoteListDao>
         get() = _noteList
     val alertLiveData = MutableLiveData<String>()
 
-    val notes = Transformations.map(noteList) { it.notes}
+    val notes = Transformations.map(noteList) { it.notes }
 
     init {
         loadNote()
