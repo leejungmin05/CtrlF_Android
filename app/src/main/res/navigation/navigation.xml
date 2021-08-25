@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_main_fragment_to_issue_detail_activity"
             app:destination="@id/issue_detail_activity" />
+        <action
+            android:id="@+id/action_main_fragment_to_logout_fragment"
+            app:destination="@id/logout_fragment" />
     </fragment>
 
     <fragment
@@ -61,5 +64,10 @@
             android:name="issueInfo"
             app:argType="com.thinlineit.ctrlf.issue.IssueDao" />
     </activity>
+    <fragment
+        android:id="@+id/logout_fragment"
+        android:name="com.thinlineit.ctrlf.main.LogoutFragment"
+        tools:layout="@layout/fragment_logout">
+    </fragment>
 
 </navigation>

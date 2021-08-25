@@ -22,7 +22,7 @@ class IssueListAdapter(private val clickListener: (IssueDao) -> Unit) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val issueDao = issueList[position]
-        holder.bind(issueDao, clickListener,position)
+        holder.bind(issueDao, clickListener, position)
     }
 
     class ViewHolder(private val dataBinding: ListItemIssueBinding) :

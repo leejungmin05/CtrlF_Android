@@ -15,8 +15,13 @@
         android:layout_width="100dp"
         android:layout_height="137dp"
         android:layout_marginLeft="22dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/ic_note_1">
+        android:layout_marginTop="15dp">
+        <ImageView
+            android:id="@+id/noteBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_note_1">
+        </ImageView>
 
         <TextView
             android:id="@+id/noteName"
