@@ -1,6 +1,5 @@
 package com.thinlineit.ctrlf.page
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.thinlineit.ctrlf.repository.network.NoteService
 import com.thinlineit.ctrlf.repository.network.PageService
@@ -23,32 +22,6 @@ class PageViewModel(noteId: Int) : ViewModel() {
         get() = _slidingOpen
     val topicInfo = MutableLiveData<List<PageDao>>()
 
-    /*
-    private val _noteIdString = MutableLiveData<String>(noteId.toString())
-    val noteIdString: LiveData<String>
-        get() = _noteIdString
-
-    private val _noteInfo = MutableLiveData<List<TopicDao>>(listOf())
-    val noteInfo: LiveData<List<TopicDao>>
-        get() = _noteInfo
-
-    private val _pageInfo = MutableLiveData<PageDao>()
-    val pageInfo: LiveData<PageDao>
-        get() = _pageInfo
-
-    private val _noteDetailInfo = MutableLiveData<NoteDao>()
-    val noteDetailInfo: LiveData<NoteDao>
-        get() = _noteDetailInfo
-
-    private val _slidingOpen = MutableLiveData<Boolean>()
-    val slidingOpen: LiveData<Boolean>
-        get() = _slidingOpen
-
-    private val _topicInfo = MutableLiveData<List<PageDao>>()
-    val topicInfo: LiveData<List<PageDao>>
-        get() = _topicInfo
-
-     */
     val content = Transformations.map(pageInfo) { it.content }
 
     //TODO : add noteDatail created_at and Topic,Page Num
@@ -72,9 +45,7 @@ class PageViewModel(noteId: Int) : ViewModel() {
     private fun loadPage(pageId: Int) {
         viewModelScope.launch {
             try {
-                if (PageService.retrofitService.getPage(pageId.toString()) != null) {
-                    pageInfo.setValue(PageService.retrofitService.getPage(pageId.toString()))
-                }
+                pageInfo.setValue(PageService.retrofitService.getPage(pageId.toString()))
             } catch (e: Exception) {
             }
         }
@@ -83,9 +54,8 @@ class PageViewModel(noteId: Int) : ViewModel() {
     private fun loadNoteInfo() {
         viewModelScope.launch {
             try {
-                if (NoteService.retrofitService.getNote(noteIdString.value.toString()) != null) {
-                    noteInfo.setValue(NoteService.retrofitService.getNote(noteIdString.value.toString()))
-                }
+                val noteId = noteIdString.value?:return@launch
+                noteInfo.setValue(NoteService.retrofitService.getNote(noteId))
             } catch (e: Exception) {
             }
         }
@@ -94,9 +64,8 @@ class PageViewModel(noteId: Int) : ViewModel() {
     private fun loadNoteDetailInfo() {
         viewModelScope.launch {
             try {
-                if (NoteService.retrofitService.getNoteDetail(Integer.parseInt(noteIdString.value.toString())) != null) {
-                    noteDetailInfo.setValue(NoteService.retrofitService.getNoteDetail(Integer.parseInt(noteIdString.value.toString())))
-                }
+                val noteId = noteIdString.value?:return@launch
+                noteDetailInfo.setValue(NoteService.retrofitService.getNoteDetail(Integer.parseInt(noteId)))
             } catch (e: Exception) {
             }
         }
@@ -115,9 +84,7 @@ class PageViewModel(noteId: Int) : ViewModel() {
     private fun loadPageList(topicId: Int) {
         viewModelScope.launch {
             try {
-                if (TopicService.retrofitService.getPageList(topicId.toString()) != null) {
-                    topicInfo.setValue(TopicService.retrofitService.getPageList(topicId.toString()))
-                }
+                topicInfo.setValue(TopicService.retrofitService.getPageList(topicId.toString()))
             } catch (e: Exception) {
             }
         }

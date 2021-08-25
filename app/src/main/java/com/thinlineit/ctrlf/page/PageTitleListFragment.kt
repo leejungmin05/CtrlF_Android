@@ -7,11 +7,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.FragmentPageTitleBinding
-import com.thinlineit.ctrlf.databinding.FragmentTopicTitleBinding
 import kotlinx.android.synthetic.main.fragment_page_title.*
 import kotlinx.android.synthetic.main.fragment_topic_title.*
 

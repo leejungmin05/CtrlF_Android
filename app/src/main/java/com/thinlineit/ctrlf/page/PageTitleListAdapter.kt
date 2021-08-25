@@ -1,18 +1,11 @@
 package com.thinlineit.ctrlf.page
 
-import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import androidx.slidingpanelayout.widget.SlidingPaneLayout
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.ListItemPageTitleBinding
-import com.thinlineit.ctrlf.databinding.ListItemTopicTitleBinding
-import com.thinlineit.ctrlf.notes.TopicDao
 import com.thinlineit.ctrlf.util.BindingRecyclerViewAdapter
 
 class PageTitleListAdapter(private val clickListener: (Int) -> Unit) :
