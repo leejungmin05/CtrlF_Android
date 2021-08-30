@@ -1,5 +1,6 @@
 package com.thinlineit.ctrlf.notes
 
+import androidx.lifecycle.*
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,10 +10,12 @@ import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class NotesViewModel : ViewModel() {
-    private val _noteList = MutableLiveData<List<NoteDao>>(listOf())
-    val noteList: LiveData<List<NoteDao>>
+    private val _noteList = MutableLiveData<NoteListDao>()
+    val noteList: LiveData<NoteListDao>
         get() = _noteList
     val alertLiveData = MutableLiveData<String>()
+
+    val notes = Transformations.map(noteList) { it.notes }
 
     init {
         loadNote()
@@ -21,7 +24,7 @@ class NotesViewModel : ViewModel() {
     private fun loadNote() {
         viewModelScope.launch {
             try {
-                _noteList.value = NoteService.retrofitService.listNote("")
+                _noteList.value = NoteService.retrofitService.listNote(0)
             } catch (e: Exception) {
                 alertLiveData.postValue(e.toString())
             }
