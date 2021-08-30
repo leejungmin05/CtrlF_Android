@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.thinlineit.ctrlf.util.BindingRecyclerViewAdapter
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.ListItemNoteBinding
+import com.thinlineit.ctrlf.util.BindingRecyclerViewAdapter
 import com.thinlineit.ctrlf.util.setBackground
 
 class NotesAdapter(private val clickListener: (Int) -> Unit) :
@@ -26,11 +26,10 @@ class NotesAdapter(private val clickListener: (Int) -> Unit) :
     class ViewHolder(private val dataBinding: ListItemNoteBinding) :
         RecyclerView.ViewHolder(dataBinding.root) {
         fun bind(noteDao: NoteDao, clickListener: (Int) -> Unit, position: Int) {
-            var resourceId: Int
-            when (position % 3) {
-                1 -> resourceId = R.drawable.ic_note_2
-                2 -> resourceId = R.drawable.ic_note_3
-                else -> resourceId = R.drawable.ic_note_1
+            val resourceId: Int = when (position % 3) {
+                1 -> R.drawable.ic_note_2
+                2 -> R.drawable.ic_note_3
+                else -> R.drawable.ic_note_1
             }
             dataBinding.apply {
                 noteItem.setBackground(resourceId)
@@ -39,7 +38,6 @@ class NotesAdapter(private val clickListener: (Int) -> Unit) :
                     clickListener(noteDao.id)
                 }
             }
-
         }
 
         companion object {

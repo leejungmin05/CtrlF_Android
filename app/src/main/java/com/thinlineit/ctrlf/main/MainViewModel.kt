@@ -8,10 +8,9 @@ import androidx.lifecycle.viewModelScope
 import com.thinlineit.ctrlf.issue.IssueDao
 import com.thinlineit.ctrlf.main.viewpager.FirstFragment
 import com.thinlineit.ctrlf.main.viewpager.SecondFragment
-import com.thinlineit.ctrlf.repository.network.NoteService
 import com.thinlineit.ctrlf.notes.NoteDao
+import com.thinlineit.ctrlf.repository.network.NoteService
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 class MainViewModel : ViewModel() {
     private val _noteList = MutableLiveData<List<NoteDao>>(listOf())
@@ -27,17 +26,19 @@ class MainViewModel : ViewModel() {
         get() = _fragmentList
 
     init {
-        loadViewPager()
+        loadBannerList()
         loadNote()
         loadIssue()
     }
 
-    private fun loadViewPager() {
-        _fragmentList.value = createFragment()
+    private fun loadBannerList() {
+        _fragmentList.value = initBannerList()
     }
 
-    private fun createFragment() : MutableList<Fragment> {
-        val fragments : MutableList<Fragment> = arrayListOf()
+    private fun initBannerList(): MutableList<Fragment> {
+        val fragments: MutableList<Fragment> = arrayListOf()
+
+        // SecondFragment는 mock data
         fragments.add(FirstFragment())
         fragments.add(SecondFragment())
         return fragments
@@ -53,7 +54,7 @@ class MainViewModel : ViewModel() {
     }
 
     private fun loadIssue() {
-        //TODO: Load the list of issue using "getIssue" api
+        // TODO: Load the list of issue using "getIssue" api
         _issueList.value = createIssue()
     }
 
@@ -62,11 +63,10 @@ class MainViewModel : ViewModel() {
         var contentStr =
             "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
         for (i in 1..9) {
-            if (i % 2 != 0) {
-                imsiList.add(IssueDao(i, "title${i}", 1, 1, "2021-07-12", contentStr))
-            } else {
-                imsiList.add(IssueDao(i, "title${i}", 1, 1, "2021-07-12", contentStr + contentStr))
-            }
+            if (i % 2 != 0)
+                imsiList.add(IssueDao(i, "title" + i, 1, 1, "2021-07-12", contentStr))
+            else
+                imsiList.add(IssueDao(i, "title" + i, 1, 1, "2021-07-12", contentStr + contentStr))
         }
         return imsiList
     }

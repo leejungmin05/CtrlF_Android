@@ -1,10 +1,15 @@
 package com.thinlineit.ctrlf.main
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.thinlineit.ctrlf.R
@@ -27,21 +32,27 @@ class MainFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         setHasOptionsMenu(true)
         val binding =
-            (DataBindingUtil.inflate(
-                inflater,
-                R.layout.fragment_main,
-                container,
-                false
-            ) as FragmentMainBinding).apply {
+            (
+                DataBindingUtil.inflate(
+                    inflater,
+                    R.layout.fragment_main,
+                    container,
+                    false
+                )
+                    as FragmentMainBinding
+                ).apply {
                 this.mainViewModel = this@MainFragment.mainViewModel
                 lifecycleOwner = this@MainFragment
                 (activity as AppCompatActivity).setSupportActionBar(toolBar)
-                (activity as AppCompatActivity).supportActionBar?.setDisplayShowTitleEnabled(false)
+                (activity as AppCompatActivity).supportActionBar?.setDisplayShowTitleEnabled(
+                    false
+                )
                 mainViewPager.adapter = MainViewPagerAdapter(requireActivity())
                 noteListRecyclerView.adapter = noteAdapter
                 issueListRecyclerView.adapter = issueAdapter
@@ -60,19 +71,16 @@ class MainFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.toolbar_main,menu)
+        inflater.inflate(R.menu.toolbar_main, menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.userCircleBtn -> {
-                findNavController().navigate(
-                    MainFragmentDirections.actionMainFragmentToLogoutFragment()
-                )
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+        R.id.userCircleBtn -> {
+            findNavController().navigate(
+                MainFragmentDirections.actionMainFragmentToLogoutFragment()
+            )
+            true
         }
+        else -> super.onOptionsItemSelected(item)
     }
 }
