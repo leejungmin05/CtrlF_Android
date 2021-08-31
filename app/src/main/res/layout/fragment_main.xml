@@ -68,6 +68,7 @@
             android:id="@+id/noteListLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+<<<<<<< HEAD
             app:layout_constraintBottom_toTopOf="@+id/issueListLayout"
             app:layout_constraintTop_toBottomOf="@+id/ideaLayout"
             app:layout_constraintVertical_weight="4"
@@ -110,6 +111,37 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/issueListLayout"
+=======
+            app:data="@{mainViewModel.notes}"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/textNote"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:listitem="@layout/list_item_note" />
+
+        <TextView
+            android:id="@+id/textIssue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/issue"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/noteListRecyclerView">
+        </TextView>
+
+        <TextView
+            android:id="@+id/showAllIssueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/allView"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/noteListRecyclerView">
+        </TextView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/issueListRecyclerView"
+>>>>>>> dev
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintTop_toBottomOf="@+id/noteListLayout"
