@@ -1,20 +1,15 @@
 package com.thinlineit.ctrlf.main
 
-<<<<<<< HEAD
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thinlineit.ctrlf.issue.IssueDao
 import com.thinlineit.ctrlf.main.viewpager.FirstFragment
 import com.thinlineit.ctrlf.main.viewpager.SecondFragment
-import com.thinlineit.ctrlf.notes.NoteDao
-=======
-import androidx.lifecycle.*
-import com.thinlineit.ctrlf.issue.IssueDao
 import com.thinlineit.ctrlf.notes.NoteListDao
->>>>>>> dev
 import com.thinlineit.ctrlf.repository.network.NoteService
 import kotlinx.coroutines.launch
 
@@ -27,13 +22,11 @@ class MainViewModel : ViewModel() {
     val issueList: LiveData<List<IssueDao>>
         get() = _issueList
 
-<<<<<<< HEAD
     private val _fragmentList = MutableLiveData<List<Fragment>>(emptyList())
     val fragmentList: LiveData<List<Fragment>>
         get() = _fragmentList
-=======
+
     val notes = Transformations.map(noteList) { it.notes }
->>>>>>> dev
 
     init {
         loadBannerList()
