@@ -1,8 +1,8 @@
 package com.thinlineit.ctrlf.notes
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.ListItemNoteBinding
@@ -11,7 +11,7 @@ import com.thinlineit.ctrlf.util.setBackground
 
 class NotesAdapter(private val clickListener: (Int) -> Unit) :
     RecyclerView.Adapter<NotesAdapter.ViewHolder>(), BindingRecyclerViewAdapter<List<NoteDao>> {
-    var noteList = listOf<NoteDao>()
+    var noteList: List<NoteDao> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder.from(parent)
@@ -43,17 +43,13 @@ class NotesAdapter(private val clickListener: (Int) -> Unit) :
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val dataBinding = DataBindingUtil.inflate<ListItemNoteBinding>(
-                    layoutInflater,
-                    R.layout.list_item_note,
-                    parent,
-                    false
-                )
+                val dataBinding = ListItemNoteBinding.inflate(layoutInflater)
                 return ViewHolder(dataBinding)
             }
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun setData(data: List<NoteDao>) {
         noteList = data
         notifyDataSetChanged()

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".main.viewpager.FirstFragment"
+    tools:context=".main.viewpager.IdeaCountBannerFragment"
     android:background="@drawable/ic_idea">
 
     <TextView

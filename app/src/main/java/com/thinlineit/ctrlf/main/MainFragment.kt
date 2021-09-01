@@ -8,7 +8,6 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -20,6 +19,7 @@ import com.thinlineit.ctrlf.notes.NotesAdapter
 class MainFragment : Fragment() {
 
     private val mainViewModel by viewModels<MainViewModel>()
+    private val mainViewPagerAdapter by lazy { MainViewPagerAdapter(requireActivity()) }
     private val noteAdapter = NotesAdapter { noteId ->
         this.findNavController().navigate(
             MainFragmentDirections.actionMainFragmentToPageActivity(noteId)
@@ -37,42 +37,32 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         setHasOptionsMenu(true)
-        val binding =
-            (
-                DataBindingUtil.inflate(
-                    inflater,
-                    R.layout.fragment_main,
-                    container,
-                    false
+        val binding = FragmentMainBinding.inflate(inflater).apply {
+            mainViewModel = this@MainFragment.mainViewModel
+            lifecycleOwner = this@MainFragment
+            (requireActivity() as AppCompatActivity).setSupportActionBar(toolBar)
+            (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayShowTitleEnabled(
+                false
+            )
+            mainViewPager.adapter = mainViewPagerAdapter
+            noteListRecyclerView.adapter = noteAdapter
+            issueListRecyclerView.adapter = issueAdapter
+            showAllNoteTextView.setOnClickListener {
+                findNavController().navigate(
+                    MainFragmentDirections.actionMainFragmentToNotesFragment()
                 )
-                    as FragmentMainBinding
-                ).apply {
-                this.mainViewModel = this@MainFragment.mainViewModel
-                lifecycleOwner = this@MainFragment
-                (activity as AppCompatActivity).setSupportActionBar(toolBar)
-                (activity as AppCompatActivity).supportActionBar?.setDisplayShowTitleEnabled(
-                    false
-                )
-                mainViewPager.adapter = MainViewPagerAdapter(requireActivity())
-                noteListRecyclerView.adapter = noteAdapter
-                issueListRecyclerView.adapter = issueAdapter
-                showAllNoteTextView.setOnClickListener {
-                    findNavController().navigate(
-                        MainFragmentDirections.actionMainFragmentToNotesFragment()
-                    )
-                }
-                showAllIssueTextView.setOnClickListener {
-                    findNavController().navigate(
-                        MainFragmentDirections.actionMainFragmentToIssueListFragment()
-                    )
-                }
             }
+            showAllIssueTextView.setOnClickListener {
+                findNavController().navigate(
+                    MainFragmentDirections.actionMainFragmentToIssueListFragment()
+                )
+            }
+        }
         return binding.root
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) =
         inflater.inflate(R.menu.toolbar_main, menu)
-    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
         R.id.userCircleBtn -> {

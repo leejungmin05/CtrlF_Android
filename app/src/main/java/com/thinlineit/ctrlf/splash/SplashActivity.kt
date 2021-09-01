@@ -1,5 +1,7 @@
 package com.thinlineit.ctrlf.splash
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -41,6 +43,13 @@ class SplashActivity : AppCompatActivity() {
                 LoginActivity.start(this@SplashActivity)
             }
             finish()
+        }
+    }
+
+    companion object {
+        fun relaunch(context: Context) {
+            val intent = Intent(context, SplashActivity::class.java)
+            context.startActivity(intent)
         }
     }
 }
