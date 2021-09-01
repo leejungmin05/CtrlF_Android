@@ -27,7 +27,7 @@ interface UserApi {
 
     @POST("auth/signup/email")
     suspend fun sendingAuthEmail(
-       @Body request: AuthEmailRequest
+        @Body request: AuthEmailRequest
     ): Unit
 
     @POST("auth/verification-code/check")

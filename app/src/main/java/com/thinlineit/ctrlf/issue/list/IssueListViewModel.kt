@@ -15,7 +15,7 @@ class IssueListViewModel : ViewModel() {
     }
 
     private fun loadIssue() {
-        //TODO: Load the list of issue using "getIssue" api
+        // TODO: Load the list of issue using "getIssue" api
         _issueList.value = createIssue()
     }
 
@@ -25,9 +25,9 @@ class IssueListViewModel : ViewModel() {
             "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
         for (i in 1..9) {
             if (i % 2 != 0) {
-                imsiList.add(IssueDao(i, "title${i}", 1, 1, "2021-07-12", contentStr))
+                imsiList.add(IssueDao(i, "title$i", 1, 1, "2021-07-12", contentStr))
             } else {
-                imsiList.add(IssueDao(i, "title${i}", 1, 1, "2021-07-12", contentStr + contentStr))
+                imsiList.add(IssueDao(i, "title$i", 1, 1, "2021-07-12", contentStr + contentStr))
             }
         }
         return imsiList

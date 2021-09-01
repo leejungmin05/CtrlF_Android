@@ -10,7 +10,6 @@ import com.thinlineit.ctrlf.util.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-
 class RegistrationViewModel : ViewModel() {
     private val userRepository = UserRepository()
 
@@ -68,10 +67,10 @@ class RegistrationViewModel : ViewModel() {
 
     private fun isSignUpValid(): Boolean =
         emailStatus.value?.equalContent(Status.SUCCESS) ?: false &&
-                codeStatus.value?.equalContent(Status.SUCCESS) ?: false &&
-                nicknameStatus.value?.equalContent(Status.SUCCESS) ?: false &&
-                passwordStatus.value?.equalContent(Status.SUCCESS) ?: false &&
-                passwordConfirmStatus.value?.equalContent(Status.SUCCESS) ?: false
+            codeStatus.value?.equalContent(Status.SUCCESS) ?: false &&
+            nicknameStatus.value?.equalContent(Status.SUCCESS) ?: false &&
+            passwordStatus.value?.equalContent(Status.SUCCESS) ?: false &&
+            passwordConfirmStatus.value?.equalContent(Status.SUCCESS) ?: false
 
     fun checkDuplicateNickname() {
         if (!nickName.value.isValid(NICKNAME_REGEX)) {
@@ -170,7 +169,6 @@ class RegistrationViewModel : ViewModel() {
         email.value = ""
         code.value = ""
     }
-
 
     companion object {
         // 숫자, 문자, 특수문자 중 2가지 포함(8~20자)

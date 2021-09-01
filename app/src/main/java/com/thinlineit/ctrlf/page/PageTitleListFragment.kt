@@ -13,21 +13,24 @@ import kotlinx.android.synthetic.main.fragment_page_title.*
 import kotlinx.android.synthetic.main.fragment_topic_title.*
 
 class PageTitleListFragment : Fragment() {
-    private val pageTitleListAdapter = PageTitleListAdapter(){ pageId ->
+    private val pageTitleListAdapter = PageTitleListAdapter() { pageId ->
         pageViewModel.openSliding()
         pageViewModel.openPage(pageId)
     }
     private val pageViewModel by activityViewModels<PageViewModel>()
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = (DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_page_title,
-            container,
-            false
-        ) as FragmentPageTitleBinding).apply {
+        val binding = (
+            DataBindingUtil.inflate(
+                inflater,
+                R.layout.fragment_page_title,
+                container,
+                false
+            ) as FragmentPageTitleBinding
+            ).apply {
             this.pageViewModel = this@PageTitleListFragment.pageViewModel
             lifecycleOwner = this@PageTitleListFragment
             pageListRecyclerView.adapter = pageTitleListAdapter

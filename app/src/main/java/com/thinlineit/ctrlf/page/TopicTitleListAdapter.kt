@@ -9,7 +9,7 @@ import com.thinlineit.ctrlf.databinding.ListItemTopicTitleBinding
 import com.thinlineit.ctrlf.notes.TopicDao
 import com.thinlineit.ctrlf.util.BindingRecyclerViewAdapter
 
-class TopicTitleListAdapter(private val clickListener: (Int,String,String) -> Unit) :
+class TopicTitleListAdapter(private val clickListener: (Int, String, String) -> Unit) :
     RecyclerView.Adapter<TopicTitleListAdapter.ViewHolder>(), BindingRecyclerViewAdapter<List<TopicDao>> {
     var topicList = emptyList<TopicDao>()
 
@@ -20,15 +20,15 @@ class TopicTitleListAdapter(private val clickListener: (Int,String,String) -> Un
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val topicDao = topicList[position]
-        holder.bind(topicDao,clickListener)
+        holder.bind(topicDao, clickListener)
     }
 
     class ViewHolder(private val dataBinding: ListItemTopicTitleBinding) :
         RecyclerView.ViewHolder(dataBinding.root) {
-        fun bind(topicDao: TopicDao,clickListener: (Int,String,String) -> Unit) {
+        fun bind(topicDao: TopicDao, clickListener: (Int, String, String) -> Unit) {
             dataBinding.topic = topicDao
             dataBinding.root.setOnClickListener {
-                clickListener(topicDao.id,topicDao.title,topicDao.createdAt)
+                clickListener(topicDao.id, topicDao.title, topicDao.createdAt)
             }
         }
 

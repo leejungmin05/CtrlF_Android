@@ -14,24 +14,27 @@ import kotlinx.android.synthetic.main.activity_page.*
 
 class TopicTitleListFragment : Fragment() {
     private val topicListAdapter = TopicTitleListAdapter { topicId, topicTitle, topicCreatedAt ->
-        pageViewModel.selectTopic(topicId,topicTitle, topicCreatedAt)
-        //pageViewModel.oneTopic(topicTitle, topicCreatedAt)
+        pageViewModel.selectTopic(topicId, topicTitle, topicCreatedAt)
+        // pageViewModel.oneTopic(topicTitle, topicCreatedAt)
         this.findNavController().navigate(
             TopicTitleListFragmentDirections.actionNotesFragmentToPageFragment()
         )
     }
     private val pageViewModel by activityViewModels<PageViewModel>()
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         val binding =
-            (DataBindingUtil.inflate(
-                inflater,
-                R.layout.fragment_topic_title,
-                container,
-                false
-            ) as FragmentTopicTitleBinding).apply {
+            (
+                DataBindingUtil.inflate(
+                    inflater,
+                    R.layout.fragment_topic_title,
+                    container,
+                    false
+                ) as FragmentTopicTitleBinding
+                ).apply {
                 this.pageViewModel = this@TopicTitleListFragment.pageViewModel
                 lifecycleOwner = this@TopicTitleListFragment
                 topicListRecyclerView.adapter = topicListAdapter

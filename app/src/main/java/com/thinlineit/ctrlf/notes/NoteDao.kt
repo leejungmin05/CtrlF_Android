@@ -1,7 +1,6 @@
 package com.thinlineit.ctrlf.notes
 
 import com.google.gson.annotations.SerializedName
-import com.thinlineit.ctrlf.page.PageDao
 
 data class NoteDao(
     val id: Int,
@@ -20,6 +19,3 @@ data class TopicDao(
     @SerializedName("owner_id")
     val ownerId: Int
 )
-
-
-

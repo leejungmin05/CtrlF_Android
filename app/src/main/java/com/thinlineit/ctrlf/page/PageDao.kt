@@ -10,5 +10,5 @@ data class PageDao(
     val createdAt: String? = null,
     @SerializedName("is_approved")
     val isApproved: Boolean? = null,
-    val owners : List<Int>? = null
+    val owners: List<Int>? = null
 )

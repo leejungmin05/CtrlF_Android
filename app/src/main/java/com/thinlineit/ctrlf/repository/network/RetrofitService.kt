@@ -1,9 +1,6 @@
 package com.thinlineit.ctrlf.repository.network
 
 import com.thinlineit.ctrlf.issue.IssueApi
-import com.thinlineit.ctrlf.notes.NoteApi
-import com.thinlineit.ctrlf.page.PageApi
-import com.thinlineit.ctrlf.page.TopicApi
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

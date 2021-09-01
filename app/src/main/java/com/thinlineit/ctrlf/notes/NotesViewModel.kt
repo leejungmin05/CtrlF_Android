@@ -6,8 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thinlineit.ctrlf.repository.network.NoteService
-import kotlinx.coroutines.launch
 import java.lang.Exception
+import kotlinx.coroutines.launch
 
 class NotesViewModel : ViewModel() {
     private val _noteList = MutableLiveData<NoteListDao>()

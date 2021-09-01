@@ -1,7 +1,7 @@
 package com.thinlineit.ctrlf.issue.detail
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.thinlineit.ctrlf.R

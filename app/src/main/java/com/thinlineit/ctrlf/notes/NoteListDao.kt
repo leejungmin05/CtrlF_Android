@@ -8,4 +8,3 @@ data class NoteListDao(
     @SerializedName("notes")
     var notes: List<NoteDao>? = null
 )
-
