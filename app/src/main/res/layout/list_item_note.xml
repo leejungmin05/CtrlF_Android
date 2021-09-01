@@ -4,23 +4,33 @@
     xmlns:tool="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="note"
             type="com.thinlineit.ctrlf.notes.NoteDao" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/noteItem"
         android:layout_width="100dp"
-        android:layout_height="150dp"
-        android:layout_margin="3dp"
-        android:background="@color/teal_200">
+        android:layout_height="137dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="15dp">
+        <ImageView
+            android:id="@+id/noteBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_note_1">
+        </ImageView>
 
         <TextView
             android:id="@+id/noteName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="65dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="25dp"
+            android:gravity="center"
             android:text="@{note.title}"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
