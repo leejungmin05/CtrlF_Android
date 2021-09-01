@@ -1,5 +1,6 @@
 package com.thinlineit.ctrlf.issue.list
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -56,6 +57,7 @@ class IssueListAdapter(private val clickListener: (IssueDao) -> Unit) :
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun setData(data: List<IssueDao>) {
         issueList = data
         notifyDataSetChanged()

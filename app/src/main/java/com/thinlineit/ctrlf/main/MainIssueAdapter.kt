@@ -1,8 +1,8 @@
 package com.thinlineit.ctrlf.main
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.ListItemMainIssueBinding
@@ -45,17 +45,13 @@ class MainIssueAdapter(private val clickListener: (IssueDao) -> Unit) :
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val dataBinding = DataBindingUtil.inflate<ListItemMainIssueBinding>(
-                    layoutInflater,
-                    R.layout.list_item_main_issue,
-                    parent,
-                    false
-                )
+                val dataBinding = ListItemMainIssueBinding.inflate(layoutInflater)
                 return ViewHolder(dataBinding)
             }
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun setData(data: List<IssueDao>) {
         issueList = data
         notifyDataSetChanged()
