@@ -15,7 +15,8 @@ import com.thinlineit.ctrlf.util.observeIfNotHandled
 import com.thinlineit.ctrlf.util.setBackground
 import kotlinx.android.synthetic.main.fragment_password.*
 
-class EnterPasswordFragment : RegistrationBaseFragment<FragmentPasswordBinding>(R.layout.fragment_password) {
+class EnterPasswordFragment :
+    RegistrationBaseFragment<FragmentPasswordBinding>(R.layout.fragment_password) {
     private lateinit var navController: NavController
     private val viewModel by activityViewModels<RegistrationViewModel>()
 
@@ -38,7 +39,9 @@ class EnterPasswordFragment : RegistrationBaseFragment<FragmentPasswordBinding>(
                 binding.regPassword.setBackground(R.drawable.border_edittext_error)
                 binding.regPassword.startAnimation(anim)
             } else {
-                navController.navigate(R.id.action_registerPasswordFragment_to_registerConfirmPasswordFragment)
+                navController.navigate(
+                    R.id.action_registerPasswordFragment_to_registerConfirmPasswordFragment
+                )
             }
         }
 

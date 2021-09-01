@@ -42,11 +42,15 @@ class ConfirmPasswordFragment :
         }
 
         viewModel.registerClick.observeIfNotHandled(this) {
-            navController.navigate(R.id.action_registerConfirmPasswordFragment_to_completeRegisterActivity)
+            navController.navigate(
+                R.id.action_registerConfirmPasswordFragment_to_completeRegisterActivity
+            )
         }
 
         binding.backBtn.setOnClickListener {
-            navController.navigate(R.id.action_registerConfirmPasswordFragment_to_registerPasswordFragment)
+            navController.navigate(
+                R.id.action_registerConfirmPasswordFragment_to_registerPasswordFragment
+            )
         }
 
         viewModel.liveDataMerger.observe(viewLifecycleOwner) {

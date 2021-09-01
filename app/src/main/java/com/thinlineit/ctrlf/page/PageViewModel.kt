@@ -1,17 +1,20 @@
 package com.thinlineit.ctrlf.page
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.thinlineit.ctrlf.notes.NoteDao
 import com.thinlineit.ctrlf.notes.TopicDao
 import com.thinlineit.ctrlf.repository.network.NoteService
 import com.thinlineit.ctrlf.repository.network.PageService
 import com.thinlineit.ctrlf.repository.network.TopicService
-import java.lang.Exception
 import kotlinx.coroutines.launch
 
 class PageViewModel(noteId: Int) : ViewModel() {
 
-    val noteIdString = MutableLiveData<String>(noteId.toString())
+    val noteIdString = MutableLiveData(noteId.toString())
     val noteInfo = MutableLiveData<List<TopicDao>>(listOf())
     val pageInfo = MutableLiveData<PageDao>()
     val noteDetailInfo = MutableLiveData<NoteDao>()
@@ -65,7 +68,9 @@ class PageViewModel(noteId: Int) : ViewModel() {
         viewModelScope.launch {
             try {
                 val noteId = noteIdString.value ?: return@launch
-                noteDetailInfo.setValue(NoteService.retrofitService.getNoteDetail(Integer.parseInt(noteId)))
+                noteDetailInfo.setValue(
+                    NoteService.retrofitService.getNoteDetail(Integer.parseInt(noteId))
+                )
             } catch (e: Exception) {
             }
         }

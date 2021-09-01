@@ -13,7 +13,6 @@ import kotlinx.android.synthetic.main.activity_page.*
 class TopicTitleListFragment : Fragment() {
     private val topicListAdapter = TopicTitleListAdapter { topicId, topicTitle, topicCreatedAt ->
         pageViewModel.selectTopic(topicId, topicTitle, topicCreatedAt)
-        // pageViewModel.oneTopic(topicTitle, topicCreatedAt)
         this.findNavController().navigate(
             TopicTitleListFragmentDirections.actionNotesFragmentToPageFragment()
         )

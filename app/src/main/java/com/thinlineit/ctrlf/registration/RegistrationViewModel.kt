@@ -6,7 +6,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.repository.UserRepository
-import com.thinlineit.ctrlf.util.*
+import com.thinlineit.ctrlf.util.Event
+import com.thinlineit.ctrlf.util.Status
+import com.thinlineit.ctrlf.util.addSourceList
+import com.thinlineit.ctrlf.util.isValid
+import com.thinlineit.ctrlf.util.postEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

@@ -15,7 +15,8 @@ import com.thinlineit.ctrlf.util.observeIfNotHandled
 import com.thinlineit.ctrlf.util.setBackground
 import kotlinx.android.synthetic.main.fragment_code.*
 
-class EnterEmailCodeFragment : RegistrationBaseFragment<FragmentCodeBinding>(R.layout.fragment_code) {
+class EnterEmailCodeFragment :
+    RegistrationBaseFragment<FragmentCodeBinding>(R.layout.fragment_code) {
     private lateinit var navController: NavController
     private val viewModel by activityViewModels<RegistrationViewModel>()
 

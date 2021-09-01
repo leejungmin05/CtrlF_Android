@@ -1,5 +1,6 @@
 package com.thinlineit.ctrlf.page
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -10,7 +11,8 @@ import com.thinlineit.ctrlf.notes.TopicDao
 import com.thinlineit.ctrlf.util.BindingRecyclerViewAdapter
 
 class TopicTitleListAdapter(private val clickListener: (Int, String, String) -> Unit) :
-    RecyclerView.Adapter<TopicTitleListAdapter.ViewHolder>(), BindingRecyclerViewAdapter<List<TopicDao>> {
+    RecyclerView.Adapter<TopicTitleListAdapter.ViewHolder>(),
+    BindingRecyclerViewAdapter<List<TopicDao>> {
     var topicList = emptyList<TopicDao>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
@@ -45,6 +47,7 @@ class TopicTitleListAdapter(private val clickListener: (Int, String, String) -> 
             }
         }
     }
+    @SuppressLint("NotifyDataSetChanged")
     override fun setData(data: List<TopicDao>) {
         topicList = data
         notifyDataSetChanged()

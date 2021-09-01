@@ -1,12 +1,11 @@
 package com.thinlineit.ctrlf.notes
 
-import androidx.lifecycle.*
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thinlineit.ctrlf.repository.network.NoteService
-import java.lang.Exception
 import kotlinx.coroutines.launch
 
 class NotesViewModel : ViewModel() {
