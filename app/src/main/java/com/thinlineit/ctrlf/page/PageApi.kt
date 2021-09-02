@@ -1,13 +1,19 @@
 package com.thinlineit.ctrlf.page
 
-import retrofit2.http.*
+import retrofit2.http.DELETE
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
+import retrofit2.http.PATCH
+import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface PageApi {
 
     //해당하는 페이지에 대한 정보를 조회
     @GET("pages/{page_id}")
     suspend fun getPage(
-        @Path("page_id") pageId: Int,
+        @Path("page_id") pageId: String,
     ): PageDao
 
     //Page 생성

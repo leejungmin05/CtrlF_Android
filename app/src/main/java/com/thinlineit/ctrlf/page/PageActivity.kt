@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.ActivityPageBinding
@@ -19,7 +20,6 @@ class PageActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_page)
         val noteId = intent.getIntExtra(NOTE_ID, 0)
         val viewModelFactory = PageViewModelFactory(noteId)
         val pageViewModel = ViewModelProvider(this, viewModelFactory).get(PageViewModel::class.java)
@@ -27,7 +27,20 @@ class PageActivity : AppCompatActivity() {
             this.pageViewModel = pageViewModel
             lifecycleOwner = this@PageActivity
         }
-        pageListRecyclerView.adapter = TopicListAdapter()
+        pageViewModel.slidingOpen.observe(this, Observer {
+            if (it == true && slidingPaneLayout.isSlideable) {
+                slidingPaneLayout.open()
+                pageViewModel.closeSliding()
+            }
+        })
+    }
+
+    override fun onBackPressed() {
+        if (slidingPaneLayout.isOpen && slidingPaneLayout.isSlideable) {
+            slidingPaneLayout.close()
+        } else {
+            super.onBackPressed()
+        }
     }
 
     companion object {

@@ -1,9 +1,20 @@
 package com.thinlineit.ctrlf.page
 
 import com.thinlineit.ctrlf.notes.TopicDao
-import retrofit2.http.*
+import retrofit2.http.DELETE
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
+import retrofit2.http.PATCH
+import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface TopicApi {
+
+    @GET("topics/{topic_id}/pages")
+    suspend fun getPageList(
+        @Path("topic_id") topic_id: String,
+    ): List<PageDao>
 
     //모든 토픽들을 조회
     @GET("topics")

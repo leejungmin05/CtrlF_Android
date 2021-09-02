@@ -15,26 +15,8 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .build()
 
-object PageService {
-    val retrofitService: PageApi by lazy {
-        retrofit.create(PageApi::class.java)
-    }
-}
-
-object NoteService {
-    val retrofitService: NoteApi by lazy {
-        retrofit.create(NoteApi::class.java)
-    }
-}
-
 object IssueService {
     val retrofitService: IssueApi by lazy {
         retrofit.create(IssueApi::class.java)
-    }
-}
-
-object TopicService {
-    val retrofitService: TopicApi by lazy {
-        retrofit.create(TopicApi::class.java)
     }
 }

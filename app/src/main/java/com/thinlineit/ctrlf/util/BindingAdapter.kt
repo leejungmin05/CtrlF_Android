@@ -7,15 +7,21 @@ import android.widget.EditText
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.mukesh.MarkdownView
 import com.thinlineit.ctrlf.registration.RegistrationViewModel
-
 
 @BindingAdapter("app:data")
 fun <T> setRecyclerViewData(recyclerView: RecyclerView, data: T) {
     if (recyclerView.adapter is BindingRecyclerViewAdapter<*> && data != null) {
         (recyclerView.adapter as BindingRecyclerViewAdapter<T>).setData(data)
     }
+}
+
+@BindingAdapter("app:fragmentData")
+fun <T> setFragmentStateData(viewPager: ViewPager2, data: T) {
+    if (viewPager.adapter is BindingFragmentStateAdapter<*> && data != null)
+        (viewPager.adapter as BindingFragmentStateAdapter<T>).setData(data)
 }
 
 @BindingAdapter("markdownString")
@@ -47,7 +53,7 @@ fun EditText.onEditorAction(callback: () -> Unit) {
     setOnEditorActionListener { _, actionId, _ ->
         if (actionId == EditorInfo.IME_ACTION_DONE) {
             callback.invoke()
-            true
+            return@setOnEditorActionListener true
         }
         false
     }
