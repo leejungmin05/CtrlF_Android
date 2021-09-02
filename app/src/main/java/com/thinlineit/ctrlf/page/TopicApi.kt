@@ -42,8 +42,4 @@ interface TopicApi {
     suspend fun deleteTopic(
         @Path("topic_id") topicId: Int
     )
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> dev

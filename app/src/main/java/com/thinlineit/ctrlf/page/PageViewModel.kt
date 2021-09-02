@@ -1,14 +1,10 @@
 package com.thinlineit.ctrlf.page
 
-<<<<<<< HEAD
-import androidx.lifecycle.*
-=======
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
->>>>>>> dev
 import com.thinlineit.ctrlf.notes.NoteDao
 import com.thinlineit.ctrlf.notes.TopicDao
 import com.thinlineit.ctrlf.repository.network.NoteService
@@ -73,15 +69,7 @@ class PageViewModel(noteId: Int) : ViewModel() {
             try {
                 val noteId = noteIdString.value ?: return@launch
                 noteDetailInfo.setValue(
-<<<<<<< HEAD
-                    NoteService.retrofitService.getNoteDetail(
-                        Integer.parseInt(
-                            noteId
-                        )
-                    )
-=======
                     NoteService.retrofitService.getNoteDetail(Integer.parseInt(noteId))
->>>>>>> dev
                 )
             } catch (e: Exception) {
             }

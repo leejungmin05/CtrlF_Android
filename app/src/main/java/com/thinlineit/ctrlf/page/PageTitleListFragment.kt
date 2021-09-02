@@ -11,11 +11,7 @@ import kotlinx.android.synthetic.main.fragment_page_title.*
 import kotlinx.android.synthetic.main.fragment_topic_title.*
 
 class PageTitleListFragment : Fragment() {
-<<<<<<< HEAD
-    private val pageTitleListAdapter = PageTitleListAdapter() { pageId ->
-=======
     private val pageTitleListAdapter = PageTitleListAdapter { pageId ->
->>>>>>> dev
         pageViewModel.openSliding()
         pageViewModel.openPage(pageId)
     }
