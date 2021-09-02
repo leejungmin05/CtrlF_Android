@@ -1,6 +1,6 @@
 package com.thinlineit.ctrlf.model
 
-data class User (
+data class User(
     val email: String,
     val password: String
 )

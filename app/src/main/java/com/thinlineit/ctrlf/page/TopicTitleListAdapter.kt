@@ -1,5 +1,6 @@
 package com.thinlineit.ctrlf.page
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -46,7 +47,11 @@ class TopicTitleListAdapter(private val clickListener: (Int, String, String) -> 
             }
         }
     }
+<<<<<<< HEAD
 
+=======
+    @SuppressLint("NotifyDataSetChanged")
+>>>>>>> dev
     override fun setData(data: List<TopicDao>) {
         topicList = data
         notifyDataSetChanged()

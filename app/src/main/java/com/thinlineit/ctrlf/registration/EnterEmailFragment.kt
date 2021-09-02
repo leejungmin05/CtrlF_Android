@@ -19,7 +19,8 @@ class EnterEmailFragment : RegistrationBaseFragment<FragmentEmailBinding>(R.layo
     private val viewModel by activityViewModels<RegistrationViewModel>()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
@@ -30,7 +31,7 @@ class EnterEmailFragment : RegistrationBaseFragment<FragmentEmailBinding>(R.layo
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-        
+
         viewModel.emailStatus.observeIfNotHandled(viewLifecycleOwner) {
             if (it == Status.FAILURE) {
                 binding.regEmail.setBackground(R.drawable.border_edittext_error)

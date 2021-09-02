@@ -27,12 +27,15 @@ class PageActivity : AppCompatActivity() {
             this.pageViewModel = pageViewModel
             lifecycleOwner = this@PageActivity
         }
-        pageViewModel.slidingOpen.observe(this, Observer {
-            if (it == true && slidingPaneLayout.isSlideable) {
-                slidingPaneLayout.open()
-                pageViewModel.closeSliding()
+        pageViewModel.slidingOpen.observe(
+            this,
+            Observer {
+                if (it == true && slidingPaneLayout.isSlideable) {
+                    slidingPaneLayout.open()
+                    pageViewModel.closeSliding()
+                }
             }
-        })
+        )
     }
 
     override fun onBackPressed() {

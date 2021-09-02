@@ -16,12 +16,11 @@ interface TopicApi {
         @Path("topic_id") topic_id: String,
     ): List<PageDao>
 
-    //모든 토픽들을 조회
+    // 모든 토픽들을 조회
     @GET("topics")
-    suspend fun listTopic(
-    ): List<TopicDao>
+    suspend fun listTopic(): List<TopicDao>
 
-    //Topic 생성
+    // Topic 생성
     @FormUrlEncoded
     @POST("topics")
     suspend fun addTopic(
@@ -29,7 +28,7 @@ interface TopicApi {
         @Field("title") title: String
     )
 
-    //Topic 수정
+    // Topic 수정
     @FormUrlEncoded
     @PATCH("topics/{topic_id}")
     suspend fun updateTopic(
@@ -38,9 +37,13 @@ interface TopicApi {
         @Field("title") title: String
     )
 
-    //Topic 삭제
+    // Topic 삭제
     @DELETE("topics/{topic_id}")
     suspend fun deleteTopic(
         @Path("topic_id") topicId: Int
     )
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> dev

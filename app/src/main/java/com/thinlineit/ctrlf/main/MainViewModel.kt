@@ -44,8 +44,8 @@ class MainViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 _noteList.value = NoteService.retrofitService.listNote(cursor)
-                /* TODO: Implement loading with cursor by scrolling 
-                    .also { 
+                /* TODO: Implement loading with cursor by scrolling
+                    .also {
                         cursor = it.nextCursor
                     }
                 */
@@ -61,7 +61,8 @@ class MainViewModel : ViewModel() {
 
     private fun createIssue(): List<IssueDao> {
         val contentStr =
-            "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+            "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz" +
+                "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
         return (1..9).map { i ->
             if (i % 2 != 0) IssueDao(i, "title$i", 1, 1, "2021-07-12", contentStr)
             else IssueDao(i, "title$i", 1, 1, "2021-07-12", contentStr + contentStr)

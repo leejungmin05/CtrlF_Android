@@ -15,21 +15,17 @@ class IssueListViewModel : ViewModel() {
     }
 
     private fun loadIssue() {
-        //TODO: Load the list of issue using "getIssue" api
+        // TODO: Load the list of issue using "getIssue" api
         _issueList.value = createIssue()
     }
 
-    private fun createIssue(): MutableList<IssueDao> {
-        val imsiList: MutableList<IssueDao> = arrayListOf()
-        var contentStr =
-            "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
-        for (i in 1..9) {
-            if (i % 2 != 0) {
-                imsiList.add(IssueDao(i, "title${i}", 1, 1, "2021-07-12", contentStr))
-            } else {
-                imsiList.add(IssueDao(i, "title${i}", 1, 1, "2021-07-12", contentStr + contentStr))
-            }
+    private fun createIssue(): List<IssueDao> {
+        val contentStr =
+            "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz" +
+                "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+        return (1..9).map { i ->
+            if (i % 2 != 0) IssueDao(i, "title$i", 1, 1, "2021-07-12", contentStr)
+            else IssueDao(i, "title$i", 1, 1, "2021-07-12", contentStr + contentStr)
         }
-        return imsiList
     }
 }
