@@ -14,14 +14,14 @@ import com.thinlineit.ctrlf.util.base.BaseFragment
 import com.thinlineit.ctrlf.util.observeIfNotHandled
 import com.thinlineit.ctrlf.util.setBackground
 
-
 class ConfirmPasswordFragment :
     BaseFragment<FragmentConfirmPasswordBinding>(R.layout.fragment_confirm_password) {
     private lateinit var navController: NavController
     private val viewModel by activityViewModels<RegistrationViewModel>()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
@@ -42,11 +42,15 @@ class ConfirmPasswordFragment :
         }
 
         viewModel.registerClick.observeIfNotHandled(this) {
-            navController.navigate(R.id.action_registerConfirmPasswordFragment_to_completeRegisterActivity)
+            navController.navigate(
+                R.id.action_registerConfirmPasswordFragment_to_completeRegisterActivity
+            )
         }
 
         binding.backBtn.setOnClickListener {
-            navController.navigate(R.id.action_registerConfirmPasswordFragment_to_registerPasswordFragment)
+            navController.navigate(
+                R.id.action_registerConfirmPasswordFragment_to_registerPasswordFragment
+            )
         }
 
         viewModel.liveDataMerger.observe(viewLifecycleOwner) {

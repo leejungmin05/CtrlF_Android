@@ -34,7 +34,7 @@ class UserRepository {
             false
         }
 
-    fun checkLogin(): Boolean {
+    private fun checkLogin(): Boolean {
         return Application.preferenceUtil.getString(EMAIL, "") != ""
     }
 

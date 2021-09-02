@@ -1,17 +1,20 @@
 package com.thinlineit.ctrlf.page
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.thinlineit.ctrlf.notes.NoteDao
+import com.thinlineit.ctrlf.notes.TopicDao
 import com.thinlineit.ctrlf.repository.network.NoteService
 import com.thinlineit.ctrlf.repository.network.PageService
 import com.thinlineit.ctrlf.repository.network.TopicService
-import com.thinlineit.ctrlf.notes.NoteDao
-import com.thinlineit.ctrlf.notes.TopicDao
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 class PageViewModel(noteId: Int) : ViewModel() {
 
-    val noteIdString = MutableLiveData<String>(noteId.toString())
+    val noteIdString = MutableLiveData(noteId.toString())
     val noteInfo = MutableLiveData<List<TopicDao>>(listOf())
     val pageInfo = MutableLiveData<PageDao>()
     val noteDetailInfo = MutableLiveData<NoteDao>()
@@ -24,10 +27,10 @@ class PageViewModel(noteId: Int) : ViewModel() {
 
     val content = Transformations.map(pageInfo) { it.content }
 
-    //TODO : add noteDatail created_at and Topic,Page Num
+    // TODO : add noteDatail created_at and Topic,Page Num
     val noteDetailTitle = Transformations.map(noteDetailInfo) { it.title }
 
-    //TODO : add Page Num
+    // TODO : add Page Num
     lateinit var topicDetailTitle: String
     lateinit var topicDetailCreatedAt: String
 
@@ -54,7 +57,7 @@ class PageViewModel(noteId: Int) : ViewModel() {
     private fun loadNoteInfo() {
         viewModelScope.launch {
             try {
-                val noteId = noteIdString.value?:return@launch
+                val noteId = noteIdString.value ?: return@launch
                 noteInfo.setValue(NoteService.retrofitService.getNote(noteId))
             } catch (e: Exception) {
             }
@@ -64,8 +67,10 @@ class PageViewModel(noteId: Int) : ViewModel() {
     private fun loadNoteDetailInfo() {
         viewModelScope.launch {
             try {
-                val noteId = noteIdString.value?:return@launch
-                noteDetailInfo.setValue(NoteService.retrofitService.getNoteDetail(Integer.parseInt(noteId)))
+                val noteId = noteIdString.value ?: return@launch
+                noteDetailInfo.setValue(
+                    NoteService.retrofitService.getNoteDetail(Integer.parseInt(noteId))
+                )
             } catch (e: Exception) {
             }
         }

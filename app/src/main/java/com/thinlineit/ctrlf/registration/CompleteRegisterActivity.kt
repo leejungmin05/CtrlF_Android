@@ -2,8 +2,8 @@ package com.thinlineit.ctrlf.registration
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.ActivityCompleteRegisterBinding
