@@ -22,7 +22,11 @@ class IssueListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentIssueListBinding.inflate(inflater).apply {
+        val binding = FragmentIssueListBinding.inflate(
+            inflater,
+            container,
+            false
+        ).apply {
             this.issueViewModel = this@IssueListFragment.issueViewModel
             lifecycleOwner = this@IssueListFragment
             issueListRecyclerView.adapter = issueAdapter

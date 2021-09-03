@@ -24,7 +24,11 @@ class NotesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentNotesBinding.inflate(layoutInflater).apply {
+        val binding = FragmentNotesBinding.inflate(
+            inflater,
+            container,
+            false
+        ).apply {
             this.noteViewModel = this@NotesFragment.noteViewModel
             lifecycleOwner = this@NotesFragment
             noteListRecyclerView.adapter = noteAdapter
