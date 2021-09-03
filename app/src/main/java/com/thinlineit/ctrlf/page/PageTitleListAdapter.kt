@@ -33,6 +33,7 @@ class PageTitleListAdapter(private val clickListener: (Int) -> Unit) :
                 clickListener(pageDao.id)
             }
         }
+
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
@@ -46,6 +47,7 @@ class PageTitleListAdapter(private val clickListener: (Int) -> Unit) :
             }
         }
     }
+
     @SuppressLint("NotifyDataSetChanged")
     override fun setData(data: List<PageDao>) {
         pageList = data
