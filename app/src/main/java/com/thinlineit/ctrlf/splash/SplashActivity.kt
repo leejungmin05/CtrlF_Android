@@ -29,8 +29,7 @@ class SplashActivity : AppCompatActivity() {
     private fun loadSplashView() {
         Glide
             .with(this@SplashActivity)
-            .asGif()
-            .load(R.drawable.splash_gif)
+            .load(R.drawable.ic_splash_logo)
             .into(splashView)
     }
 

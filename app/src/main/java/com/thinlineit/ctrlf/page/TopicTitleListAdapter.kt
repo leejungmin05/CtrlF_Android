@@ -47,6 +47,7 @@ class TopicTitleListAdapter(private val clickListener: (Int, String, String) -> 
             }
         }
     }
+
     @SuppressLint("NotifyDataSetChanged")
     override fun setData(data: List<TopicDao>) {
         topicList = data
