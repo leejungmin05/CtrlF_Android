@@ -24,7 +24,11 @@ class TopicTitleListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding =
-            FragmentTopicTitleBinding.inflate(layoutInflater).apply {
+            FragmentTopicTitleBinding.inflate(
+                inflater,
+                container,
+                false
+            ).apply {
                 this.pageViewModel = this@TopicTitleListFragment.pageViewModel
                 lifecycleOwner = this@TopicTitleListFragment
                 topicListRecyclerView.adapter = topicListAdapter

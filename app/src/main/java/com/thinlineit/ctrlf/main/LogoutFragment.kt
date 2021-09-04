@@ -16,7 +16,11 @@ class LogoutFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentLogoutBinding.inflate(inflater).apply {
+        val binding = FragmentLogoutBinding.inflate(
+            inflater,
+            container,
+            false
+        ).apply {
             logoutBtn.setOnClickListener {
                 deleteInfo()
                 requireActivity().finishAffinity()

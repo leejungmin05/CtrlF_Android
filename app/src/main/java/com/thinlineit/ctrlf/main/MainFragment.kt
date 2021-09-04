@@ -19,7 +19,6 @@ import com.thinlineit.ctrlf.notes.NotesAdapter
 class MainFragment : Fragment() {
 
     private val mainViewModel by viewModels<MainViewModel>()
-    private val mainViewPagerAdapter by lazy { MainViewPagerAdapter(requireActivity()) }
     private val noteAdapter = NotesAdapter { noteId ->
         this.findNavController().navigate(
             MainFragmentDirections.actionMainFragmentToPageActivity(noteId)
@@ -37,14 +36,18 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         setHasOptionsMenu(true)
-        val binding = FragmentMainBinding.inflate(inflater).apply {
+        val binding = FragmentMainBinding.inflate(
+            inflater,
+            container,
+            false
+        ).apply {
             mainViewModel = this@MainFragment.mainViewModel
             lifecycleOwner = this@MainFragment
             (requireActivity() as AppCompatActivity).setSupportActionBar(toolBar)
             (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayShowTitleEnabled(
                 false
             )
-            mainViewPager.adapter = mainViewPagerAdapter
+            mainViewPager.adapter = MainViewPagerAdapter(requireActivity())
             noteListRecyclerView.adapter = noteAdapter
             issueListRecyclerView.adapter = issueAdapter
             showAllNoteTextView.setOnClickListener {
