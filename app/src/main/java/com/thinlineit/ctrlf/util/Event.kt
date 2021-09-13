@@ -22,7 +22,6 @@ class Event<T>(private val content: T) {
     fun equalContent(other: Any?): Boolean {
         return (other as T) == this.peekContent()
     }
-
 }
 
 fun <T> LiveData<Event<T>>.observeIfNotHandled(owner: LifecycleOwner, onChanged: (T) -> Unit) {

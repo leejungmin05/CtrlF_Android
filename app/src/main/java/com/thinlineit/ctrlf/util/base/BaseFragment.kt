@@ -23,5 +23,4 @@ abstract class BaseFragment<T : ViewDataBinding>(
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
-
 }

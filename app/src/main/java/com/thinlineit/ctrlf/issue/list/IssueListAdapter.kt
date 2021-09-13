@@ -3,7 +3,6 @@ package com.thinlineit.ctrlf.issue.list
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.ListItemIssueBinding
@@ -46,12 +45,7 @@ class IssueListAdapter(private val clickListener: (IssueDao) -> Unit) :
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val dataBinding = DataBindingUtil.inflate<ListItemIssueBinding>(
-                    layoutInflater,
-                    R.layout.list_item_issue,
-                    parent,
-                    false
-                )
+                val dataBinding = ListItemIssueBinding.inflate(layoutInflater)
                 return ViewHolder(dataBinding)
             }
         }

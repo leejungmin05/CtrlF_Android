@@ -1,13 +1,12 @@
 package com.thinlineit.ctrlf.notes
 
-import androidx.lifecycle.*
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thinlineit.ctrlf.repository.network.NoteService
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 class NotesViewModel : ViewModel() {
     private val _noteList = MutableLiveData<NoteListDao>()

@@ -1,5 +1,6 @@
 package com.thinlineit.ctrlf.page
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -11,6 +12,10 @@ import com.thinlineit.ctrlf.util.BindingRecyclerViewAdapter
 class PageTitleListAdapter(private val clickListener: (Int) -> Unit) :
     RecyclerView.Adapter<PageTitleListAdapter.ViewHolder>(),
     BindingRecyclerViewAdapter<List<PageDao>> {
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
     private var pageList = emptyList<PageDao>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
@@ -33,7 +38,7 @@ class PageTitleListAdapter(private val clickListener: (Int) -> Unit) :
         }
 
         companion object {
-            fun from(parent: ViewGroup): PageTitleListAdapter.ViewHolder {
+            fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val dataBinding = DataBindingUtil.inflate<ListItemPageTitleBinding>(
                     layoutInflater,
@@ -41,11 +46,15 @@ class PageTitleListAdapter(private val clickListener: (Int) -> Unit) :
                     parent,
                     false
                 )
-                return PageTitleListAdapter.ViewHolder(dataBinding)
+                return ViewHolder(dataBinding)
             }
         }
     }
 
+<<<<<<< HEAD
+=======
+    @SuppressLint("NotifyDataSetChanged")
+>>>>>>> dev
     override fun setData(data: List<PageDao>) {
         pageList = data
         notifyDataSetChanged()
