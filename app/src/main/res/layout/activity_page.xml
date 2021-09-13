@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="pageViewModel"
             type="com.thinlineit.ctrlf.page.PageViewModel" />
@@ -12,28 +13,40 @@
     <androidx.slidingpanelayout.widget.SlidingPaneLayout
         android:id="@+id/slidingPaneLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/ic_background">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/pageTopicFragmentContainerView"
             android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="400dp"
+            android:layout_width="200dp"
             android:layout_height="match_parent"
             app:defaultNavHost="true"
-            app:navGraph="@navigation/navigation_page">
-        </androidx.fragment.app.FragmentContainerView>
+            app:navGraph="@navigation/navigation_page"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="400dp"
+            android:layout_width="200dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             tools:context=".page.PageActivity">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/white"
+                android:elevation="4dp"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="?attr/actionBarTheme"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.mukesh.MarkdownView
                 android:id="@+id/markdown_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:markdownString="@{pageViewModel.content}" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.slidingpanelayout.widget.SlidingPaneLayout>
 </layout>
