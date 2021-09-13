@@ -35,7 +35,6 @@ class PageActivity : AppCompatActivity() {
                 }
             }
         )
-<<<<<<< HEAD
         /*
         binding.fabButton.setOnClickListener {
             val intent = Intent(this, PageEditorActivity::class.java)
@@ -43,8 +42,6 @@ class PageActivity : AppCompatActivity() {
             startActivity(intent)
         }
          */
-=======
->>>>>>> dev
     }
 
     override fun onBackPressed() {

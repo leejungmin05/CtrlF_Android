@@ -68,15 +68,7 @@ class PageViewModel(noteId: Int) : ViewModel() {
             try {
                 val noteId = noteIdString.value ?: return@launch
                 noteDetailInfo.setValue(
-<<<<<<< HEAD
-                    NoteService.retrofitService.getNoteDetail(
-                        Integer.parseInt(
-                            noteId
-                        )
-                    )
-=======
                     NoteService.retrofitService.getNoteDetail(Integer.parseInt(noteId))
->>>>>>> dev
                 )
             } catch (e: Exception) {
             }
