@@ -6,10 +6,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.repository.UserRepository
-import com.thinlineit.ctrlf.util.*
+import com.thinlineit.ctrlf.util.Event
+import com.thinlineit.ctrlf.util.Status
+import com.thinlineit.ctrlf.util.addSourceList
+import com.thinlineit.ctrlf.util.isValid
+import com.thinlineit.ctrlf.util.postEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-
 
 class RegistrationViewModel : ViewModel() {
     private val userRepository = UserRepository()
@@ -68,10 +71,10 @@ class RegistrationViewModel : ViewModel() {
 
     private fun isSignUpValid(): Boolean =
         emailStatus.value?.equalContent(Status.SUCCESS) ?: false &&
-                codeStatus.value?.equalContent(Status.SUCCESS) ?: false &&
-                nicknameStatus.value?.equalContent(Status.SUCCESS) ?: false &&
-                passwordStatus.value?.equalContent(Status.SUCCESS) ?: false &&
-                passwordConfirmStatus.value?.equalContent(Status.SUCCESS) ?: false
+            codeStatus.value?.equalContent(Status.SUCCESS) ?: false &&
+            nicknameStatus.value?.equalContent(Status.SUCCESS) ?: false &&
+            passwordStatus.value?.equalContent(Status.SUCCESS) ?: false &&
+            passwordConfirmStatus.value?.equalContent(Status.SUCCESS) ?: false
 
     fun checkDuplicateNickname() {
         if (!nickName.value.isValid(NICKNAME_REGEX)) {
@@ -170,7 +173,6 @@ class RegistrationViewModel : ViewModel() {
         email.value = ""
         code.value = ""
     }
-
 
     companion object {
         // 숫자, 문자, 특수문자 중 2가지 포함(8~20자)

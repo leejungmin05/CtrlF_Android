@@ -1,7 +1,6 @@
 package com.thinlineit.ctrlf.page
 
 import android.os.Bundle
-import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -27,12 +26,15 @@ class PageActivity : AppCompatActivity() {
             this.pageViewModel = pageViewModel
             lifecycleOwner = this@PageActivity
         }
-        pageViewModel.slidingOpen.observe(this, Observer {
-            if (it == true && slidingPaneLayout.isSlideable) {
-                slidingPaneLayout.open()
-                pageViewModel.closeSliding()
+        pageViewModel.slidingOpen.observe(
+            this,
+            Observer {
+                if (it == true && slidingPaneLayout.isSlideable) {
+                    slidingPaneLayout.open()
+                    pageViewModel.closeSliding()
+                }
             }
-        })
+        )
         /*
         binding.fabButton.setOnClickListener {
             val intent = Intent(this, PageEditorActivity::class.java)

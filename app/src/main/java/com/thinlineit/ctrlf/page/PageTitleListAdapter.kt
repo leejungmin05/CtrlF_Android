@@ -9,7 +9,8 @@ import com.thinlineit.ctrlf.databinding.ListItemPageTitleBinding
 import com.thinlineit.ctrlf.util.BindingRecyclerViewAdapter
 
 class PageTitleListAdapter(private val clickListener: (Int) -> Unit) :
-    RecyclerView.Adapter<PageTitleListAdapter.ViewHolder>(), BindingRecyclerViewAdapter<List<PageDao>> {
+    RecyclerView.Adapter<PageTitleListAdapter.ViewHolder>(),
+    BindingRecyclerViewAdapter<List<PageDao>> {
     private var pageList = emptyList<PageDao>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
@@ -27,9 +28,10 @@ class PageTitleListAdapter(private val clickListener: (Int) -> Unit) :
         fun bind(pageDao: PageDao, clickListener: (Int) -> Unit) {
             dataBinding.page = pageDao
             dataBinding.root.setOnClickListener {
-                clickListener(pageDao.id)
+                clickListener(pageDao.id ?: 0)
             }
         }
+
         companion object {
             fun from(parent: ViewGroup): PageTitleListAdapter.ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
@@ -43,6 +45,7 @@ class PageTitleListAdapter(private val clickListener: (Int) -> Unit) :
             }
         }
     }
+
     override fun setData(data: List<PageDao>) {
         pageList = data
         notifyDataSetChanged()
