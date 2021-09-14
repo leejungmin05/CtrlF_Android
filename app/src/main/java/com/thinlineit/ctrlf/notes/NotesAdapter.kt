@@ -43,7 +43,11 @@ class NotesAdapter(private val clickListener: (Int) -> Unit) :
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val dataBinding = ListItemNoteBinding.inflate(layoutInflater)
+                val dataBinding = ListItemNoteBinding.inflate(
+                    layoutInflater,
+                    parent,
+                    false
+                )
                 return ViewHolder(dataBinding)
             }
         }

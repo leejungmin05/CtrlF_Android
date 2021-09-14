@@ -21,7 +21,11 @@ class PageTitleListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentPageTitleBinding.inflate(layoutInflater).apply {
+        val binding = FragmentPageTitleBinding.inflate(
+            inflater,
+            container,
+            false
+        ).apply {
             this.pageViewModel = this@PageTitleListFragment.pageViewModel
             lifecycleOwner = this@PageTitleListFragment
             pageListRecyclerView.adapter = pageTitleListAdapter

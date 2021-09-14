@@ -45,7 +45,11 @@ class IssueListAdapter(private val clickListener: (IssueDao) -> Unit) :
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val dataBinding = ListItemIssueBinding.inflate(layoutInflater)
+                val dataBinding = ListItemIssueBinding.inflate(
+                    layoutInflater,
+                    parent,
+                    false
+                )
                 return ViewHolder(dataBinding)
             }
         }
