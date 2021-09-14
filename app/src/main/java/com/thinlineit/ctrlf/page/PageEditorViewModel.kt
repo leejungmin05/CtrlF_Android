@@ -8,7 +8,7 @@ class PageEditorViewModel(private val pageInfo: PageDao) : ViewModel() {
     val content = MutableLiveData<String>(pageInfo.content)
 
     fun complete() {
-        // TODO: if it's true, using update pageAPI
+        // TODO: if it's true, inform success
         pageEditorRepository.complete(pageInfo)
     }
 }

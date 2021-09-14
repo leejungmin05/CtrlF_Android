@@ -36,6 +36,7 @@ class PageActivity : AppCompatActivity() {
             }
         )
         /*
+        // floating button for 0.2.1 version
         binding.fabButton.setOnClickListener {
             val intent = Intent(this, PageEditorActivity::class.java)
             intent.putExtra(PAGEINFO, pageViewModel.pageInfo.value)

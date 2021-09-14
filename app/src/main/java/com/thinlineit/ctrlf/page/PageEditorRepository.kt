@@ -1,7 +1,6 @@
 package com.thinlineit.ctrlf.page
 
 class PageEditorRepository {
-    fun complete(pageInfo: PageDao): Boolean {
-        return true
-    }
+    // TODO: using update pageAPI and return boolean type
+    fun complete(pageInfo: PageDao): Boolean = true
 }
