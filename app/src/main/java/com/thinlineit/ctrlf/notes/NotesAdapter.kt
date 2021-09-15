@@ -26,9 +26,21 @@ class NotesAdapter(private val clickListener: (Int) -> Unit) :
     class ViewHolder(private val dataBinding: ListItemNoteBinding) :
         RecyclerView.ViewHolder(dataBinding.root) {
         fun bind(noteDao: NoteDao, clickListener: (Int) -> Unit, position: Int) {
-            val resourceId: Int = when (position % 3) {
+            val resourceId: Int = when (position % 15) {
                 1 -> R.drawable.ic_note_2
                 2 -> R.drawable.ic_note_3
+                3 -> R.drawable.ic_note_4
+                4 -> R.drawable.ic_note_5
+                5 -> R.drawable.ic_note_6
+                6 -> R.drawable.ic_note_7
+                7 -> R.drawable.ic_note_8
+                8 -> R.drawable.ic_note_9
+                9 -> R.drawable.ic_note_10
+                10 -> R.drawable.ic_note_11
+                11 -> R.drawable.ic_note_12
+                12 -> R.drawable.ic_note_13
+                13 -> R.drawable.ic_note_14
+                14 -> R.drawable.ic_note_15
                 else -> R.drawable.ic_note_1
             }
             dataBinding.apply {

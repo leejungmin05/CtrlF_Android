@@ -33,7 +33,6 @@ class MainViewModel : ViewModel() {
     init {
         loadBannerList()
         loadNote()
-        loadIssue()
     }
 
     private fun loadBannerList() {

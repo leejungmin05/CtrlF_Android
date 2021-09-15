@@ -7,10 +7,14 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isEmpty
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.FragmentMainBinding
 import com.thinlineit.ctrlf.main.viewpager.MainViewPagerAdapter
@@ -50,15 +54,17 @@ class MainFragment : Fragment() {
             mainViewPager.adapter = MainViewPagerAdapter(requireActivity())
             noteListRecyclerView.adapter = noteAdapter
             issueListRecyclerView.adapter = issueAdapter
+            visibilityChange(
+                issueListRecyclerView,
+                issueEmptyText
+            )
             showAllNoteTextView.setOnClickListener {
                 findNavController().navigate(
                     MainFragmentDirections.actionMainFragmentToNotesFragment()
                 )
             }
             showAllIssueTextView.setOnClickListener {
-                findNavController().navigate(
-                    MainFragmentDirections.actionMainFragmentToIssueListFragment()
-                )
+                Toast.makeText(activity, "해당 서비스는 준비중입니다.", Toast.LENGTH_LONG).show()
             }
         }
         return binding.root
@@ -75,5 +81,15 @@ class MainFragment : Fragment() {
             true
         }
         else -> super.onOptionsItemSelected(item)
+    }
+
+    fun visibilityChange(recyclerView: RecyclerView, textView: TextView) {
+        if (recyclerView.isEmpty()) {
+            recyclerView.visibility = View.GONE
+            textView.visibility = View.VISIBLE
+        } else {
+            recyclerView.visibility = View.VISIBLE
+            textView.visibility = View.GONE
+        }
     }
 }

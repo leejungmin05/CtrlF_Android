@@ -15,23 +15,19 @@
         android:layout_width="100dp"
         android:layout_height="137dp"
         android:layout_marginLeft="22dp"
-        android:layout_marginTop="15dp">
-        <ImageView
-            android:id="@+id/noteBackground"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_note_1">
-        </ImageView>
+        android:layout_marginTop="15dp"
+        android:background="@drawable/ic_note_1">
 
         <TextView
             android:id="@+id/noteName"
-            android:layout_width="65dp"
-            android:layout_height="35dp"
+            android:layout_width="66dp"
+            android:layout_height="36dp"
             android:layout_marginLeft="11dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="24dp"
             android:gravity="center"
             android:text="@{note.title}"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.529"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tool:text="@string/note" />
