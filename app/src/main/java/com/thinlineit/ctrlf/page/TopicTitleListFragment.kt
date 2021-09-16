@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.thinlineit.ctrlf.databinding.FragmentTopicTitleBinding
 import kotlinx.android.synthetic.main.activity_page.*
 
@@ -17,6 +19,7 @@ class TopicTitleListFragment : Fragment() {
             TopicTitleListFragmentDirections.actionNotesFragmentToPageFragment()
         )
     }
+    private val itemTouchHelper = ItemTouchHelper(ItemTouchHelperCallback(topicListAdapter))
     private val pageViewModel by activityViewModels<PageViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,6 +35,10 @@ class TopicTitleListFragment : Fragment() {
                 this.pageViewModel = this@TopicTitleListFragment.pageViewModel
                 lifecycleOwner = this@TopicTitleListFragment
                 topicListRecyclerView.adapter = topicListAdapter
+
+                itemTouchHelper.attachToRecyclerView(topicListRecyclerView)
+                topicListRecyclerView.layoutManager =
+                    LinearLayoutManager(this@TopicTitleListFragment.context)
             }
         return binding.root
     }

@@ -1,6 +1,7 @@
 package com.thinlineit.ctrlf.page
 
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -8,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.ActivityPageBinding
+import kotlin.properties.Delegates
 import kotlinx.android.synthetic.main.activity_page.*
 
 class PageActivity : AppCompatActivity() {
@@ -20,6 +22,7 @@ class PageActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        instance = this
         val noteId = intent.getIntExtra(NOTE_ID, 0)
         val viewModelFactory = PageViewModelFactory(noteId)
         val pageViewModel = ViewModelProvider(this, viewModelFactory).get(PageViewModel::class.java)
@@ -36,6 +39,16 @@ class PageActivity : AppCompatActivity() {
                 }
             }
         )
+        val display = windowManager.defaultDisplay
+        val outMetrics = DisplayMetrics()
+        display.getMetrics(outMetrics)
+
+        val density = resources.displayMetrics.density
+        dpWidth = if (outMetrics.widthPixels > 1080){
+            (outMetrics.widthPixels / density) / 6
+        }else{
+            (outMetrics.widthPixels / density) / 3
+        }
     }
 
     override fun onBackPressed() {
@@ -48,5 +61,7 @@ class PageActivity : AppCompatActivity() {
 
     companion object {
         const val NOTE_ID = "noteId"
+        lateinit var instance: PageActivity
+        var dpWidth by Delegates.notNull<Float>()
     }
 }

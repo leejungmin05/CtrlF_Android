@@ -12,7 +12,7 @@ import com.thinlineit.ctrlf.util.BindingRecyclerViewAdapter
 
 class TopicTitleListAdapter(private val clickListener: (Int, String, String) -> Unit) :
     RecyclerView.Adapter<TopicTitleListAdapter.ViewHolder>(),
-    BindingRecyclerViewAdapter<List<TopicDao>> {
+    BindingRecyclerViewAdapter<List<TopicDao>>, ItemTouchHelperListener {
     var topicList = emptyList<TopicDao>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
@@ -23,6 +23,19 @@ class TopicTitleListAdapter(private val clickListener: (Int, String, String) -> 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val topicDao = topicList[position]
         holder.bind(topicDao, clickListener)
+    }
+    override fun onItemSwipe(position: Int) {
+        //Todo 만약 지워지거나 제목이 바뀌웠을때
+    }
+    override fun onDeleteClick(position: Int, viewHolder: RecyclerView.ViewHolder?) {
+        //Todo 해당 타이틀 삭제
+        val builderDelete = TopicFragmentDeleteDialog(PageActivity.instance)
+        builderDelete.topicDialog()
+    }
+    override fun onCorrectionClick(position: Int, viewHolder: RecyclerView.ViewHolder?) {
+        //Todo 해당 타이틀 수정하기
+        val builderCorrection = TopicFragmentDialog(PageActivity.instance)
+        builderCorrection.topicDialog()
     }
 
     class ViewHolder(private val dataBinding: ListItemTopicTitleBinding) :
