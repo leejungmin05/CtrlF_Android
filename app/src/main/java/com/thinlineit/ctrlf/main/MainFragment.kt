@@ -67,6 +67,7 @@ class MainFragment : Fragment() {
                 Toast.makeText(activity, "해당 서비스는 준비중입니다.", Toast.LENGTH_LONG).show()
             }
         }
+
         return binding.root
     }
 
@@ -83,7 +84,7 @@ class MainFragment : Fragment() {
         else -> super.onOptionsItemSelected(item)
     }
 
-    fun visibilityChange(recyclerView: RecyclerView, textView: TextView) {
+    private fun visibilityChange(recyclerView: RecyclerView, textView: TextView) {
         if (recyclerView.isEmpty()) {
             recyclerView.visibility = View.GONE
             textView.visibility = View.VISIBLE
