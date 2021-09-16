@@ -9,8 +9,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.FragmentTopicTitleBinding
 import kotlinx.android.synthetic.main.activity_page.*
+import kotlinx.android.synthetic.main.fragment_topic_title.*
 
 class TopicTitleListFragment : Fragment() {
     private val topicListAdapter = TopicTitleListAdapter { topicId, topicTitle, topicCreatedAt ->
@@ -39,6 +41,11 @@ class TopicTitleListFragment : Fragment() {
                 itemTouchHelper.attachToRecyclerView(topicListRecyclerView)
                 topicListRecyclerView.layoutManager =
                     LinearLayoutManager(this@TopicTitleListFragment.context)
+                when (pageViewModel!!.noteColorNum % 3) {
+                    1 -> noteBook.setImageResource(R.drawable.ic_note_1)
+                    2 -> noteBook.setImageResource(R.drawable.ic_note_2)
+                    else -> noteBook.setImageResource(R.drawable.ic_note_3)
+                }
             }
         return binding.root
     }
