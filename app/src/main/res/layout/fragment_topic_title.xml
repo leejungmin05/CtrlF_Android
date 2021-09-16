@@ -15,108 +15,47 @@
         android:layout_height="match_parent"
         android:background="@color/dark_blue">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/titleListToolBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/titleListToolBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="4dp"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/toolbar_main"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/noteInfo"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_margin="10dp"
             android:background="@color/white"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/titleListToolBarLayout">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <TextView
+                android:id="@+id/noteTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="@{pageViewModel.noteDetailTitle}"
+                android:textColor="@color/black"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/noteBook"
-                    android:layout_width="80dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/ic_note_1"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:layout_width="42dp"
-                    android:layout_height="wrap_content"
-                    android:text="@{pageViewModel.noteDetailTitle}"
-                    app:layout_constraintTop_toTopOf="@+id/noteBook"
-                    app:layout_constraintLeft_toLeftOf="@+id/noteBook"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="22dp"
-                    android:textSize="8dp" />
-
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/noteBook"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginLeft="10dp">
-
-                    <TextView
-                        android:id="@+id/noteTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@{pageViewModel.noteDetailTitle}"
-                        android:textSize="30dp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
-                        tools:ignore="MissingConstraints" />
-
-                    <TextView
-                        android:id="@+id/noteCreatedAt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="생성일자 2021.00.00"
-                        android:textColor="@color/black"
-                        android:layout_marginTop="10dp"
-                        app:layout_constraintTop_toBottomOf="@id/noteTitle"
-                        tools:ignore="MissingConstraints" />
-
-                    <TextView
-                        android:id="@+id/topicCountText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="topic"
-                        android:textColor="@color/black"
-                        app:layout_constraintTop_toBottomOf="@id/noteCreatedAt"
-                        tools:ignore="MissingConstraints" />
-                    <TextView
-                        android:id="@+id/topicCount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-
-                        app:layout_constraintTop_toBottomOf="@id/noteCreatedAt"
-                        app:layout_constraintLeft_toRightOf="@id/topicCountText"/>
-
-                    <TextView
-                        android:id="@+id/pageCountText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text=" page"
-                        android:textColor="@color/black"
-                        app:layout_constraintTop_toBottomOf="@id/noteCreatedAt"
-                        app:layout_constraintLeft_toRightOf="@id/topicCount"/>
-                    <TextView
-                        android:id="@+id/pageCount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-
-                        app:layout_constraintTop_toBottomOf="@id/noteCreatedAt"
-                        app:layout_constraintLeft_toRightOf="@id/pageCountText"/>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintBottom_toBottomOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

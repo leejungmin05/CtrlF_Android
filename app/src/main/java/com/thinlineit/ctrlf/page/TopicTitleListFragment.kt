@@ -2,8 +2,11 @@ package com.thinlineit.ctrlf.page
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -15,8 +18,8 @@ import kotlinx.android.synthetic.main.activity_page.*
 import kotlinx.android.synthetic.main.fragment_topic_title.*
 
 class TopicTitleListFragment : Fragment() {
-    private val topicListAdapter = TopicTitleListAdapter { topicId, topicTitle, topicCreatedAt ->
-        pageViewModel.selectTopic(topicId, topicTitle, topicCreatedAt)
+    private val topicListAdapter = TopicTitleListAdapter { topicId, topicTitle ->
+        pageViewModel.selectTopic(topicId, topicTitle)
         this.findNavController().navigate(
             TopicTitleListFragmentDirections.actionNotesFragmentToPageFragment()
         )
@@ -28,25 +31,28 @@ class TopicTitleListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding =
-            FragmentTopicTitleBinding.inflate(
-                inflater,
-                container,
+        setHasOptionsMenu(true)
+        val binding = FragmentTopicTitleBinding.inflate(
+            inflater,
+            container,
+            false
+        ).apply {
+            this.pageViewModel = this@TopicTitleListFragment.pageViewModel
+            lifecycleOwner = this@TopicTitleListFragment
+            // TODO: 툴바 이미지 변경, 클릭 시 준비중입니다 다이얼로그 적용
+            (requireActivity() as AppCompatActivity).setSupportActionBar(titleListToolBar)
+            (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayShowTitleEnabled(
                 false
-            ).apply {
-                this.pageViewModel = this@TopicTitleListFragment.pageViewModel
-                lifecycleOwner = this@TopicTitleListFragment
-                topicListRecyclerView.adapter = topicListAdapter
+            )
+            topicListRecyclerView.adapter = topicListAdapter
 
-                itemTouchHelper.attachToRecyclerView(topicListRecyclerView)
-                topicListRecyclerView.layoutManager =
-                    LinearLayoutManager(this@TopicTitleListFragment.context)
-                when (pageViewModel!!.noteColorNum % 3) {
-                    1 -> noteBook.setImageResource(R.drawable.ic_note_1)
-                    2 -> noteBook.setImageResource(R.drawable.ic_note_2)
-                    else -> noteBook.setImageResource(R.drawable.ic_note_3)
-                }
-            }
+            itemTouchHelper.attachToRecyclerView(topicListRecyclerView)
+            topicListRecyclerView.layoutManager =
+                LinearLayoutManager(this@TopicTitleListFragment.context)
+        }
         return binding.root
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) =
+        inflater.inflate(R.menu.toolber_page, menu)
 }

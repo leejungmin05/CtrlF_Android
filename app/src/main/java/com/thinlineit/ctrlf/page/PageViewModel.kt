@@ -27,14 +27,9 @@ class PageViewModel(noteId: Int) : ViewModel() {
 
     val content = Transformations.map(pageInfo) { it.content }
 
-    // TODO : add Topic,Page Num
     val noteDetailTitle = Transformations.map(noteDetailInfo) { it.title }
 
-    // TODO : add Page Num
     lateinit var topicDetailTitle: String
-    lateinit var topicDetailCreatedAt: String
-
-    val noteColorNum = noteId
 
     init {
         loadPage(1)
@@ -71,10 +66,9 @@ class PageViewModel(noteId: Int) : ViewModel() {
         _slidingOpen.value = false
     }
 
-    fun selectTopic(topicId: Int, topicTitle: String, topicCreatedAt: String) {
+    fun selectTopic(topicId: Int, topicTitle: String) {
         loadPageList(topicId)
         topicDetailTitle = topicTitle
-        topicDetailCreatedAt = topicCreatedAt
     }
 
     private fun loadPageList(topicId: Int) {

@@ -20,7 +20,10 @@ class ItemTouchHelperCallback(private val listener: ItemTouchHelperListener?) :
     private var currenrtItemViewHolder: RecyclerView.ViewHolder? = null
 
     private var buttonDelete: RectF? = null
+    var deleteBtnIsOn = false
+
     private var buttonCorrection: RectF? = null
+    var correctionBtnIsOn = false
 
     private var swipeOn = false
 
@@ -32,6 +35,7 @@ class ItemTouchHelperCallback(private val listener: ItemTouchHelperListener?) :
         val swipe_flags = ItemTouchHelper.START or ItemTouchHelper.END
         return makeMovementFlags(drag_flags, swipe_flags)
     }
+
     override fun onMove(
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder,
@@ -56,7 +60,8 @@ class ItemTouchHelperCallback(private val listener: ItemTouchHelperListener?) :
         var dX = dX
         if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
             if (buttonsShowedState != ButtonsState.GONE) {
-                if (buttonsShowedState == ButtonsState.RIGHT_VISIBLE) dX = Math.min(dX, -2 * dpWidth)
+                if (buttonsShowedState == ButtonsState.RIGHT_VISIBLE) dX =
+                    Math.min(dX, -2 * dpWidth)
 
                 super.onChildDraw(
                     c,
@@ -68,6 +73,8 @@ class ItemTouchHelperCallback(private val listener: ItemTouchHelperListener?) :
                     isCurrentlyActive
                 )
             } else {
+                correctionBtnIsOn = false
+                deleteBtnIsOn = false
                 setTouchListener(
                     c,
                     recyclerView,
@@ -77,8 +84,6 @@ class ItemTouchHelperCallback(private val listener: ItemTouchHelperListener?) :
                     actionState,
                     isCurrentlyActive
                 )
-            }
-            if (buttonsShowedState == ButtonsState.GONE) {
                 super.onChildDraw(
                     c,
                     recyclerView,
@@ -114,9 +119,10 @@ class ItemTouchHelperCallback(private val listener: ItemTouchHelperListener?) :
             c.drawRoundRect(deleteButton, corners, corners, buttonPaint)
             drawText("삭제", c, deleteButton, buttonPaint)
             buttonDelete = deleteButton
+            deleteBtnIsOn = true
 
             val correctionButton = RectF(
-                itemView.right - ( 2 * buttonWidthWithOutPadding),
+                itemView.right - (2 * buttonWidthWithOutPadding),
                 (itemView.top + 10).toFloat(),
                 (itemView.right - 10).toFloat() - buttonWidthWithOutPadding,
                 (itemView.bottom - 10).toFloat()
@@ -125,6 +131,7 @@ class ItemTouchHelperCallback(private val listener: ItemTouchHelperListener?) :
             c.drawRoundRect(correctionButton, corners, corners, buttonPaint)
             drawText("수정", c, correctionButton, buttonPaint)
             buttonCorrection = correctionButton
+            correctionBtnIsOn = true
         }
     }
 
@@ -156,7 +163,8 @@ class ItemTouchHelperCallback(private val listener: ItemTouchHelperListener?) :
         isCurrentlyActive: Boolean
     ) {
         recyclerView.setOnTouchListener { v, event ->
-            swipeOn = event.action == MotionEvent.ACTION_CANCEL || event.action == MotionEvent.ACTION_UP
+            swipeOn =
+                event.action == MotionEvent.ACTION_CANCEL || event.action == MotionEvent.ACTION_UP
             if (swipeOn) {
                 if (dX < -dpWidth) buttonsShowedState = ButtonsState.RIGHT_VISIBLE
 
@@ -226,22 +234,17 @@ class ItemTouchHelperCallback(private val listener: ItemTouchHelperListener?) :
             recyclerView.setOnTouchListener { v, event -> false }
             setItemsClickable(recyclerView, true)
             swipeOn = false
-            if (listener != null && buttonDelete != null && buttonDelete!!.contains(
-                    event.x,
-                    event.y
-                )
-            ) { if (buttonsShowedState == ButtonsState.RIGHT_VISIBLE) {
-                    listener.onDeleteClick(viewHolder.adapterPosition, viewHolder)
-                }
+            if (listener != null && deleteBtnIsOn &&
+                buttonDelete!!.contains(event.x, event.y) &&
+                buttonsShowedState == ButtonsState.RIGHT_VISIBLE
+            ) {
+                listener.onDeleteClick(viewHolder.adapterPosition, viewHolder)
             }
-            if(listener != null && buttonCorrection != null && buttonCorrection!!.contains(
-                    event.x,
-                    event.y
-                )
-            ){
-                if (buttonsShowedState == ButtonsState.RIGHT_VISIBLE) {
-                    listener.onCorrectionClick(viewHolder.adapterPosition, viewHolder)
-                }
+            if (listener != null && correctionBtnIsOn &&
+                buttonCorrection!!.contains(event.x, event.y) &&
+                buttonsShowedState == ButtonsState.RIGHT_VISIBLE
+            ) {
+                listener.onCorrectionClick(viewHolder.adapterPosition, viewHolder)
             }
             buttonsShowedState = ButtonsState.GONE
             currenrtItemViewHolder = null

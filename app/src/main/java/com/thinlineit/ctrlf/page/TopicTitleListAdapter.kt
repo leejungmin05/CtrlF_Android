@@ -10,7 +10,7 @@ import com.thinlineit.ctrlf.databinding.ListItemTopicTitleBinding
 import com.thinlineit.ctrlf.notes.TopicDao
 import com.thinlineit.ctrlf.util.BindingRecyclerViewAdapter
 
-class TopicTitleListAdapter(private val clickListener: (Int, String, String) -> Unit) :
+class TopicTitleListAdapter(private val clickListener: (Int, String) -> Unit) :
     RecyclerView.Adapter<TopicTitleListAdapter.ViewHolder>(),
     BindingRecyclerViewAdapter<List<TopicDao>>,
     ItemTouchHelperListener {
@@ -32,22 +32,26 @@ class TopicTitleListAdapter(private val clickListener: (Int, String, String) -> 
 
     // Todo 해당 타이틀 삭제 -> 준비중입니다 다이얼로그로 수정
     override fun onDeleteClick(position: Int, viewHolder: RecyclerView.ViewHolder?) {
+        /*
         val builderDelete = TopicFragmentDeleteDialog(PageActivity.instance)
         builderDelete.topicDialog()
+         */
     }
 
     // Todo 해당 타이틀 수정하기 -> 준비중입니다 다이얼로그로 수정
     override fun onCorrectionClick(position: Int, viewHolder: RecyclerView.ViewHolder?) {
+        /*
         val builderCorrection = TopicFragmentDialog(PageActivity.instance)
         builderCorrection.topicDialog()
+         */
     }
 
     class ViewHolder(private val dataBinding: ListItemTopicTitleBinding) :
         RecyclerView.ViewHolder(dataBinding.root) {
-        fun bind(topicDao: TopicDao, clickListener: (Int, String, String) -> Unit) {
+        fun bind(topicDao: TopicDao, clickListener: (Int, String) -> Unit) {
             dataBinding.topic = topicDao
             dataBinding.root.setOnClickListener {
-                clickListener(topicDao.id, topicDao.title, topicDao.createdAt)
+                clickListener(topicDao.id, topicDao.title)
             }
         }
 
