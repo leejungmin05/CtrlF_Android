@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isEmpty
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -19,6 +18,7 @@ import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.FragmentMainBinding
 import com.thinlineit.ctrlf.main.viewpager.MainViewPagerAdapter
 import com.thinlineit.ctrlf.notes.NotesAdapter
+import kotlinx.android.synthetic.main.fragment_main.*
 
 class MainFragment : Fragment() {
 
@@ -54,20 +54,22 @@ class MainFragment : Fragment() {
             mainViewPager.adapter = MainViewPagerAdapter(requireActivity())
             noteListRecyclerView.adapter = noteAdapter
             issueListRecyclerView.adapter = issueAdapter
-            visibilityChange(
-                issueListRecyclerView,
-                issueEmptyText
-            )
             showAllNoteTextView.setOnClickListener {
                 findNavController().navigate(
                     MainFragmentDirections.actionMainFragmentToNotesFragment()
                 )
             }
             showAllIssueTextView.setOnClickListener {
-                Toast.makeText(activity, "해당 서비스는 준비중입니다.", Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, R.string.alert_prepare, Toast.LENGTH_LONG).show()
             }
         }
-
+        mainViewModel.issueList.observe(viewLifecycleOwner) {
+            updateIssueViewVisibility(
+                issueListRecyclerView,
+                issueEmptyText,
+                it.isEmpty()
+            )
+        }
         return binding.root
     }
 
@@ -84,8 +86,12 @@ class MainFragment : Fragment() {
         else -> super.onOptionsItemSelected(item)
     }
 
-    private fun visibilityChange(recyclerView: RecyclerView, textView: TextView) {
-        if (recyclerView.isEmpty()) {
+    private fun updateIssueViewVisibility(
+        recyclerView: RecyclerView,
+        textView: TextView,
+        empty: Boolean
+    ) {
+        if (empty) {
             recyclerView.visibility = View.GONE
             textView.visibility = View.VISIBLE
         } else {
