@@ -5,10 +5,9 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
 class PageEditorAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
-    private var fragments: ArrayList<Fragment> = ArrayList()
-    lateinit var viewModel: PageEditorViewModel
+    private var fragments: MutableList<Fragment> = mutableListOf()
 
-    override fun getItemCount(): Int = fragments.size
+    override fun getItemCount() = 2
 
     override fun createFragment(position: Int): Fragment = fragments[position]
 
