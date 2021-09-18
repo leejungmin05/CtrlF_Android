@@ -34,7 +34,7 @@ class NotesAdapter(private val clickListener: (Int) -> Unit) :
             resources: Resources
         ) {
             val noteDesignArray = resources.obtainTypedArray(R.array.notes)
-            val noteResourceId = noteDesignArray.getResourceId(position % NOTEDESIGNNUM, 0)
+            val noteResourceId = noteDesignArray.getResourceId(position % NOTEDESIGN_NUM, 0)
             dataBinding.apply {
                 noteItem.setBackground(noteResourceId)
                 note = noteDao

@@ -26,6 +26,7 @@
             android:layout_marginTop="24dp"
             android:gravity="center"
             android:text="@{note.title}"
+            android:fontFamily="@font/sc_dream_2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.529"
             app:layout_constraintStart_toStartOf="parent"

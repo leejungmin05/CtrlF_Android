@@ -27,7 +27,7 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolBar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="?attr/actionBarSize"
                 android:background="@color/white"
                 android:elevation="4dp"
                 android:minHeight="?attr/actionBarSize"
@@ -80,6 +80,7 @@
                 android:layout_marginTop="12dp"
                 android:text="@string/note"
                 android:textSize="20dp"
+                android:fontFamily="@font/sc_dream_7"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -91,6 +92,7 @@
                 android:layout_marginRight="12dp"
                 android:text="@string/allView"
                 android:textSize="20sp"
+                android:fontFamily="@font/sc_dream_3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -132,6 +134,7 @@
                 android:layout_marginTop="22dp"
                 android:text="@string/issue"
                 android:textSize="20dp"
+                android:fontFamily="@font/sc_dream_7"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -142,6 +145,7 @@
                 android:layout_marginTop="22dp"
                 android:layout_marginRight="12dp"
                 android:text="@string/allView"
+                android:fontFamily="@font/sc_dream_3"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
