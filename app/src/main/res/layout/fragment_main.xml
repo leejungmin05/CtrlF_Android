@@ -60,6 +60,7 @@
                 android:id="@+id/mainViewPager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="10dp"
                 app:fragmentData="@{mainViewModel.fragmentList}" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -78,9 +79,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="22dp"
                 android:layout_marginTop="12dp"
-                android:text="@string/note"
-                android:textSize="20dp"
                 android:fontFamily="@font/sc_dream_7"
+                android:text="@string/note"
+                android:textColor="@color/black"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -90,9 +92,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:layout_marginRight="12dp"
-                android:text="@string/allView"
-                android:textSize="20sp"
                 android:fontFamily="@font/sc_dream_3"
+                android:text="@string/allView"
+                android:textColor="@color/black"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -132,9 +135,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="22dp"
                 android:layout_marginTop="22dp"
-                android:text="@string/issue"
-                android:textSize="20dp"
                 android:fontFamily="@font/sc_dream_7"
+                android:text="@string/issue"
+                android:textColor="@color/black"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -144,8 +148,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="22dp"
                 android:layout_marginRight="12dp"
-                android:text="@string/allView"
                 android:fontFamily="@font/sc_dream_3"
+                android:text="@string/allView"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -176,6 +181,7 @@
                 android:layout_height="115dp"
                 android:gravity="center"
                 android:text="@string/alert_prepare"
+                android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"></TextView>
 
