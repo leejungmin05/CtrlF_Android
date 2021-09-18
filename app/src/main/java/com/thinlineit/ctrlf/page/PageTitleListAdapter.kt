@@ -30,7 +30,7 @@ class PageTitleListAdapter(private val clickListener: (Int) -> Unit) :
         fun bind(pageDao: PageDao, clickListener: (Int) -> Unit) {
             dataBinding.page = pageDao
             dataBinding.root.setOnClickListener {
-                clickListener(pageDao.id)
+                clickListener(pageDao.id ?: return@setOnClickListener)
             }
         }
 

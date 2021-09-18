@@ -35,7 +35,6 @@ class PageViewModel(noteId: Int) : ViewModel() {
     lateinit var topicDetailCreatedAt: String
 
     init {
-        loadPage(1)
         loadNoteInfo()
         loadNoteDetailInfo()
         _slidingOpen.value = false
