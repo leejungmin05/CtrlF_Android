@@ -1,14 +1,13 @@
 package com.thinlineit.ctrlf.page
 
 import android.os.Bundle
-import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.ActivityPageBinding
-import kotlinx.android.synthetic.main.activity_page.*
+import kotlinx.android.synthetic.main.activity_page.slidingPaneLayout
 
 class PageActivity : AppCompatActivity() {
     private val binding: ActivityPageBinding by lazy {
@@ -36,6 +35,14 @@ class PageActivity : AppCompatActivity() {
                 }
             }
         )
+        /*
+        // floating button for 0.2.1 version
+        binding.fabButton.setOnClickListener {
+            val intent = Intent(this, PageEditorActivity::class.java)
+            intent.putExtra(PAGEINFO, pageViewModel.pageInfo.value)
+            startActivity(intent)
+        }
+         */
     }
 
     override fun onBackPressed() {
@@ -48,5 +55,6 @@ class PageActivity : AppCompatActivity() {
 
     companion object {
         const val NOTE_ID = "noteId"
+        const val PAGEINFO = "pageInfo"
     }
 }

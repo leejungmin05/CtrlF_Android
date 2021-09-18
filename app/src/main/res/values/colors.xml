@@ -12,4 +12,6 @@
     <color name="light_light_gray">#E9E9E9</color>
     <color name="red">#EB0000</color>
     <color name="skyblue">#8BC8FD</color>
+    <color name="purple"> #A399E8</color>
+
 </resources>
