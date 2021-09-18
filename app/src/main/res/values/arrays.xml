@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="notes">
+        <item>@drawable/ic_note_1</item>
+        <item>@drawable/ic_note_2</item>
+        <item>@drawable/ic_note_3</item>
+        <item>@drawable/ic_note_4</item>
+        <item>@drawable/ic_note_5</item>
+        <item>@drawable/ic_note_6</item>
+        <item>@drawable/ic_note_7</item>
+        <item>@drawable/ic_note_8</item>
+        <item>@drawable/ic_note_9</item>
+        <item>@drawable/ic_note_10</item>
+        <item>@drawable/ic_note_11</item>
+        <item>@drawable/ic_note_12</item>
+        <item>@drawable/ic_note_13</item>
+        <item>@drawable/ic_note_14</item>
+        <item>@drawable/ic_note_15</item>
+    </integer-array>
+
+</resources>

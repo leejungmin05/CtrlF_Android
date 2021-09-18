@@ -7,10 +7,13 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.FragmentMainBinding
 import com.thinlineit.ctrlf.main.viewpager.MainViewPagerAdapter
@@ -56,8 +59,13 @@ class MainFragment : Fragment() {
                 )
             }
             showAllIssueTextView.setOnClickListener {
-                findNavController().navigate(
-                    MainFragmentDirections.actionMainFragmentToIssueListFragment()
+                Toast.makeText(activity, R.string.alert_prepare, Toast.LENGTH_LONG).show()
+            }
+            this@MainFragment.mainViewModel.issueList.observe(viewLifecycleOwner) {
+                updateIssueViewVisibility(
+                    issueListRecyclerView,
+                    issueEmptyText,
+                    it.isEmpty()
                 )
             }
         }
@@ -75,5 +83,19 @@ class MainFragment : Fragment() {
             true
         }
         else -> super.onOptionsItemSelected(item)
+    }
+
+    private fun updateIssueViewVisibility(
+        recyclerView: RecyclerView,
+        textView: TextView,
+        isEmpty: Boolean
+    ) {
+        if (isEmpty) {
+            recyclerView.visibility = View.GONE
+            textView.visibility = View.VISIBLE
+        } else {
+            recyclerView.visibility = View.VISIBLE
+            textView.visibility = View.GONE
+        }
     }
 }

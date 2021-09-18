@@ -61,6 +61,8 @@
     <string name="registrationDate">RegistrationDate</string>
     <string name="allView">전체보기 ></string>
     <string name="userCircleBtn">userCircleBtn</string>
+    <string name="alert_prepare">해당 서비스는 준비중입니다</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
@@ -80,5 +82,5 @@
     <string name="Page">PAGE</string>
     <string name="complete">완 료</string>
 
-
 </resources>
+
