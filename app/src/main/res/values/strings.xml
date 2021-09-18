@@ -75,9 +75,6 @@
     <string name="logoutPharse">커넵 앱은 로그인시 사용가능합니다. \n 로그아웃하시겠습니까?</string>
     <string name="cancel">취소</string>
 
-<<<<<<< HEAD
-</resources>
-=======
     <!-- page -->
     <string name="Edit">Edit</string>
     <string name="Preview">Preview</string>
@@ -85,6 +82,5 @@
     <string name="Page">PAGE</string>
     <string name="complete">완 료</string>
 
-
 </resources>
->>>>>>> dev
+
