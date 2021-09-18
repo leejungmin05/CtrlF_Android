@@ -18,7 +18,6 @@ import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.FragmentMainBinding
 import com.thinlineit.ctrlf.main.viewpager.MainViewPagerAdapter
 import com.thinlineit.ctrlf.notes.NotesAdapter
-import kotlinx.android.synthetic.main.fragment_main.*
 
 class MainFragment : Fragment() {
 
@@ -62,13 +61,13 @@ class MainFragment : Fragment() {
             showAllIssueTextView.setOnClickListener {
                 Toast.makeText(activity, R.string.alert_prepare, Toast.LENGTH_LONG).show()
             }
-        }
-        mainViewModel.issueList.observe(viewLifecycleOwner) {
-            updateIssueViewVisibility(
-                issueListRecyclerView,
-                issueEmptyText,
-                it.isEmpty()
-            )
+            this@MainFragment.mainViewModel.issueList.observe(viewLifecycleOwner) {
+                updateIssueViewVisibility(
+                    issueListRecyclerView,
+                    issueEmptyText,
+                    it.isEmpty()
+                )
+            }
         }
         return binding.root
     }
@@ -89,9 +88,9 @@ class MainFragment : Fragment() {
     private fun updateIssueViewVisibility(
         recyclerView: RecyclerView,
         textView: TextView,
-        empty: Boolean
+        isEmpty: Boolean
     ) {
-        if (empty) {
+        if (isEmpty) {
             recyclerView.visibility = View.GONE
             textView.visibility = View.VISIBLE
         } else {

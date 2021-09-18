@@ -1,6 +1,7 @@
 package com.thinlineit.ctrlf.notes
 
 import android.annotation.SuppressLint
+import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -20,7 +21,8 @@ class NotesAdapter(private val clickListener: (Int) -> Unit) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val noteDao = noteList[position]
-        holder.bind(noteDao, clickListener, position, holder)
+        val resource = holder.itemView.resources
+        holder.bind(noteDao, clickListener, position, resource)
     }
 
     class ViewHolder(private val dataBinding: ListItemNoteBinding) :
@@ -29,12 +31,12 @@ class NotesAdapter(private val clickListener: (Int) -> Unit) :
             noteDao: NoteDao,
             clickListener: (Int) -> Unit,
             position: Int,
-            holder: ViewHolder
+            resources: Resources
         ) {
-            val noteDesignArray = holder.itemView.resources.obtainTypedArray(R.array.notes)
-            val resourceId = noteDesignArray.getResourceId(position % NOTEDESIGNNUM, 0)
+            val noteDesignArray = resources.obtainTypedArray(R.array.notes)
+            val noteResourceId = noteDesignArray.getResourceId(position % NOTEDESIGNNUM, 0)
             dataBinding.apply {
-                noteItem.setBackground(resourceId)
+                noteItem.setBackground(noteResourceId)
                 note = noteDao
                 root.setOnClickListener {
                     clickListener(noteDao.id)
@@ -62,6 +64,6 @@ class NotesAdapter(private val clickListener: (Int) -> Unit) :
     }
 
     companion object {
-        private const val NOTEDESIGNNUM = 15
+        private const val NOTEDESIGN_NUM = 15
     }
 }
