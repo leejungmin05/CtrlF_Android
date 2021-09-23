@@ -20,7 +20,7 @@ class PageActivity : AppCompatActivity() {
             R.layout.activity_page
         )
     }
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val noteId = intent.getIntExtra(NOTE_ID, 0)
@@ -51,11 +51,11 @@ class PageActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.toolbar_main,menu)
+        menuInflater.inflate(R.menu.toolbar_main, menu)
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean = when(item.itemId) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
         R.id.userCircleBtn -> {
             /*
             findNavController().navigate(
