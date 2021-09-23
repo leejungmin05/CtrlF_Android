@@ -1,5 +1,6 @@
 package com.thinlineit.ctrlf.page
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.Menu
@@ -7,10 +8,9 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.ActivityPageBinding
+import com.thinlineit.ctrlf.main.LogoutActivity
 import kotlin.properties.Delegates
 import kotlinx.android.synthetic.main.activity_page.slidingPaneLayout
 import kotlinx.android.synthetic.main.fragment_topic_title.titleListToolBar
@@ -59,7 +59,8 @@ class PageActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
         R.id.userCircleBtn -> {
-            Navigation.findNavController(this, R.id.page_activity).navigate(R.id.logout_fragment)
+            val logout = Intent(this, LogoutActivity::class.java)
+            startActivity(logout)
             true
         }
         else -> super.onOptionsItemSelected(item)

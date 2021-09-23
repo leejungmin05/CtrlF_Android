@@ -78,7 +78,7 @@ class MainFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
         R.id.userCircleBtn -> {
             findNavController().navigate(
-                MainFragmentDirections.actionMainFragmentToLogoutFragment()
+                MainFragmentDirections.actionMainFragmentToLogoutActivity()
             )
             true
         }
