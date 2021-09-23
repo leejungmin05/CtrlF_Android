@@ -29,12 +29,12 @@ class TopicTitleListAdapter(private val clickListener: (Int, String) -> Unit) :
 
     // TODO: 해당 타이틀 삭제 -> 준비중입니다 다이얼로그로 수정
     override fun onDelete(context: Context) {
-        TopicFragmentDeleteDialog(context).topicDialog()
+        TopicFragmentDialog(context).topicDialog(context)
     }
 
     // TODO: 해당 타이틀 수정하기 -> 준비중입니다 다이얼로그로 수정
     override fun onModify(context: Context) {
-        TopicFragmentDialog(context).topicDialog()
+        TopicFragmentDialog(context).topicDialog(context)
     }
 
     class ViewHolder(private val dataBinding: ListItemTopicTitleBinding) :

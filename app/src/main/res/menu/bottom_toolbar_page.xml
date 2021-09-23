@@ -6,6 +6,7 @@
         android:id="@+id/addTopicPage"
         android:icon="@drawable/ic_user_circle_btn"
         app:showAsAction="always"
-        android:title="addTopicPageBtn">
+        android:title="추가"
+        android:enabled="true">
     </item>
 </menu>

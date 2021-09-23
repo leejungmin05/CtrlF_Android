@@ -2,6 +2,8 @@ package com.thinlineit.ctrlf.page
 
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -35,6 +37,9 @@ class PageActivity : AppCompatActivity() {
             }
         }
 
+        setSupportActionBar(titleListToolBar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
         // TODO: Do not use deprecated methods.
         val display = windowManager.defaultDisplay
         val outMetrics = DisplayMetrics()
@@ -43,6 +48,23 @@ class PageActivity : AppCompatActivity() {
         val density = resources.displayMetrics.density
         dpWidth = if (outMetrics.widthPixels > 1080) (outMetrics.widthPixels / density) / 6
         else (outMetrics.widthPixels / density) / 3
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.toolbar_main,menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when(item.itemId) {
+        R.id.userCircleBtn -> {
+            /*
+            findNavController().navigate(
+                PageActivityDirections.actionPageFragmentToLogoutFragment()
+            )
+             */
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
     }
 
     override fun onBackPressed() {

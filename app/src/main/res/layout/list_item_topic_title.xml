@@ -12,8 +12,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:padding="3dp">
+        android:layout_height="50dp"
+        android:layout_marginTop="2dp">
 
         <LinearLayout
             android:id="@+id/swipeTopicListView"
@@ -31,7 +31,8 @@
                 android:text="@{topic.title}"
                 android:textColor="@color/black"
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/font_activity_page"/>
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

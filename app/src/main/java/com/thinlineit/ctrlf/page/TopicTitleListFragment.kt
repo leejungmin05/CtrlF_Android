@@ -2,11 +2,9 @@ package com.thinlineit.ctrlf.page
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -31,7 +29,6 @@ class TopicTitleListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        setHasOptionsMenu(true)
         val binding = FragmentTopicTitleBinding.inflate(
             inflater,
             container,
@@ -39,20 +36,21 @@ class TopicTitleListFragment : Fragment() {
         ).apply {
             this.pageViewModel = this@TopicTitleListFragment.pageViewModel
             lifecycleOwner = this@TopicTitleListFragment
-            // TODO: 툴바 이미지 변경, 클릭 시 준비중입니다 다이얼로그 적용
-            (requireActivity() as AppCompatActivity).setSupportActionBar(titleListToolBar)
-            (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayShowTitleEnabled(
-                false
-            )
             topicListRecyclerView.adapter = topicListAdapter
-
             itemTouchHelper.attachToRecyclerView(topicListRecyclerView)
             topicListRecyclerView.layoutManager =
                 LinearLayoutManager(this@TopicTitleListFragment.context)
+            // TODO: 툴바 이미지 변경, 클릭 시 준비중입니다 다이얼로그 적용
+            topicListBottomNavigationBar.setOnNavigationItemSelectedListener { item ->
+                when(item.itemId){
+                    R.id.addTopicPage -> {
+                        Toast.makeText(getActivity(), "준비중입니다.",Toast.LENGTH_SHORT).show()
+                        return@setOnNavigationItemSelectedListener true
+                    }
+                    else -> return@setOnNavigationItemSelectedListener false
+                }
+            }
         }
         return binding.root
     }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) =
-        inflater.inflate(R.menu.toolber_page, menu)
 }
