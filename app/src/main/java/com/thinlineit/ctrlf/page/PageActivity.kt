@@ -20,7 +20,7 @@ class PageActivity : AppCompatActivity() {
             R.layout.activity_page
         )
     }
-
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val noteId = intent.getIntExtra(NOTE_ID, 0)
