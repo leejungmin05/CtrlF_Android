@@ -36,7 +36,6 @@
                 app:layout_constraintTop_toTopOf="parent"/>
         </androidx.appcompat.widget.Toolbar>
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/noteInfo"
             android:layout_width="match_parent"

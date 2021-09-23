@@ -10,8 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.ActivityPageBinding
 import kotlin.properties.Delegates
-import kotlinx.android.synthetic.main.activity_page.*
-import kotlinx.android.synthetic.main.fragment_topic_title.*
+import kotlinx.android.synthetic.main.activity_page.slidingPaneLayout
+import kotlinx.android.synthetic.main.fragment_topic_title.titleListToolBar
 
 class PageActivity : AppCompatActivity() {
     private val binding: ActivityPageBinding by lazy {
