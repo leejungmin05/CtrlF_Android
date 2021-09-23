@@ -25,7 +25,7 @@ class TopicFragmentDialog(context: Context) {
         dialog.setCancelable(true)
         dialog.show()
          */
-        val toastMessage = Toast.makeText(context,"준비중입니다.", Toast.LENGTH_SHORT)
+        val toastMessage = Toast.makeText(context, "해당 서비스는 준비중입니다.", Toast.LENGTH_SHORT)
         toastMessage.show()
     }
 }

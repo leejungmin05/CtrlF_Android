@@ -1,6 +1,7 @@
 package com.thinlineit.ctrlf.notes
 
 import android.annotation.SuppressLint
+import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -20,19 +21,22 @@ class NotesAdapter(private val clickListener: (Int) -> Unit) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val noteDao = noteList[position]
-        holder.bind(noteDao, clickListener, position)
+        val resource = holder.itemView.resources
+        holder.bind(noteDao, clickListener, position, resource)
     }
 
     class ViewHolder(private val dataBinding: ListItemNoteBinding) :
         RecyclerView.ViewHolder(dataBinding.root) {
-        fun bind(noteDao: NoteDao, clickListener: (Int) -> Unit, position: Int) {
-            val resourceId: Int = when (position % 3) {
-                1 -> R.drawable.ic_note_2
-                2 -> R.drawable.ic_note_3
-                else -> R.drawable.ic_note_1
-            }
+        fun bind(
+            noteDao: NoteDao,
+            clickListener: (Int) -> Unit,
+            position: Int,
+            resources: Resources
+        ) {
+            val noteDesignArray = resources.obtainTypedArray(R.array.notes)
+            val noteResourceId = noteDesignArray.getResourceId(position % NOTEDESIGN_NUM, 0)
             dataBinding.apply {
-                noteItem.setBackground(resourceId)
+                noteItem.setBackground(noteResourceId)
                 note = noteDao
                 root.setOnClickListener {
                     clickListener(noteDao.id)
@@ -57,5 +61,9 @@ class NotesAdapter(private val clickListener: (Int) -> Unit) :
     override fun setData(data: List<NoteDao>) {
         noteList = data
         notifyDataSetChanged()
+    }
+
+    companion object {
+        private const val NOTEDESIGN_NUM = 15
     }
 }

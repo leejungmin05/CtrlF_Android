@@ -65,6 +65,14 @@ class PageActivity : AppCompatActivity() {
             true
         }
         else -> super.onOptionsItemSelected(item)
+        /*
+        // floating button for 0.2.1 version
+        binding.fabButton.setOnClickListener {
+            val intent = Intent(this, PageEditorActivity::class.java)
+            intent.putExtra(PAGEINFO, pageViewModel.pageInfo.value)
+            startActivity(intent)
+        }
+         */
     }
 
     override fun onBackPressed() {
@@ -78,5 +86,6 @@ class PageActivity : AppCompatActivity() {
     companion object {
         const val NOTE_ID = "noteId"
         var dpWidth by Delegates.notNull<Float>()
+        const val PAGEINFO = "pageInfo"
     }
 }

@@ -42,9 +42,9 @@ class TopicTitleListFragment : Fragment() {
                 LinearLayoutManager(this@TopicTitleListFragment.context)
             // TODO: 툴바 이미지 변경, 클릭 시 준비중입니다 다이얼로그 적용
             topicListBottomNavigationBar.setOnNavigationItemSelectedListener { item ->
-                when(item.itemId){
+                when (item.itemId) {
                     R.id.addTopicPage -> {
-                        Toast.makeText(getActivity(), "준비중입니다.",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(getActivity(), "해당 서비스는 준비중입니다.", Toast.LENGTH_SHORT).show()
                         return@setOnNavigationItemSelectedListener true
                     }
                     else -> return@setOnNavigationItemSelectedListener false
