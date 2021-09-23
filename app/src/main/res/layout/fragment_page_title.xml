@@ -57,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:text="@{pageViewModel.noteDetailTitle}"
                     android:textColor="@color/black"
-                    android:textSize="30dp"
+                    android:textSize="30sp"
                     android:textStyle="bold"
                     android:fontFamily="@font/font_activity_page"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -70,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:text="@{pageViewModel.topicDetailTitle}"
                     android:textColor="@color/black"
-                    android:textSize="30dp"
+                    android:textSize="30sp"
                     android:textStyle="bold"
                     android:fontFamily="@font/font_activity_page"
                     android:layout_marginTop="20dp"
@@ -94,6 +94,7 @@
             app:data="@{pageViewModel.topicInfo}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintTop_toBottomOf="@+id/topicInfo"
+            app:layout_constraintBottom_toTopOf="@id/addPageBtn"
             tools:listitem="@layout/list_item_page_title" />
 
         <Button

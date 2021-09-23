@@ -36,11 +36,6 @@
             app:destination="@id/page_activity"
             app:enterAnim="@anim/slide_in_right"
             app:popEnterAnim="@anim/slide_in_right" />
-        <action
-            android:id="@+id/action_page_fragment_to_page_fragment"
-            app:destination="@id/topic_title_list_fragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:popEnterAnim="@anim/slide_in_right" />
     </fragment>
     <activity
         android:id="@+id/page_activity"

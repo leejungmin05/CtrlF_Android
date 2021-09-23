@@ -51,7 +51,7 @@
                 android:fontFamily="@font/font_activity_page"
                 android:text="@{pageViewModel.noteDetailTitle}"
                 android:textColor="@color/black"
-                android:textSize="30dp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"

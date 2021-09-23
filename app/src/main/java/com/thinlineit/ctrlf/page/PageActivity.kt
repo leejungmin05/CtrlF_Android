@@ -7,6 +7,8 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.ActivityPageBinding
 import kotlin.properties.Delegates
@@ -57,11 +59,7 @@ class PageActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
         R.id.userCircleBtn -> {
-            /*
-            findNavController().navigate(
-                PageActivityDirections.actionPageFragmentToLogoutFragment()
-            )
-             */
+            Navigation.findNavController(this, R.id.page_activity).navigate(R.id.logout_fragment)
             true
         }
         else -> super.onOptionsItemSelected(item)
