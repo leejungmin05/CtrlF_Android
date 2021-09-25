@@ -18,11 +18,9 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/toolBarLayout"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@+id/ideaLayout"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintVertical_weight="1">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolBar"
@@ -52,9 +50,8 @@
             android:id="@+id/ideaLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/noteTextLayout"
-            app:layout_constraintTop_toBottomOf="@+id/toolBarLayout"
-            app:layout_constraintVertical_weight="4">
+            app:layout_constraintBottom_toTopOf="@+id/noteTextTopGuideline"
+            app:layout_constraintTop_toBottomOf="@+id/toolBarLayout">
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/mainViewPager"
@@ -69,20 +66,19 @@
             android:id="@+id/noteTextLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/noteListLayout"
-            app:layout_constraintTop_toBottomOf="@+id/ideaLayout"
-            app:layout_constraintVertical_weight="1">
+            app:layout_constraintBottom_toTopOf="@+id/noteListTopGuideline"
+            app:layout_constraintTop_toBottomOf="@+id/noteTextTopGuideline">
 
             <TextView
                 android:id="@+id/noteText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="22dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginLeft="20dp"
                 android:fontFamily="@font/sc_dream_7"
                 android:text="@string/note"
                 android:textColor="@color/black"
-                android:textSize="20dp"
+                android:textSize="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -90,12 +86,12 @@
                 android:id="@+id/showAllNoteTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
                 android:layout_marginRight="12dp"
                 android:fontFamily="@font/sc_dream_3"
                 android:text="@string/allView"
                 android:textColor="@color/black"
                 android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -105,9 +101,8 @@
             android:id="@+id/noteListLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/issueTextLayout"
-            app:layout_constraintTop_toBottomOf="@+id/noteTextLayout"
-            app:layout_constraintVertical_weight="3">
+            app:layout_constraintBottom_toTopOf="@+id/issueTextTopGuideline"
+            app:layout_constraintTop_toBottomOf="@+id/noteListTopGuideline">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/noteListRecyclerView"
@@ -126,19 +121,19 @@
             android:id="@+id/issueTextLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@+id/noteListLayout"
-            app:layout_constraintVertical_weight="1">
+            app:layout_constraintBottom_toTopOf="@+id/issueListTopGuideline"
+            app:layout_constraintTop_toBottomOf="@+id/issueTextTopGuideline">
 
             <TextView
                 android:id="@+id/issueText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="22dp"
-                android:layout_marginTop="22dp"
+                android:layout_marginLeft="20dp"
                 android:fontFamily="@font/sc_dream_7"
                 android:text="@string/issue"
                 android:textColor="@color/black"
-                android:textSize="20dp"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -146,12 +141,12 @@
                 android:id="@+id/showAllIssueTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:layout_marginRight="12dp"
+                android:layout_marginRight="10dp"
                 android:fontFamily="@font/sc_dream_3"
                 android:text="@string/allView"
                 android:textColor="@color/black"
                 android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -161,8 +156,8 @@
             android:id="@+id/issueListLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@+id/issueTextLayout"
-            app:layout_constraintVertical_weight="3">
+            app:layout_constraintBottom_toBottomOf="@id/issueListBottomGuideline"
+            app:layout_constraintTop_toBottomOf="@+id/issueListTopGuideline">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/issueListRecyclerView"
@@ -178,14 +173,50 @@
             <TextView
                 android:id="@+id/issueEmptyText"
                 android:layout_width="match_parent"
-                android:layout_height="115dp"
+                android:layout_height="0dp"
                 android:gravity="center"
                 android:text="@string/alert_prepare"
                 android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"></TextView>
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/noteTextTopGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.4" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/noteListTopGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.475" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/issueTextTopGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.7" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/issueListTopGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.775" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/issueListBottomGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.945" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

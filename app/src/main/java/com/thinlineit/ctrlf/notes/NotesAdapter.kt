@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.ListItemNoteBinding
 import com.thinlineit.ctrlf.util.BindingRecyclerViewAdapter
-import com.thinlineit.ctrlf.util.setBackground
 
 class NotesAdapter(private val clickListener: (Int) -> Unit) :
     RecyclerView.Adapter<NotesAdapter.ViewHolder>(), BindingRecyclerViewAdapter<List<NoteDao>> {
@@ -36,7 +35,7 @@ class NotesAdapter(private val clickListener: (Int) -> Unit) :
             val noteDesignArray = resources.obtainTypedArray(R.array.notes)
             val noteResourceId = noteDesignArray.getResourceId(position % NOTEDESIGN_NUM, 0)
             dataBinding.apply {
-                noteItem.setBackground(noteResourceId)
+                noteItemImage.setImageResource(noteResourceId)
                 note = noteDao
                 root.setOnClickListener {
                     clickListener(noteDao.id)
