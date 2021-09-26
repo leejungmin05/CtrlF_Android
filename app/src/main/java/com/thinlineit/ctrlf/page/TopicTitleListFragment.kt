@@ -13,13 +13,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.thinlineit.ctrlf.databinding.FragmentTopicTitleBinding
 
 class TopicTitleListFragment : Fragment() {
-    private val topicListAdapter = TopicTitleListAdapter { topicId, topicTitle ->
+    private val topicTitleListAdapter = TopicTitleListAdapter { topicId, topicTitle ->
         pageViewModel.selectTopic(topicId, topicTitle)
         this.findNavController().navigate(
             TopicTitleListFragmentDirections.actionNotesFragmentToPageFragment()
         )
     }
-    private val itemTouchHelper = ItemTouchHelper(SwipeController(topicListAdapter))
+    private val itemTouchHelper = ItemTouchHelper(SwipeController(topicTitleListAdapter))
     private val pageViewModel by activityViewModels<PageViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,7 +33,7 @@ class TopicTitleListFragment : Fragment() {
         ).apply {
             this.pageViewModel = this@TopicTitleListFragment.pageViewModel
             lifecycleOwner = this@TopicTitleListFragment
-            topicListRecyclerView.adapter = topicListAdapter
+            topicListRecyclerView.adapter = topicTitleListAdapter
             itemTouchHelper.attachToRecyclerView(topicListRecyclerView)
             topicListRecyclerView.layoutManager =
                 LinearLayoutManager(this@TopicTitleListFragment.context)

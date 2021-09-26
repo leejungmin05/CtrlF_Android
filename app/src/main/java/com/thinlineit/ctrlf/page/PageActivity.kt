@@ -12,8 +12,8 @@ import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.ActivityPageBinding
 import com.thinlineit.ctrlf.main.LogoutActivity
 import kotlin.properties.Delegates
+import kotlinx.android.synthetic.main.activity_page.pageActivityToolBar
 import kotlinx.android.synthetic.main.activity_page.slidingPaneLayout
-import kotlinx.android.synthetic.main.fragment_topic_title.titleListToolBar
 
 class PageActivity : AppCompatActivity() {
     private val binding: ActivityPageBinding by lazy {
@@ -39,7 +39,7 @@ class PageActivity : AppCompatActivity() {
             }
         }
 
-        setSupportActionBar(titleListToolBar)
+        setSupportActionBar(pageActivityToolBar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
         // TODO: Do not use deprecated methods.

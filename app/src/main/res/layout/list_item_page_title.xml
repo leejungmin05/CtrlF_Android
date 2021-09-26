@@ -12,7 +12,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:layout_marginTop="2dp">
 
         <LinearLayout
@@ -30,7 +30,7 @@
                 android:fontFamily="@font/font_activity_page"
                 android:text="@{page.title}"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:layout_gravity="center" />
         </LinearLayout>

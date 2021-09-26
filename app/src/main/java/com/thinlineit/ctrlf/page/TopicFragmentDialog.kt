@@ -3,6 +3,8 @@ package com.thinlineit.ctrlf.page
 import android.app.Dialog
 import android.content.Context
 import android.widget.Toast
+import com.thinlineit.ctrlf.R
+
 /*
 import android.view.WindowManager
 import android.widget.Toast
@@ -25,7 +27,7 @@ class TopicFragmentDialog(context: Context) {
         dialog.setCancelable(true)
         dialog.show()
          */
-        val toastMessage = Toast.makeText(context, "해당 서비스는 준비중입니다.", Toast.LENGTH_SHORT)
+        val toastMessage = Toast.makeText(context, R.string.alert_prepare, Toast.LENGTH_SHORT)
         toastMessage.show()
     }
 }

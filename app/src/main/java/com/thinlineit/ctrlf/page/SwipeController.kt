@@ -123,7 +123,7 @@ class SwipeController(private val listener: ItemTouchHelperListener) :
         }
 
     inner class ButtonDrawer {
-        private val margin = 10f
+        private val margin = 0f
         private val corner = 5f
 
         private val deleteButtonPaint = Paint().apply {
