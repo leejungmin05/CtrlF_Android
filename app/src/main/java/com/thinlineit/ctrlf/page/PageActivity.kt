@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.ActivityPageBinding
+import com.thinlineit.ctrlf.util.LoadingDialog
 import kotlinx.android.synthetic.main.activity_page.slidingPaneLayout
 
 class PageActivity : AppCompatActivity() {
@@ -35,6 +36,17 @@ class PageActivity : AppCompatActivity() {
                 }
             }
         )
+
+        val loadingDialog = LoadingDialog(this)
+
+        pageViewModel.isLoading.observe(
+            this,
+            Observer {
+                if (it) loadingDialog.show()
+                else loadingDialog.dismiss()
+            }
+        )
+
         /*
         // floating button for 0.2.1 version
         binding.fabButton.setOnClickListener {
