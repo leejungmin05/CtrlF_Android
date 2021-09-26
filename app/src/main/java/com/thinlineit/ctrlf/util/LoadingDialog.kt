@@ -23,5 +23,4 @@ class LoadingDialog(context: Context) : Dialog(context) {
         setCanceledOnTouchOutside(false)
         window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
-
 }
