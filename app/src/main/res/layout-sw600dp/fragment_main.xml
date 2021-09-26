@@ -110,10 +110,11 @@
                 android:layout_height="0dp"
                 android:orientation="horizontal"
                 app:data="@{mainViewModel.notes}"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:listitem="@layout/list_item_main_note" />
+                app:spanCount="2"
+                tools:listitem="@layout/list_item_note" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -188,14 +189,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.4" />
+            app:layout_constraintGuide_percent="0.3"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/noteListTopGuideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.475" />
+            app:layout_constraintGuide_percent="0.375" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/issueTextTopGuideline"
