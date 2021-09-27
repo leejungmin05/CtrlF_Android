@@ -8,6 +8,7 @@ import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.ListItemIssueBinding
 import com.thinlineit.ctrlf.issue.IssueDao
 import com.thinlineit.ctrlf.util.BindingRecyclerViewAdapter
+import com.thinlineit.ctrlf.util.setBackgroundById
 
 class IssueListAdapter(private val clickListener: (IssueDao) -> Unit) :
     RecyclerView.Adapter<IssueListAdapter.ViewHolder>(),
@@ -33,7 +34,7 @@ class IssueListAdapter(private val clickListener: (IssueDao) -> Unit) :
                 else -> R.drawable.icon_issue_lightgreen
             }
             dataBinding.apply {
-                issueItem.setBackground(resourceId)
+                issueItem.setBackgroundById(resourceId)
                 issue = issueDao
                 root.setOnClickListener {
                     clickListener(issueDao)

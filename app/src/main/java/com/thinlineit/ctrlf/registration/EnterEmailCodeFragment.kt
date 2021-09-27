@@ -12,7 +12,7 @@ import com.thinlineit.ctrlf.databinding.FragmentCodeBinding
 import com.thinlineit.ctrlf.util.Status
 import com.thinlineit.ctrlf.util.base.RegistrationBaseFragment
 import com.thinlineit.ctrlf.util.observeIfNotHandled
-import com.thinlineit.ctrlf.util.setBackground
+import com.thinlineit.ctrlf.util.setBackgroundById
 import kotlinx.android.synthetic.main.fragment_code.*
 
 class EnterEmailCodeFragment :
@@ -36,7 +36,7 @@ class EnterEmailCodeFragment :
 
         viewModel.codeStatus.observeIfNotHandled(viewLifecycleOwner) {
             if (it == Status.FAILURE) {
-                binding.regCode.setBackground(R.drawable.background_round_red)
+                binding.regCode.setBackgroundById(R.drawable.background_round_red)
                 binding.regCode.startAnimation(anim)
             } else {
                 navController.navigate(R.id.action_registerCodeFragment_to_registerNicknameFragment)

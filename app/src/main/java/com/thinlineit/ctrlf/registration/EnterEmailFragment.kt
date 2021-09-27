@@ -12,7 +12,7 @@ import com.thinlineit.ctrlf.databinding.FragmentEmailBinding
 import com.thinlineit.ctrlf.util.Status
 import com.thinlineit.ctrlf.util.base.RegistrationBaseFragment
 import com.thinlineit.ctrlf.util.observeIfNotHandled
-import com.thinlineit.ctrlf.util.setBackground
+import com.thinlineit.ctrlf.util.setBackgroundById
 
 class EnterEmailFragment : RegistrationBaseFragment<FragmentEmailBinding>(R.layout.fragment_email) {
     private lateinit var navController: NavController
@@ -34,7 +34,7 @@ class EnterEmailFragment : RegistrationBaseFragment<FragmentEmailBinding>(R.layo
 
         viewModel.emailStatus.observeIfNotHandled(viewLifecycleOwner) {
             if (it == Status.FAILURE) {
-                binding.regEmail.setBackground(R.drawable.background_round_red)
+                binding.regEmail.setBackgroundById(R.drawable.background_round_red)
                 binding.regEmail.startAnimation(anim)
             } else {
                 navController.navigate(R.id.action_registerEmailFragment_to_registerCodeFragment)
