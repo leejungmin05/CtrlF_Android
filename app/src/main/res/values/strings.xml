@@ -4,45 +4,47 @@
 
     <!-- login & registration-->
     <string name="hint_email">E-mail</string>
-    <string name="label_login">Log in</string>
-    <string name="hint_pwd">PASSWORD</string>
-    <string name="hint_pwdConfirm">PASSWORD 확인</string>
-    <string name="button_login">log in</string>
-    <string name="button_register">회원가입</string>
+    <string name="hint_password">PASSWORD</string>
+    <string name="hint_password_confirm">PASSWORD 확인</string>
     <string name="hint_nickname">닉네임</string>
-    <string name="label_duplicate_nickname">닉네임중복여부</string>
     <string name="hint_code">코드</string>
-    <string name="button_next">"다  음" </string>
-    <string name="button_duplicate">중복확인</string>
-    <string name="button_email_confirm">이메일 인증</string>
+
+    <string name="label_login">Log in</string>
+    <string name="label_duplicate_nickname">닉네임중복여부</string>
     <string name="label_account_text_email">이메일 입력 / 인증</string>
     <string name="label_account_text_nickname">닉네임 입력 / 중복확인</string>
     <string name="label_account_text_password">비밀번호 입력 / 확인</string>
+
+    <string name="button_login">log in</string>
+    <string name="button_register">회원가입</string>
+    <string name="button_next">"다  음" </string>
+    <string name="button_duplicate">중복확인</string>
+    <string name="button_email_confirm">이메일 인증</string>
     <string name="button_find_id">ID 찾기</string>
-    <string name="button_find_pwd">"| PASSWORD 찾기"</string>
-    <string name="default_text">""</string>
+    <string name="button_find_password">"| PASSWORD 찾기"</string>
     <string name="button_back">"뒤로 가기"</string>
     <string name="button_cancel_wide">"취  소"</string>
     <string name="notice_confirm_go_back_to_email">"[뒤로 가기]를 누르시면 \n이메일 인증을 새로 받으셔야합니다."</string>
     <string name="notice_email_code_check">"코드 null text"</string>
+    <string name="default_text">""</string>
 
     <!-- login viewModel-->
     <string name="notice_error_email">이메일 형식이 올바르지 않습니다.</string>
-    <string name="notice_input_email_pwd">이메일과 비밀번호를 입력해주세요.</string>
-    <string name="notice_check_email_pwd">이메일과 비밀번호를 확인해주세요.</string>
-    <string name="notice_error_pwd">비밀번호가 일치하지 않습니다.</string>
+    <string name="notice_input_email_password">이메일과 비밀번호를 입력해주세요.</string>
+    <string name="notice_check_email_password">이메일과 비밀번호를 확인해주세요.</string>
+    <string name="notice_error_password">비밀번호가 일치하지 않습니다.</string>
     <string name="notice_login_check">로그인 확인 text</string>
 
     <!-- register viewModel-->
     <string name="notice_nickname_valid">닉네임은 2~10자, 공백이나 특수문자는 허용하지 않습니다.</string>
-    <string name="notice_pwd_valid">비밀 번호는 영문, 숫자, 특수문자 중 2가지 이상 조합하여 8~20자이내로 입력해주세요.</string>
+    <string name="notice_password_valid">비밀 번호는 영문, 숫자, 특수문자 중 2가지 이상 조합하여 8~20자이내로 입력해주세요.</string>
     <string name="notice_code_input">코드를 입력하세요.</string>
     <string name="notice_code_valid">코드를 확인해주세요.</string>
     <string name="notice_error_code">코드가 일치하지 않습니다.</string>
     <string name="notice_code_confirm_text">입력하신 이메일에서 코드를 확인해주세요.</string>
     <string name="notice_error_nickname">이미 존재하는 닉네임입니다.</string>
     <string name="notice_exist_email">이미 존재하는 이메일입니다.</string>
-    <string name="notice_pwd_valid_check">비밀번호 유효성 text</string>
+    <string name="notice_password_valid_check">비밀번호 유효성 text</string>
 
     <string name="notice_complete_registration">"환영합니다.\n가입이 완료되었습니다.\n\n로그인 후 이용해주세요."</string>
 
@@ -52,8 +54,8 @@
     <string name="label_issue_id">Id</string>
     <string name="label_issue_content">Content</string>
     <string name="label_issue_registration_date">RegistrationDate</string>
-    <string name="button_all_note_view">전체보기 ></string>
     <string name="label_userCircleBtn">userCircleBtn</string>
+    <string name="button_all_note_view">전체보기 ></string>
     <string name="notice_prepare">해당 서비스는 준비중입니다</string>
 
 
@@ -63,15 +65,15 @@
     <!-- logout -->
     <string name="label_logout">Log out</string>
     <string name="button_logout">Log out</string>
-    <string name="notice_logout">커넵 앱은 로그인시 사용가능합니다. \n 로그아웃하시겠습니까?</string>
     <string name="button_cancel">취소</string>
+    <string name="notice_logout">커넵 앱은 로그인시 사용가능합니다. \n 로그아웃하시겠습니까?</string>
 
     <!-- page -->
     <string name="button_edit">Edit</string>
     <string name="button_preview">Preview</string>
+    <string name="button_complete">완 료</string>
     <string name="label_topic">TOPIC</string>
     <string name="label_page">PAGE</string>
-    <string name="button_complete">완 료</string>
 
     <!-- General -->
     <string name="button_general_delete">삭제</string>

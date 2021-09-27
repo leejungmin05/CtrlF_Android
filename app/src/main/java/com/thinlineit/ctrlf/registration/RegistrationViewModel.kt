@@ -57,14 +57,14 @@ class RegistrationViewModel : ViewModel() {
     fun checkPasswordSame() {
         if (!passwordConfirm.value.isValid(PASSWORD_REGEX)) {
             passwordConfirmStatus.value = Event(Status.FAILURE)
-            passwordConfirmMessage.postValue(R.string.notice_error_pwd)
+            passwordConfirmMessage.postValue(R.string.notice_error_password)
             return
         }
         if (password.value == passwordConfirm.value) {
             passwordConfirmStatus.postEvent(Status.SUCCESS)
             passwordConfirmMessage.postValue(R.string.default_text)
         } else {
-            passwordConfirmMessage.postValue(R.string.notice_error_pwd)
+            passwordConfirmMessage.postValue(R.string.notice_error_password)
             passwordConfirmStatus.postEvent(Status.FAILURE)
         }
     }
@@ -120,7 +120,7 @@ class RegistrationViewModel : ViewModel() {
             passwordStatus.value = Event(Status.SUCCESS)
             passwordMessage.postValue(R.string.default_text)
         } else {
-            passwordMessage.postValue(R.string.notice_pwd_valid)
+            passwordMessage.postValue(R.string.notice_password_valid)
             passwordStatus.value = Event(Status.FAILURE)
         }
     }

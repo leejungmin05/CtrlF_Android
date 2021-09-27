@@ -87,7 +87,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="20dp"
-                    android:hint="@string/hint_pwd"
+                    android:hint="@string/hint_password"
                     android:background="@drawable/background_round_white"
                     android:inputType="textPassword"
                     android:paddingStart="10dp"
@@ -152,7 +152,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="7dp"
-            android:text="@string/button_find_pwd"
+            android:text="@string/button_find_password"
             app:layout_constraintStart_toEndOf="@+id/findId"
             app:layout_constraintTop_toTopOf="@+id/findId" />
     </androidx.constraintlayout.widget.ConstraintLayout>
