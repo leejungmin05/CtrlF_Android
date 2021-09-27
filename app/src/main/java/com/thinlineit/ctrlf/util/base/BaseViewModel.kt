@@ -6,6 +6,7 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.CoroutineStart
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 open class BaseViewModel : ViewModel() {
@@ -17,9 +18,16 @@ open class BaseViewModel : ViewModel() {
         block: suspend CoroutineScope.() -> Unit
     ) {
         launch(context, start) {
-            isLoading.postValue(true)
-            block.invoke(this)
-            isLoading.postValue(false)
+            val loadingjob = launch {
+                delay(500)
+                isLoading.postValue(true)
+            }
+            try {
+                block.invoke(this)
+                loadingjob.cancel()
+                isLoading.postValue(false)
+            } catch (e: Exception) {
+            }
         }
     }
 }
