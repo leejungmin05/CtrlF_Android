@@ -57,14 +57,14 @@ class RegistrationViewModel : ViewModel() {
     fun checkPasswordSame() {
         if (!passwordConfirm.value.isValid(PASSWORD_REGEX)) {
             passwordConfirmStatus.value = Event(Status.FAILURE)
-            passwordConfirmMessage.postValue(R.string.alert_pwd)
+            passwordConfirmMessage.postValue(R.string.notice_error_pwd)
             return
         }
         if (password.value == passwordConfirm.value) {
             passwordConfirmStatus.postEvent(Status.SUCCESS)
             passwordConfirmMessage.postValue(R.string.default_text)
         } else {
-            passwordConfirmMessage.postValue(R.string.alert_pwd)
+            passwordConfirmMessage.postValue(R.string.notice_error_pwd)
             passwordConfirmStatus.postEvent(Status.FAILURE)
         }
     }
@@ -78,7 +78,7 @@ class RegistrationViewModel : ViewModel() {
 
     fun checkDuplicateNickname() {
         if (!nickName.value.isValid(NICKNAME_REGEX)) {
-            nicknameMessage.postValue(R.string.alert_nickname_valid)
+            nicknameMessage.postValue(R.string.notice_nickname_valid)
             nicknameStatus.postEvent(Status.FAILURE)
             return
         }
@@ -88,7 +88,7 @@ class RegistrationViewModel : ViewModel() {
                 nicknameMessage.postValue(R.string.default_text)
             } else {
                 nicknameStatus.postEvent(Status.FAILURE)
-                nicknameMessage.postValue(R.string.error_nickname)
+                nicknameMessage.postValue(R.string.notice_error_nickname)
             }
         }
     }
@@ -96,11 +96,11 @@ class RegistrationViewModel : ViewModel() {
     fun checkCodeValid() {
         if (code.value.toString().isEmpty()) {
             codeStatus.value = Event(Status.FAILURE)
-            codeMessage.postValue(R.string.alert_code)
+            codeMessage.postValue(R.string.notice_code_input)
             return
         }
         if (!code.value.isValid(CODE_REGEX)) {
-            codeMessage.postValue(R.string.alert_code_valid)
+            codeMessage.postValue(R.string.notice_code_valid)
             codeStatus.value = Event(Status.FAILURE)
             return
         }
@@ -109,7 +109,7 @@ class RegistrationViewModel : ViewModel() {
                 codeStatus.postEvent(Status.SUCCESS)
                 codeMessage.postValue(R.string.default_text)
             } else {
-                codeMessage.postValue(R.string.error_code)
+                codeMessage.postValue(R.string.notice_error_code)
                 codeStatus.value = Event(Status.FAILURE)
             }
         }
@@ -120,7 +120,7 @@ class RegistrationViewModel : ViewModel() {
             passwordStatus.value = Event(Status.SUCCESS)
             passwordMessage.postValue(R.string.default_text)
         } else {
-            passwordMessage.postValue(R.string.alert_pwd_valid)
+            passwordMessage.postValue(R.string.notice_pwd_valid)
             passwordStatus.value = Event(Status.FAILURE)
         }
     }
@@ -128,7 +128,7 @@ class RegistrationViewModel : ViewModel() {
     fun checkDuplicateEmail() {
         if (!email.value.isValid(EMAIL_REGEX)) {
             emailStatus.postEvent(Status.FAILURE)
-            emailMessage.postValue(R.string.alert_email)
+            emailMessage.postValue(R.string.notice_error_email)
             return
         }
         viewModelScope.launch {
@@ -137,7 +137,7 @@ class RegistrationViewModel : ViewModel() {
                 sendAuthEmail()
             } else {
                 emailStatus.postEvent(Status.FAILURE)
-                emailMessage.postValue(R.string.error_email)
+                emailMessage.postValue(R.string.notice_exist_email)
             }
         }
     }
@@ -148,7 +148,7 @@ class RegistrationViewModel : ViewModel() {
                 emailStatus.postEvent(Status.SUCCESS)
                 emailMessage.postValue(R.string.default_text)
             } else {
-                emailMessage.postValue(R.string.alert_email)
+                emailMessage.postValue(R.string.notice_error_email)
                 emailStatus.postEvent(Status.FAILURE)
             }
         }

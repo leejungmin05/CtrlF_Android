@@ -27,7 +27,7 @@ class TopicFragmentDialog(context: Context) {
         dialog.setCancelable(true)
         dialog.show()
          */
-        val toastMessage = Toast.makeText(context, R.string.alert_prepare, Toast.LENGTH_SHORT)
+        val toastMessage = Toast.makeText(context, R.string.notice_prepare, Toast.LENGTH_SHORT)
         toastMessage.show()
     }
 }

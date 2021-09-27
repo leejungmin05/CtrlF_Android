@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/topicText"
             app:layout_constraintTop_toBottomOf="@+id/toolbar"
-            android:text="@string/Topic"
+            android:text="@string/label_topic"
             android:textColor="@color/white"
             android:background="@drawable/topic_background_border"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +47,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Page"
+            android:text="@string/label_page"
             android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@+id/topicText"
             app:layout_constraintTop_toTopOf="@+id/topicText"
@@ -63,7 +63,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/complete"
+            android:text="@string/button_complete"
             app:layout_constraintTop_toTopOf="@+id/pageText"
             app:layout_constraintEnd_toEndOf="@+id/tabLayout"
             android:background="@drawable/complete_background_border"
@@ -96,12 +96,12 @@
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/Edit" />
+                android:text="@string/button_edit" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/Preview"
+                android:text="@string/button_preview"
                 android:id="@+id/previewTab" />
         </com.google.android.material.tabs.TabLayout>
 

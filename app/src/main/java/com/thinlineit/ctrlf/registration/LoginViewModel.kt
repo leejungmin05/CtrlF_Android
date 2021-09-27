@@ -30,7 +30,7 @@ class LoginViewModel : ViewModel() {
             if (userRepository.doLogin(email.value.toString(), password.value.toString())) {
                 loginStatus.postValue(Event(Status.SUCCESS))
             } else {
-                loginMessage.postValue(R.string.alert_login)
+                loginMessage.postValue(R.string.notice_check_email_pwd)
                 loginStatus.postValue(Event(Status.FAILURE))
             }
         }
@@ -45,9 +45,9 @@ class LoginViewModel : ViewModel() {
         val passwordValue = password.value ?: ""
 
         if (emailValue == "" || passwordValue == "") {
-            loginMessage.postValue(R.string.alert_text)
+            loginMessage.postValue(R.string.notice_input_email_pwd)
         } else if (!emailValue.isValid(EMAILREGEX)) {
-            loginMessage.postValue(R.string.alert_email)
+            loginMessage.postValue(R.string.notice_error_email)
         } else {
             login()
         }

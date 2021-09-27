@@ -67,7 +67,7 @@
             android:id="@+id/pageListRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintVertical_weight="7"
+            app:layout_constraintVertical_weight="15"
             android:layout_gravity="start"
             android:layout_marginTop="10dp"
             android:background="@color/dark_blue"
@@ -88,7 +88,7 @@
             android:layout_margin="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/pageListRecyclerView"
-            android:text="@string/add_page"
+            android:text="@string/button_add_page"
             android:backgroundTint="@color/white"
             android:textColor="@color/light_dark_gray"/>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,89 +3,77 @@
     <string name="notes_fragment">Notes</string>
 
     <!-- login & registration-->
-    <string name="e_mail">E-mail</string>
-    <string name="log_in">Log in</string>
-    <string name="email">email</string>
-    <string name="pwd">PASSWORD</string>
-    <string name="pwdConfirm">PASSWORD 확인</string>
-    <string name="login">로그인</string>
-    <string name="loginEng">log in</string>
-    <string name="register">회원가입</string>
-    <string name="nickname">닉네임</string>
-    <string name="code">코드</string>
-    <string name="code_again">코드를 받지 못하셨나요?</string>
-    <string name="next">"다  음" </string>
-    <string name="duplicate">중복확인</string>
-    <string name="emailConfirm">이메일 인증</string>
-    <string name="account_text_email">이메일 입력 / 인증</string>
-    <string name="account_text_nickname">닉네임 입력 / 중복확인</string>
-    <string name="account_text_password">비밀번호 입력 / 확인</string>
-    <string name="find_id">ID 찾기</string>
-    <string name="find_pwd">"| PASSWORD 찾기"</string>
+    <string name="hint_email">E-mail</string>
+    <string name="label_login">Log in</string>
+    <string name="hint_pwd">PASSWORD</string>
+    <string name="hint_pwdConfirm">PASSWORD 확인</string>
+    <string name="button_login">log in</string>
+    <string name="button_register">회원가입</string>
+    <string name="hint_nickname">닉네임</string>
+    <string name="label_duplicate_nickname">닉네임중복여부</string>
+    <string name="hint_code">코드</string>
+    <string name="button_next">"다  음" </string>
+    <string name="button_duplicate">중복확인</string>
+    <string name="button_email_confirm">이메일 인증</string>
+    <string name="label_account_text_email">이메일 입력 / 인증</string>
+    <string name="label_account_text_nickname">닉네임 입력 / 중복확인</string>
+    <string name="label_account_text_password">비밀번호 입력 / 확인</string>
+    <string name="button_find_id">ID 찾기</string>
+    <string name="button_find_pwd">"| PASSWORD 찾기"</string>
     <string name="default_text">""</string>
-    <string name="back_text">"뒤로 가기"</string>
-    <string name="cancel_text">"취  소"</string>
-    <string name="alert_back">"[뒤로 가기]를 누르시면"</string>
-    <string name="alert_back2">"이메일 인증을 새로 받으셔야합니다."</string>
+    <string name="button_back">"뒤로 가기"</string>
+    <string name="button_cancel_wide">"취  소"</string>
+    <string name="notice_confirm_go_back_to_email">"[뒤로 가기]를 누르시면 \n이메일 인증을 새로 받으셔야합니다."</string>
 
     <!-- login viewModel-->
-    <string name="alert_email">이메일 형식이 올바르지 않습니다.</string>
-    <string name="alert_text">이메일과 비밀번호를 입력해주세요.</string>
-    <string name="alert_login">이메일과 비밀번호를 확인해주세요.</string>
-    <string name="alert_pwd">비밀번호가 일치하지 않습니다.</string>
+    <string name="notice_error_email">이메일 형식이 올바르지 않습니다.</string>
+    <string name="notice_input_email_pwd">이메일과 비밀번호를 입력해주세요.</string>
+    <string name="notice_check_email_pwd">이메일과 비밀번호를 확인해주세요.</string>
+    <string name="notice_error_pwd">비밀번호가 일치하지 않습니다.</string>
 
     <!-- register viewModel-->
-    <string name="alert_email_auth">인증 코드를 발송했습니다.</string>
-    <string name="alert_nickname_valid">닉네임은 2~10자, 공백이나 특수문자는 허용하지 않습니다.</string>
-    <string name="alert_pwd_valid">비밀 번호는 영문, 숫자, 특수문자 중 2가지 이상 조합하여 8~20자이내로 입력해주세요.</string>
-    <string name="alert_code">코드를 입력하세요.</string>
-    <string name="alert_code_valid">코드를 확인해주세요.</string>
-    <string name="error_code">코드가 일치하지 않습니다.</string>
-    <string name="code_confirm_text">입력하신 이메일에서 코드를 확인해주세요.</string>
-    <string name="error_nickname">이미 존재하는 닉네임입니다.</string>
-    <string name="error_email">이미 존재하는 이메일입니다.</string>
-    <string name="error_login">이메일이 존재하지 않습니다.</string>
+    <string name="notice_nickname_valid">닉네임은 2~10자, 공백이나 특수문자는 허용하지 않습니다.</string>
+    <string name="notice_pwd_valid">비밀 번호는 영문, 숫자, 특수문자 중 2가지 이상 조합하여 8~20자이내로 입력해주세요.</string>
+    <string name="notice_code_input">코드를 입력하세요.</string>
+    <string name="notice_code_valid">코드를 확인해주세요.</string>
+    <string name="notice_error_code">코드가 일치하지 않습니다.</string>
+    <string name="notice_code_confirm_text">입력하신 이메일에서 코드를 확인해주세요.</string>
+    <string name="notice_error_nickname">이미 존재하는 닉네임입니다.</string>
+    <string name="notice_exist_email">이미 존재하는 이메일입니다.</string>
 
-    <string name="login_validation">회원가입</string>
-    <string name="passwordValidation">일치하지 않습니다</string>
+    <string name="notice_complete_registration">"환영합니다.\n가입이 완료되었습니다.\n\n로그인 후 이용해주세요."</string>
 
-    <string name="completeRegistration">"환영합니다.\n가입이 완료되었습니다.\n\n로그인 후 이용해주세요."</string>
+    <string name="label_issue">Issue</string>
+    <string name="label_note">Note</string>
+    <string name="label_issue_title">Title</string>
+    <string name="label_issue_id">Id</string>
+    <string name="label_issue_content">Content</string>
+    <string name="label_issue_registration_date">RegistrationDate</string>
+    <string name="button_all_note_view">전체보기 ></string>
+    <string name="label_userCircleBtn">userCircleBtn</string>
+    <string name="notice_prepare">해당 서비스는 준비중입니다</string>
 
-    <string name="issue">Issue</string>
-    <string name="note">Note</string>
-    <string name="topic">Topic</string>
-    <string name="page">Page</string>
-    <string name="title">Title</string>
-    <string name="id">Id</string>
-    <string name="content">Content</string>
-    <string name="registrationDate">RegistrationDate</string>
-    <string name="allView">전체보기 ></string>
-    <string name="userCircleBtn">userCircleBtn</string>
-    <string name="alert_prepare">해당 서비스는 준비중입니다</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- viewPager -->
-    <string name="currentIdea">현재 모아진 아이디어</string>
-    <string name="second">second</string>
+    <string name="notice_current_idea">현재 모아진 아이디어</string>
 
     <!-- logout -->
-    <string name="logout">Log out</string>
-    <string name="logoutPharse">커넵 앱은 로그인시 사용가능합니다. \n 로그아웃하시겠습니까?</string>
-    <string name="cancel">취소</string>
+    <string name="label_logout">Log out</string>
+    <string name="button_logout">Log out</string>
+    <string name="notice_logout">커넵 앱은 로그인시 사용가능합니다. \n 로그아웃하시겠습니까?</string>
+    <string name="button_cancel">취소</string>
 
     <!-- page -->
-    <string name="Edit">Edit</string>
-    <string name="Preview">Preview</string>
-    <string name="Topic">TOPIC</string>
-    <string name="Page">PAGE</string>
-    <string name="complete">완 료</string>
+    <string name="button_edit">Edit</string>
+    <string name="button_preview">Preview</string>
+    <string name="label_topic">TOPIC</string>
+    <string name="label_page">PAGE</string>
+    <string name="button_complete">완 료</string>
 
     <!-- General -->
-    <string name="general_delete">삭제</string>
-    <string name="general_modify">수정</string>
-    <string name="add_topic">+ add topic</string>
-    <string name="add_page">+ add page</string>
+    <string name="button_general_delete">삭제</string>
+    <string name="button_general_modify">수정</string>
+    <string name="button_add_topic">+ add topic</string>
+    <string name="button_add_page">+ add page</string>
 
 </resources>
