@@ -26,13 +26,13 @@
                 android:id="@+id/contentTopic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginStart="30dp"
+                android:fontFamily="@font/font_activity_page"
                 android:text="@{topic.title}"
                 android:textColor="@color/black"
                 android:textSize="30sp"
-                android:textStyle="bold"
-                android:fontFamily="@font/font_activity_page"
-                android:layout_gravity="center"/>
+                android:textStyle="bold" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

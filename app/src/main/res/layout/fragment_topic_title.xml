@@ -19,14 +19,10 @@
             android:id="@+id/noteInfo"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintVertical_weight="3"
-            app:layout_constraintVertical_chainStyle="packed"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_margin="10dp"
             android:background="@color/white"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/topicListRecyclerView">
+            app:layout_constraintBottom_toTopOf="@id/topicListRecyclerViewTopGuideline"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
@@ -55,7 +51,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/font_activity_page"
-                    android:text=""
                     android:textColor="@color/black"
                     android:textSize="27sp"
                     android:textStyle="bold"
@@ -70,7 +65,6 @@
             android:id="@+id/topicListRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintVertical_weight="7"
             android:layout_gravity="start"
             android:layout_marginTop="10dp"
             android:background="@color/dark_blue"
@@ -78,22 +72,36 @@
             android:divider="@android:color/transparent"
             android:dividerHeight="0dp"
             app:data="@{pageViewModel.noteInfo}"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/addTopicBtnTopGuideline"
             app:layout_constraintTop_toBottomOf="@+id/noteInfo"
-            app:layout_constraintBottom_toTopOf="@id/addTopicBtn"
             tools:listitem="@layout/list_item_topic_title" />
 
         <Button
             android:id="@+id/addTopicBtn"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintVertical_weight="1"
             android:layout_margin="10dp"
             android:backgroundTint="@color/white"
             android:text="@string/button_add_topic"
             android:textColor="@color/light_dark_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/topicListRecyclerView"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintVertical_weight="1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/topicListRecyclerViewTopGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.3" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/addTopicBtnTopGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.87" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
