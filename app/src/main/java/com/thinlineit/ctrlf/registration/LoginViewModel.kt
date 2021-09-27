@@ -23,14 +23,14 @@ class LoginViewModel : ViewModel() {
     val loginStatus = MutableLiveData<Event<Status>>()
     val email = MutableLiveData("")
     val password = MutableLiveData("")
-    val loginMessage = MutableLiveData<Int>(R.string.default_text)
+    val loginMessage = MutableLiveData<Int>(R.string.empty_text)
 
     private fun login() {
         viewModelScope.launch {
             if (userRepository.doLogin(email.value.toString(), password.value.toString())) {
                 loginStatus.postValue(Event(Status.SUCCESS))
             } else {
-                loginMessage.postValue(R.string.alert_login)
+                loginMessage.postValue(R.string.notice_check_email_password)
                 loginStatus.postValue(Event(Status.FAILURE))
             }
         }
@@ -45,9 +45,9 @@ class LoginViewModel : ViewModel() {
         val passwordValue = password.value ?: ""
 
         if (emailValue == "" || passwordValue == "") {
-            loginMessage.postValue(R.string.alert_text)
+            loginMessage.postValue(R.string.notice_input_email_password)
         } else if (!emailValue.isValid(EMAILREGEX)) {
-            loginMessage.postValue(R.string.alert_email)
+            loginMessage.postValue(R.string.notice_error_email)
         } else {
             login()
         }

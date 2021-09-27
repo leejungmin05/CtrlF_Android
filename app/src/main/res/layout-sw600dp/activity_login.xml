@@ -119,7 +119,7 @@
             android:layout_marginEnd="30dp"
             android:backgroundTint="@color/skyblue"
             android:onClick="@{() -> viewModel.checkLogin()}"
-            android:text="@string/button_login"
+            android:text="@string/label_login"
             app:layout_constraintEnd_toEndOf="@id/loginCardView"
             app:layout_constraintStart_toStartOf="@+id/loginCardView"
             app:layout_constraintTop_toBottomOf="@+id/loginCardView" />
