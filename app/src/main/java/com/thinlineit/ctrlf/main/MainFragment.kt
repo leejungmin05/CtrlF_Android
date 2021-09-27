@@ -22,7 +22,7 @@ import com.thinlineit.ctrlf.notes.NotesAdapter
 class MainFragment : Fragment() {
 
     private val mainViewModel by viewModels<MainViewModel>()
-    private val noteAdapter = NotesAdapter(TYPE_HORIZONTAL) { noteId ->
+    private val noteAdapter = NotesAdapter(NotesAdapter.TYPE_HORIZONTAL) { noteId ->
         this.findNavController().navigate(
             MainFragmentDirections.actionMainFragmentToPageActivity(noteId)
         )
@@ -97,10 +97,5 @@ class MainFragment : Fragment() {
             recyclerView.visibility = View.VISIBLE
             textView.visibility = View.GONE
         }
-    }
-
-    companion object {
-        private const val TYPE_VERTICAL = 1
-        private const val TYPE_HORIZONTAL = 2
     }
 }

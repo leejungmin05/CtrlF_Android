@@ -13,7 +13,7 @@ import com.thinlineit.ctrlf.databinding.FragmentNotesBinding
 
 class NotesFragment : Fragment() {
     private val noteViewModel by viewModels<NotesViewModel>()
-    private val noteAdapter = NotesAdapter(TYPE_VERTICAL) { noteId ->
+    private val noteAdapter = NotesAdapter(NotesAdapter.TYPE_VERTICAL) { noteId ->
         this.findNavController().navigate(
             NotesFragmentDirections.actionNotesFragmentToPageActivity(noteId)
         )
@@ -40,10 +40,5 @@ class NotesFragment : Fragment() {
             Log.e("loadNote Exception", it)
         }
         return binding.root
-    }
-
-    companion object {
-        private const val TYPE_VERTICAL = 1
-        private const val TYPE_HORIZONTAL = 2
     }
 }

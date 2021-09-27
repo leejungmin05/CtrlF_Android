@@ -16,8 +16,8 @@ class NotesAdapter(private val viewType: Int, private val clickListener: (Int) -
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         when (viewType) {
-            TYPE_VERTICAL -> ViewHolder1.from(parent)
-            else -> ViewHolder2.from(parent)
+            TYPE_VERTICAL -> VerticalViewHolder.from(parent)
+            else -> HorizontalViewHolder.from(parent)
         }
 
     override fun getItemCount(): Int = noteList.size
@@ -26,13 +26,13 @@ class NotesAdapter(private val viewType: Int, private val clickListener: (Int) -
         val noteDao = noteList[position]
         val resource = holder.itemView.resources
         when (viewType) {
-            TYPE_VERTICAL -> (holder as ViewHolder1).bind(
+            TYPE_VERTICAL -> (holder as VerticalViewHolder).bind(
                 noteDao,
                 clickListener,
                 position,
                 resource
             )
-            else -> (holder as ViewHolder2).bind(
+            else -> (holder as HorizontalViewHolder).bind(
                 noteDao,
                 clickListener,
                 position,
@@ -43,7 +43,7 @@ class NotesAdapter(private val viewType: Int, private val clickListener: (Int) -
 
     override fun getItemViewType(position: Int): Int = viewType
 
-    class ViewHolder1(private val dataBinding: ListItemNoteBinding) :
+    class VerticalViewHolder(private val dataBinding: ListItemNoteBinding) :
         RecyclerView.ViewHolder(dataBinding.root) {
         fun bind(
             noteDao: NoteDao,
@@ -70,12 +70,12 @@ class NotesAdapter(private val viewType: Int, private val clickListener: (Int) -
                     parent,
                     false
                 )
-                return ViewHolder1(dataBinding)
+                return VerticalViewHolder(dataBinding)
             }
         }
     }
 
-    class ViewHolder2(private val dataBinding: ListItemMainNoteBinding) :
+    class HorizontalViewHolder(private val dataBinding: ListItemMainNoteBinding) :
         RecyclerView.ViewHolder(dataBinding.root) {
         fun bind(
             noteDao: NoteDao,
@@ -102,7 +102,7 @@ class NotesAdapter(private val viewType: Int, private val clickListener: (Int) -
                     parent,
                     false
                 )
-                return ViewHolder2(dataBinding)
+                return HorizontalViewHolder(dataBinding)
             }
         }
     }
@@ -114,8 +114,8 @@ class NotesAdapter(private val viewType: Int, private val clickListener: (Int) -
     }
 
     companion object {
-        private const val NOTEDESIGN_NUM = 15
-        private const val TYPE_VERTICAL = 1
-        private const val TYPE_HORIZONTAL = 2
+        const val NOTEDESIGN_NUM = 15
+        const val TYPE_VERTICAL = 1
+        const val TYPE_HORIZONTAL = 2
     }
 }
