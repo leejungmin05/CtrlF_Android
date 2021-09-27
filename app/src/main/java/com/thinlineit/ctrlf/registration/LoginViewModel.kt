@@ -1,6 +1,5 @@
 package com.thinlineit.ctrlf.registration
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,10 +15,6 @@ class LoginViewModel : ViewModel() {
         UserRepository()
     }
 
-    private val _eventClick = MutableLiveData<Event<Boolean>>()
-    val eventClick: LiveData<Event<Boolean>>
-        get() = _eventClick
-
     val loginStatus = MutableLiveData<Event<Status>>()
     val email = MutableLiveData("")
     val password = MutableLiveData("")
@@ -34,10 +29,6 @@ class LoginViewModel : ViewModel() {
                 loginStatus.postValue(Event(Status.FAILURE))
             }
         }
-    }
-
-    fun startRegisterActivity() {
-        _eventClick.value = Event(true)
     }
 
     fun checkLogin() {

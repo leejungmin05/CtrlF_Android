@@ -20,7 +20,8 @@
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".registration.CompleteRegisterActivity" />
         <activity android:name=".logout.LogoutActivity" />
-        <activity android:name=".registration.LoginActivity" />
+        <activity android:name=".registration.LoginActivity"
+            android:launchMode="singleTask"/>
         <activity android:name=".issue.detail.IssueDetailActivity" />
         <activity
             android:name=".splash.SplashActivity"

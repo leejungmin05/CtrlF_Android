@@ -125,14 +125,13 @@
             app:layout_constraintTop_toBottomOf="@+id/loginCardView" />
 
         <Button
-            android:id="@+id/registerBtn"
+            android:id="@+id/registerButton"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="30dp"
             android:backgroundTint="@color/skyblue"
-            android:onClick="@{() -> viewModel.startRegisterActivity()}"
             android:text="@string/button_register"
             app:layout_constraintStart_toStartOf="@id/loginBtn"
             app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
