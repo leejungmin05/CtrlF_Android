@@ -12,7 +12,7 @@ import com.thinlineit.ctrlf.databinding.FragmentPasswordBinding
 import com.thinlineit.ctrlf.util.Status
 import com.thinlineit.ctrlf.util.base.RegistrationBaseFragment
 import com.thinlineit.ctrlf.util.observeIfNotHandled
-import com.thinlineit.ctrlf.util.setBackground
+import com.thinlineit.ctrlf.util.setBackgroundById
 import kotlinx.android.synthetic.main.fragment_password.*
 
 class EnterPasswordFragment :
@@ -36,7 +36,7 @@ class EnterPasswordFragment :
 
         viewModel.passwordStatus.observeIfNotHandled(viewLifecycleOwner) {
             if (it == Status.FAILURE) {
-                binding.regPassword.setBackground(R.drawable.border_edittext_error)
+                binding.regPassword.setBackgroundById(R.drawable.background_round_red)
                 binding.regPassword.startAnimation(anim)
             } else {
                 navController.navigate(

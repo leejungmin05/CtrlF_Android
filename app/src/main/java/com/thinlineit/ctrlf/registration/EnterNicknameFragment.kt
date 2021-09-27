@@ -12,7 +12,7 @@ import com.thinlineit.ctrlf.databinding.FragmentNicknameBinding
 import com.thinlineit.ctrlf.util.Status
 import com.thinlineit.ctrlf.util.base.RegistrationBaseFragment
 import com.thinlineit.ctrlf.util.observeIfNotHandled
-import com.thinlineit.ctrlf.util.setBackground
+import com.thinlineit.ctrlf.util.setBackgroundById
 import kotlinx.android.synthetic.main.fragment_nickname.*
 
 class EnterNicknameFragment :
@@ -36,7 +36,7 @@ class EnterNicknameFragment :
 
         viewModel.nicknameStatus.observeIfNotHandled(viewLifecycleOwner) {
             if (it == Status.FAILURE) {
-                binding.regNickname.setBackground(R.drawable.border_edittext_error)
+                binding.regNickname.setBackgroundById(R.drawable.background_round_red)
                 binding.regNickname.startAnimation(anim)
             } else {
                 navController.navigate(

@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_issue_1"
+            android:src="@drawable/icon_issue_lightgreen"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
