@@ -22,7 +22,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/label_issue_title" />
+            tools:text="@string/label_title" />
 
         <TextView
             android:id="@+id/issueId"
@@ -32,7 +32,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/issueTitle"
-            tools:text="@string/label_issue_id" />
+            tools:text="@string/label_id" />
 
         <TextView
             android:id="@+id/issueContent"
@@ -42,7 +42,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/issueId"
-            tools:text="@string/label_issue_content" />
+            tools:text="@string/label_content" />
 
         <TextView
             android:id="@+id/issueRegistrationDate"
@@ -52,7 +52,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/issueContent"
-            tools:text="@string/label_issue_registration_date" />
+            tools:text="@string/label_registration_date" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

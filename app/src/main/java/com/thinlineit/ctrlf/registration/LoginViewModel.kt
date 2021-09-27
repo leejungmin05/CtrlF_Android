@@ -23,7 +23,7 @@ class LoginViewModel : ViewModel() {
     val loginStatus = MutableLiveData<Event<Status>>()
     val email = MutableLiveData("")
     val password = MutableLiveData("")
-    val loginMessage = MutableLiveData<Int>(R.string.default_text)
+    val loginMessage = MutableLiveData<Int>(R.string.empty_text)
 
     private fun login() {
         viewModelScope.launch {

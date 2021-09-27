@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="40dp"
-                android:text="@string/notice_complete_registration"
+                android:text="@string/notice_registration_complete"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="22sp"
