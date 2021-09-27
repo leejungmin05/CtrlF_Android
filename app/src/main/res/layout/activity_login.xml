@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/ic_background"
+        android:background="@drawable/background_graphpaper"
         tools:context=".registration.LoginActivity">
 
         <androidx.appcompat.widget.Toolbar
@@ -31,7 +31,7 @@
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
                 android:padding="10dp"
-                android:src="@drawable/ic_logo" />
+                android:src="@drawable/icon_logo" />
         </androidx.appcompat.widget.Toolbar>
 
         <androidx.cardview.widget.CardView
@@ -71,8 +71,8 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="30dp"
                     android:layout_marginEnd="20dp"
-                    android:background="@drawable/border_edittext_default"
                     android:hint="@string/hint_email"
+                    android:background="@drawable/background_round_white"
                     android:paddingStart="10dp"
                     android:singleLine="true"
                     android:text="@={viewModel.email}"
@@ -87,8 +87,8 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="20dp"
-                    android:background="@drawable/border_edittext_default"
                     android:hint="@string/hint_pwd"
+                    android:background="@drawable/background_round_white"
                     android:inputType="textPassword"
                     android:paddingStart="10dp"
                     android:singleLine="true"
@@ -106,7 +106,7 @@
                     android:textColor="@color/red"
                     app:layout_constraintStart_toStartOf="@+id/loginPwd"
                     app:layout_constraintTop_toBottomOf="@+id/loginPwd"
-                    tools:text="로그인 확인 text" />
+                    tools:text="@string/notice_login_check" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 

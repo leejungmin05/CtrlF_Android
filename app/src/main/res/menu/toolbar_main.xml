@@ -5,7 +5,7 @@
     <item
         android:id="@+id/userCircleBtn"
         android:title="@string/label_userCircleBtn"
-        android:icon="@drawable/ic_user_circle_btn"
+        android:icon="@drawable/icon_user_circle_button"
         app:showAsAction="always">
     </item>
 </menu>

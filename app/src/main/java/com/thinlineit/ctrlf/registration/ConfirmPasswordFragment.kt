@@ -12,7 +12,7 @@ import com.thinlineit.ctrlf.databinding.FragmentConfirmPasswordBinding
 import com.thinlineit.ctrlf.util.Status
 import com.thinlineit.ctrlf.util.base.BaseFragment
 import com.thinlineit.ctrlf.util.observeIfNotHandled
-import com.thinlineit.ctrlf.util.setBackground
+import com.thinlineit.ctrlf.util.setBackgroundById
 
 class ConfirmPasswordFragment :
     BaseFragment<FragmentConfirmPasswordBinding>(R.layout.fragment_confirm_password) {
@@ -35,9 +35,9 @@ class ConfirmPasswordFragment :
 
         viewModel.passwordConfirmStatus.observeIfNotHandled(viewLifecycleOwner) {
             if (it == Status.FAILURE) {
-                binding.regPassword2.setBackground(R.drawable.border_edittext_error)
+                binding.regPassword2.setBackgroundById(R.drawable.background_round_red)
             } else {
-                binding.regPassword2.setBackground(R.drawable.border_edittext_default)
+                binding.regPassword2.setBackgroundById(R.drawable.background_round_white)
             }
         }
 

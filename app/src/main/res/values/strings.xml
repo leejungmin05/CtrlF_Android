@@ -24,12 +24,14 @@
     <string name="button_back">"뒤로 가기"</string>
     <string name="button_cancel_wide">"취  소"</string>
     <string name="notice_confirm_go_back_to_email">"[뒤로 가기]를 누르시면 \n이메일 인증을 새로 받으셔야합니다."</string>
+    <string name="notice_email_code_check">"코드 null text"</string>
 
     <!-- login viewModel-->
     <string name="notice_error_email">이메일 형식이 올바르지 않습니다.</string>
     <string name="notice_input_email_pwd">이메일과 비밀번호를 입력해주세요.</string>
     <string name="notice_check_email_pwd">이메일과 비밀번호를 확인해주세요.</string>
     <string name="notice_error_pwd">비밀번호가 일치하지 않습니다.</string>
+    <string name="notice_login_check">로그인 확인 text</string>
 
     <!-- register viewModel-->
     <string name="notice_nickname_valid">닉네임은 2~10자, 공백이나 특수문자는 허용하지 않습니다.</string>
@@ -40,6 +42,8 @@
     <string name="notice_code_confirm_text">입력하신 이메일에서 코드를 확인해주세요.</string>
     <string name="notice_error_nickname">이미 존재하는 닉네임입니다.</string>
     <string name="notice_exist_email">이미 존재하는 이메일입니다.</string>
+    비밀번호 유효성 text
+    <string name="notice_pwd_valid_check">비밀번호 유효성 text</string>
 
     <string name="notice_complete_registration">"환영합니다.\n가입이 완료되었습니다.\n\n로그인 후 이용해주세요."</string>
 
