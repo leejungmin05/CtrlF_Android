@@ -25,54 +25,23 @@
             android:theme="?attr/actionBarTheme"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-<<<<<<< HEAD
             app:menu="@menu/toolbar_main">
-=======
-            app:layout_constraintVertical_chainStyle="packed"
-            >
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/pageActivityToolBar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/white"
-                android:elevation="4dp"
-                android:minHeight="?attr/actionBarSize"
-                android:theme="?attr/actionBarTheme"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:menu="@menu/toolbar_main">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:adjustViewBounds="true"
-                    android:padding="10dp"
-                    android:src="@drawable/icon_logo" />
-            </androidx.appcompat.widget.Toolbar>
->>>>>>> dev
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
                 android:padding="10dp"
-                android:src="@drawable/ic_logo" />
+                android:src="@drawable/icon_logo" />
         </androidx.appcompat.widget.Toolbar>
-
 
         <androidx.slidingpanelayout.widget.SlidingPaneLayout
             android:id="@+id/slidingPaneLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-<<<<<<< HEAD
-            android:background="@drawable/ic_background"
+            android:background="@drawable/background_graphpaper"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/pageActivityToolBar">
-=======
-            android:background="@drawable/background_graphpaper"
-            app:layout_constraintTop_toBottomOf="@id/pageActivityToolBarLayout"
-            app:layout_constraintBottom_toBottomOf="parent">
->>>>>>> dev
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/pageTopicFragmentContainerView"
