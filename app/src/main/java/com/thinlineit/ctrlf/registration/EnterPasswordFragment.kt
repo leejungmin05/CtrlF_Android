@@ -36,7 +36,7 @@ class EnterPasswordFragment :
 
         viewModel.passwordStatus.observeIfNotHandled(viewLifecycleOwner) {
             if (it == Status.FAILURE) {
-                binding.regPassword.setBackground(R.drawable.border_edittext_error)
+                binding.regPassword.setBackground(R.drawable.background_round_red)
                 binding.regPassword.startAnimation(anim)
             } else {
                 navController.navigate(

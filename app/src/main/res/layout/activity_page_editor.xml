@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".page.PageEditorActivity"
-        android:background="@drawable/ic_background">
+        android:background="@drawable/background_graphpaper">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -34,7 +34,7 @@
             app:layout_constraintTop_toBottomOf="@+id/toolbar"
             android:text="@string/Topic"
             android:textColor="@color/white"
-            android:background="@drawable/topic_background_border"
+            android:background="@drawable/background_round_onlyleft_purple"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
@@ -66,7 +66,7 @@
             android:text="@string/complete"
             app:layout_constraintTop_toTopOf="@+id/pageText"
             app:layout_constraintEnd_toEndOf="@+id/tabLayout"
-            android:background="@drawable/complete_background_border"
+            android:background="@drawable/background_round_onlyright_purple"
             android:paddingStart="30dp"
             android:paddingEnd="30dp"
             android:elevation="5dp"
@@ -83,12 +83,12 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:elevation="1dp"
-            android:background="@drawable/tab_background_border"
+            android:background="@drawable/background_tab_round_onlytop"
             app:tabGravity="fill"
             app:tabMode="fixed"
             app:tabTextColor="@color/purple"
             app:tabSelectedTextColor="@color/purple"
-            app:tabBackground="@drawable/tab_background"
+            app:tabBackground="@drawable/background_selector_tab"
             app:tabIndicatorColor="@color/purple"
             app:layout_constraintTop_toBottomOf="@+id/pageText"
             android:id="@+id/tabLayout">

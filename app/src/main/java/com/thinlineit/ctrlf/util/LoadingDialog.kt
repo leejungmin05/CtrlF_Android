@@ -17,7 +17,7 @@ class LoadingDialog(context: Context) : Dialog(context) {
         Glide
             .with(context)
             .asGif()
-            .load(R.drawable.ic_loading_logo_gif)
+            .load(R.drawable.gif_loading_logo)
             .into(progressView)
 
         setCanceledOnTouchOutside(false)

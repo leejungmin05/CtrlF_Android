@@ -36,7 +36,7 @@ class EnterEmailCodeFragment :
 
         viewModel.codeStatus.observeIfNotHandled(viewLifecycleOwner) {
             if (it == Status.FAILURE) {
-                binding.regCode.setBackground(R.drawable.border_edittext_error)
+                binding.regCode.setBackground(R.drawable.background_round_red)
                 binding.regCode.startAnimation(anim)
             } else {
                 navController.navigate(R.id.action_registerCodeFragment_to_registerNicknameFragment)

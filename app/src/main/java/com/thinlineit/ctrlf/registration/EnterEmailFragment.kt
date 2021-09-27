@@ -34,7 +34,7 @@ class EnterEmailFragment : RegistrationBaseFragment<FragmentEmailBinding>(R.layo
 
         viewModel.emailStatus.observeIfNotHandled(viewLifecycleOwner) {
             if (it == Status.FAILURE) {
-                binding.regEmail.setBackground(R.drawable.border_edittext_error)
+                binding.regEmail.setBackground(R.drawable.background_round_red)
                 binding.regEmail.startAnimation(anim)
             } else {
                 navController.navigate(R.id.action_registerEmailFragment_to_registerCodeFragment)

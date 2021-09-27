@@ -36,7 +36,7 @@ class EnterNicknameFragment :
 
         viewModel.nicknameStatus.observeIfNotHandled(viewLifecycleOwner) {
             if (it == Status.FAILURE) {
-                binding.regNickname.setBackground(R.drawable.border_edittext_error)
+                binding.regNickname.setBackground(R.drawable.background_round_red)
                 binding.regNickname.startAnimation(anim)
             } else {
                 navController.navigate(

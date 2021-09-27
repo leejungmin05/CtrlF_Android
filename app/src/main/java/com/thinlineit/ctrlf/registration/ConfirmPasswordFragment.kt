@@ -35,9 +35,9 @@ class ConfirmPasswordFragment :
 
         viewModel.passwordConfirmStatus.observeIfNotHandled(viewLifecycleOwner) {
             if (it == Status.FAILURE) {
-                binding.regPassword2.setBackground(R.drawable.border_edittext_error)
+                binding.regPassword2.setBackground(R.drawable.background_round_red)
             } else {
-                binding.regPassword2.setBackground(R.drawable.border_edittext_default)
+                binding.regPassword2.setBackground(R.drawable.background_round_white)
             }
         }
 

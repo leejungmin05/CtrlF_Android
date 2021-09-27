@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <integer-array name="notes">
-        <item>@drawable/ic_note_1</item>
-        <item>@drawable/ic_note_2</item>
-        <item>@drawable/ic_note_3</item>
-        <item>@drawable/ic_note_4</item>
-        <item>@drawable/ic_note_5</item>
-        <item>@drawable/ic_note_6</item>
-        <item>@drawable/ic_note_7</item>
-        <item>@drawable/ic_note_8</item>
-        <item>@drawable/ic_note_9</item>
-        <item>@drawable/ic_note_10</item>
-        <item>@drawable/ic_note_11</item>
-        <item>@drawable/ic_note_12</item>
-        <item>@drawable/ic_note_13</item>
-        <item>@drawable/ic_note_14</item>
-        <item>@drawable/ic_note_15</item>
+        <item>@drawable/icon_note_pear</item>
+        <item>@drawable/icon_note_prelude</item>
+        <item>@drawable/icon_note_bluechalk</item>
+        <item>@drawable/icon_note_lavender</item>
+        <item>@drawable/icon_note_melrose</item>
+        <item>@drawable/icon_note_cornflowerblue</item>
+        <item>@drawable/icon_note_malibu</item>
+        <item>@drawable/icon_note_shakespeare</item>
+        <item>@drawable/icon_note_turquoiseblue</item>
+        <item>@drawable/icon_note_turquoise</item>
+        <item>@drawable/icon_note_aquamarine</item>
+        <item>@drawable/icon_note_shamrock</item>
+        <item>@drawable/icon_note_screamingreen</item>
+        <item>@drawable/icon_note_lima</item>
+        <item>@drawable/icon_note_greenyellow</item>
     </integer-array>
 
 </resources>

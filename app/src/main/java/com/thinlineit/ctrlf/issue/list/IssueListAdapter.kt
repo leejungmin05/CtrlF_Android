@@ -8,7 +8,6 @@ import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.ListItemIssueBinding
 import com.thinlineit.ctrlf.issue.IssueDao
 import com.thinlineit.ctrlf.util.BindingRecyclerViewAdapter
-import com.thinlineit.ctrlf.util.setBackground
 
 class IssueListAdapter(private val clickListener: (IssueDao) -> Unit) :
     RecyclerView.Adapter<IssueListAdapter.ViewHolder>(),
@@ -29,9 +28,9 @@ class IssueListAdapter(private val clickListener: (IssueDao) -> Unit) :
         RecyclerView.ViewHolder(dataBinding.root) {
         fun bind(issueDao: IssueDao, clickListener: (IssueDao) -> Unit, position: Int) {
             val resourceId: Int = when (position % 3) {
-                1 -> R.drawable.ic_issue_2
-                2 -> R.drawable.ic_issue_3
-                else -> R.drawable.ic_issue_1
+                1 -> R.drawable.icon_issue_prelude
+                2 -> R.drawable.icon_issue_bluechalk
+                else -> R.drawable.icon_issue_lightgreen
             }
             dataBinding.apply {
                 issueItem.setBackground(resourceId)
