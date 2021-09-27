@@ -43,6 +43,7 @@ class EnterEmailFragment : RegistrationBaseFragment<FragmentEmailBinding>(R.layo
 
         binding.backBtn.setOnClickListener {
             navController.navigate(R.id.action_registerEmailFragment_to_loginActivity)
+            requireActivity().finish()
         }
     }
 }

@@ -34,7 +34,6 @@ class LoginActivity : AppCompatActivity() {
 
         viewModel.eventClick.observeIfNotHandled(this) {
             RegistrationActivity.start(this)
-            finish()
         }
     }
 
