@@ -42,7 +42,6 @@
     <string name="notice_code_confirm_text">입력하신 이메일에서 코드를 확인해주세요.</string>
     <string name="notice_error_nickname">이미 존재하는 닉네임입니다.</string>
     <string name="notice_exist_email">이미 존재하는 이메일입니다.</string>
-    비밀번호 유효성 text
     <string name="notice_pwd_valid_check">비밀번호 유효성 text</string>
 
     <string name="notice_complete_registration">"환영합니다.\n가입이 완료되었습니다.\n\n로그인 후 이용해주세요."</string>
