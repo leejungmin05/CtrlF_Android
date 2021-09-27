@@ -19,7 +19,7 @@
             android:name=".registration.RegistrationActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".registration.CompleteRegisterActivity" />
-        <activity android:name=".main.LogoutActivity" />
+        <activity android:name=".logout.LogoutActivity" />
         <activity android:name=".registration.LoginActivity" />
         <activity android:name=".issue.detail.IssueDetailActivity" />
         <activity
