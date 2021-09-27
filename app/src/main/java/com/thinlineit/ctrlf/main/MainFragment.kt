@@ -22,7 +22,7 @@ import com.thinlineit.ctrlf.notes.NotesAdapter
 class MainFragment : Fragment() {
 
     private val mainViewModel by viewModels<MainViewModel>()
-    private val noteAdapter = NotesAdapter { noteId ->
+    private val noteAdapter = NotesAdapter(NotesAdapter.TYPE_HORIZONTAL) { noteId ->
         this.findNavController().navigate(
             MainFragmentDirections.actionMainFragmentToPageActivity(noteId)
         )

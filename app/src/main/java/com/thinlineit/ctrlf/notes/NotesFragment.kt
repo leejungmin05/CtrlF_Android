@@ -13,11 +13,12 @@ import com.thinlineit.ctrlf.databinding.FragmentNotesBinding
 
 class NotesFragment : Fragment() {
     private val noteViewModel by viewModels<NotesViewModel>()
-    private val noteAdapter = NotesAdapter { noteId ->
+    private val noteAdapter = NotesAdapter(NotesAdapter.TYPE_VERTICAL) { noteId ->
         this.findNavController().navigate(
             NotesFragmentDirections.actionNotesFragmentToPageActivity(noteId)
         )
     }
+    // TODO : 앱바 버튼 클릭 시 로그아웃액티비티로 전환하는 로직 구현
 
     override fun onCreateView(
         inflater: LayoutInflater,
