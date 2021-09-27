@@ -23,8 +23,8 @@
             android:id="@+id/action_main_fragment_to_issue_detail_activity"
             app:destination="@id/issue_detail_activity" />
         <action
-            android:id="@+id/action_main_fragment_to_logout_fragment"
-            app:destination="@id/logout_fragment" />
+            android:id="@+id/action_main_fragment_to_logout_activity"
+            app:destination="@id/logout_activity" />
     </fragment>
 
     <fragment
@@ -33,15 +33,9 @@
         tools:layout="@layout/fragment_notes">
         <action
             android:id="@+id/action_notes_fragment_to_page_activity"
-            app:destination="@id/page_activity"
-            app:enterAnim="@anim/slide_in_right"
-            app:popEnterAnim="@anim/slide_in_right" />
-        <action
-            android:id="@+id/action_page_fragment_to_page_fragment"
-            app:destination="@id/topic_title_list_fragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:popEnterAnim="@anim/slide_in_right" />
+            app:destination="@id/page_activity" />
     </fragment>
+
     <activity
         android:id="@+id/page_activity"
         android:name="com.thinlineit.ctrlf.page.PageActivity"
@@ -62,6 +56,7 @@
             app:enterAnim="@anim/slide_in_right"
             app:popEnterAnim="@anim/slide_in_right" />
     </fragment>
+
     <activity
         android:id="@+id/issue_detail_activity"
         android:name="com.thinlineit.ctrlf.issue.detail.IssueDetailActivity"
@@ -70,10 +65,10 @@
             android:name="issueInfo"
             app:argType="com.thinlineit.ctrlf.issue.IssueDao" />
     </activity>
-    <fragment
-        android:id="@+id/logout_fragment"
-        android:name="com.thinlineit.ctrlf.main.LogoutFragment"
-        tools:layout="@layout/fragment_logout">
-    </fragment>
+
+    <activity
+        android:id="@+id/logout_activity"
+        android:name="com.thinlineit.ctrlf.main.LogoutActivity"
+        tools:layout="@layout/activity_logout"/>
 
 </navigation>

@@ -7,39 +7,35 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thinlineit.ctrlf.notes.NoteDao
 import com.thinlineit.ctrlf.notes.TopicDao
-import com.thinlineit.ctrlf.repository.network.NoteService
-import com.thinlineit.ctrlf.repository.network.PageService
-import com.thinlineit.ctrlf.repository.network.TopicService
+import com.thinlineit.ctrlf.repository.PageRepository
 import kotlinx.coroutines.launch
 
 class PageViewModel(noteId: Int) : ViewModel() {
 
-    val noteIdString = MutableLiveData(noteId.toString())
+    private val pageRepository: PageRepository by lazy {
+        PageRepository()
+    }
+    private val noteIdString = MutableLiveData(noteId.toString())
+    private val pageInfo = MutableLiveData<PageDao>()
+    private val noteDetailInfo = MutableLiveData<NoteDao>()
+
+    private val _openSlidingPane = MutableLiveData<Boolean>()
+    val openSlidingPane: LiveData<Boolean>
+        get() = _openSlidingPane
+
     val noteInfo = MutableLiveData<List<TopicDao>>(listOf())
-    val pageInfo = MutableLiveData<PageDao>()
-    val noteDetailInfo = MutableLiveData<NoteDao>()
-
-    private val _slidingOpen = MutableLiveData<Boolean>()
-
-    val slidingOpen: LiveData<Boolean>
-        get() = _slidingOpen
     val topicInfo = MutableLiveData<List<PageDao>>()
-
     val content = Transformations.map(pageInfo) { it.content }
     val pageTitle = Transformations.map(pageInfo) { it.title }
     val topicTitleTop = MutableLiveData<String>()
-
-    // TODO : add noteDatail created_at and Topic,Page Num
     val noteDetailTitle = Transformations.map(noteDetailInfo) { it.title }
 
-    // TODO : add Page Num
     lateinit var topicDetailTitle: String
-    lateinit var topicDetailCreatedAt: String
 
     init {
         loadNoteInfo()
         loadNoteDetailInfo()
-        _slidingOpen.value = false
+        _openSlidingPane.value = false
     }
 
     fun openPage(pageId: Int) {
@@ -48,56 +44,41 @@ class PageViewModel(noteId: Int) : ViewModel() {
 
     private fun loadPage(pageId: Int) {
         viewModelScope.launch {
-            try {
-                pageInfo.setValue(PageService.retrofitService.getPage(pageId.toString()))
-            } catch (e: Exception) {
-            }
+            pageInfo.setValue(pageRepository.loadPage(pageId))
         }
     }
 
     private fun loadNoteInfo() {
         viewModelScope.launch {
-            try {
-                val noteId = noteIdString.value ?: return@launch
-                noteInfo.setValue(NoteService.retrofitService.getNote(noteId))
-            } catch (e: Exception) {
-            }
+            val noteId = noteIdString.value ?: return@launch
+            noteInfo.setValue(pageRepository.loadNoteInfo(noteId))
         }
     }
 
     private fun loadNoteDetailInfo() {
         viewModelScope.launch {
-            try {
-                val noteId = noteIdString.value ?: return@launch
-                noteDetailInfo.setValue(
-                    NoteService.retrofitService.getNoteDetail(Integer.parseInt(noteId))
-                )
-            } catch (e: Exception) {
-            }
+            val noteId = noteIdString.value ?: return@launch
+            noteDetailInfo.setValue(pageRepository.loadNoteDetailInfo(noteId))
         }
     }
 
     fun closeSliding() {
-        _slidingOpen.value = false
+        _openSlidingPane.value = false
     }
 
-    fun selectTopic(topicId: Int, topicTitle: String, topicCreatedAt: String) {
+    fun selectTopic(topicId: Int, topicTitle: String) {
         loadPageList(topicId)
         topicDetailTitle = topicTitle
         topicTitleTop.value = topicTitle
-        topicDetailCreatedAt = topicCreatedAt
     }
 
     private fun loadPageList(topicId: Int) {
         viewModelScope.launch {
-            try {
-                topicInfo.setValue(TopicService.retrofitService.getPageList(topicId.toString()))
-            } catch (e: Exception) {
-            }
+            topicInfo.setValue(pageRepository.loadPageList(topicId))
         }
     }
 
     fun openSliding() {
-        _slidingOpen.value = true
+        _openSlidingPane.value = true
     }
 }

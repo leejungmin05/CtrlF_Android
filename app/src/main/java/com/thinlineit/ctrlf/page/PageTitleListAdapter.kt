@@ -1,6 +1,7 @@
 package com.thinlineit.ctrlf.page
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -11,7 +12,8 @@ import com.thinlineit.ctrlf.util.BindingRecyclerViewAdapter
 
 class PageTitleListAdapter(private val clickListener: (Int) -> Unit) :
     RecyclerView.Adapter<PageTitleListAdapter.ViewHolder>(),
-    BindingRecyclerViewAdapter<List<PageDao>> {
+    BindingRecyclerViewAdapter<List<PageDao>>,
+    ItemTouchHelperListener {
 
     private var pageList = emptyList<PageDao>()
 
@@ -23,6 +25,15 @@ class PageTitleListAdapter(private val clickListener: (Int) -> Unit) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val pageDao = pageList[position]
         holder.bind(pageDao, clickListener)
+    }
+    // TODO: 준비중입니다 토스트 메세지 -> 다이얼로그
+    override fun onDelete(context: Context) {
+        TopicFragmentDialog(context).topicDialog(context)
+    }
+
+    // TODO: 준비중입니다 토스트 메세지 -> 다이얼로그
+    override fun onModify(context: Context) {
+        TopicFragmentDialog(context).topicDialog(context)
     }
 
     class ViewHolder(private val dataBinding: ListItemPageTitleBinding) :
