@@ -39,6 +39,6 @@
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="@id/mainIssueItemImage"
             app:layout_constraintTop_toTopOf="@id/mainIssueItemImage"
-            tool:text="@string/title" />
+            tool:text="@string/label_title" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

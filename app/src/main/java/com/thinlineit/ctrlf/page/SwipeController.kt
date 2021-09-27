@@ -146,7 +146,7 @@ class SwipeController(private val listener: ItemTouchHelperListener) :
                 itemView.bottom - margin,
             ).also { deleteButton ->
                 canvas.drawRoundRect(deleteButton, corner, corner, deleteButtonPaint)
-                val text = itemView.context.getString(R.string.general_delete)
+                val text = itemView.context.getString(R.string.button_general_delete)
                 canvas.drawText(
                     text,
                     deleteButton.centerX() - textPaint.measureText(text) / 2,
@@ -162,7 +162,7 @@ class SwipeController(private val listener: ItemTouchHelperListener) :
                 itemView.bottom - margin
             ).also { modifyButton ->
                 canvas.drawRoundRect(modifyButton, corner, corner, modifyButtonPaint)
-                val text = itemView.context.getString(R.string.general_modify)
+                val text = itemView.context.getString(R.string.button_general_modify)
                 canvas.drawText(
                     text,
                     modifyButton.centerX() - textPaint.measureText(text) / 2,

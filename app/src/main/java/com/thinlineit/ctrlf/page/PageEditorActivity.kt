@@ -42,8 +42,8 @@ class PageEditorActivity : FragmentActivity() {
         pager.adapter = pageEditorAdapter
 
         TabLayoutMediator(tabLayout, pager) { tab, position ->
-            if (position == 0) tab.setText(R.string.Edit)
-            else tab.setText(R.string.Preview)
+            if (position == 0) tab.setText(R.string.button_edit)
+            else tab.setText(R.string.button_preview)
         }.attach()
     }
 

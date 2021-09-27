@@ -90,7 +90,7 @@
             app:layout_constraintVertical_weight="1"
             android:layout_margin="10dp"
             android:backgroundTint="@color/white"
-            android:text="@string/add_topic"
+            android:text="@string/button_add_topic"
             android:textColor="@color/light_dark_gray"
             app:layout_constraintTop_toBottomOf="@id/topicListRecyclerView"
             app:layout_constraintBottom_toBottomOf="parent" />

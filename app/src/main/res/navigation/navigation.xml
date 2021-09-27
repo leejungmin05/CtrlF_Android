@@ -42,7 +42,7 @@
     <activity
         android:id="@+id/page_activity"
         android:name="com.thinlineit.ctrlf.page.PageActivity"
-        android:label="@string/notes_fragment"
+        android:label="@string/fragment_notes"
         tools:layout="@layout/activity_page">
         <argument
             android:name="noteId"

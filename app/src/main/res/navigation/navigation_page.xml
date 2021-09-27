@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/topic_title_list_fragment"
         android:name="com.thinlineit.ctrlf.page.TopicTitleListFragment"
-        android:label="@string/notes_fragment"
+        android:label="@string/fragment_notes"
         tools:layout="@layout/fragment_topic_title">
         <action
             android:id="@+id/action_notes_fragment_to_page_fragment"
@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/page_title_list_fragment"
         android:name="com.thinlineit.ctrlf.page.PageTitleListFragment"
-        android:label="@string/notes_fragment"
+        android:label="@string/fragment_notes"
         tools:layout="@layout/fragment_page_title">
         <action
             android:id="@+id/action_page_fragment_to_page_fragment"

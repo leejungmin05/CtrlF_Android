@@ -59,7 +59,7 @@ class MainFragment : Fragment() {
                 )
             }
             showAllIssueTextView.setOnClickListener {
-                Toast.makeText(activity, R.string.alert_prepare, Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, R.string.notice_prepare, Toast.LENGTH_LONG).show()
             }
             this@MainFragment.mainViewModel.issueList.observe(viewLifecycleOwner) {
                 updateIssueViewVisibility(

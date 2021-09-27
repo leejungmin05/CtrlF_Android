@@ -42,11 +42,11 @@ class RegistrationViewModel : ViewModel() {
         }
     }
 
-    val emailMessage = MutableLiveData<Int>(R.string.default_text)
-    val nicknameMessage = MutableLiveData<Int>(R.string.default_text)
-    val passwordMessage = MutableLiveData<Int>(R.string.default_text)
-    val passwordConfirmMessage = MutableLiveData<Int>(R.string.default_text)
-    val codeMessage = MutableLiveData<Int>(R.string.default_text)
+    val emailMessage = MutableLiveData<Int>(R.string.empty_text)
+    val nicknameMessage = MutableLiveData<Int>(R.string.empty_text)
+    val passwordMessage = MutableLiveData<Int>(R.string.empty_text)
+    val passwordConfirmMessage = MutableLiveData<Int>(R.string.empty_text)
+    val codeMessage = MutableLiveData<Int>(R.string.empty_text)
 
     val emailInvoke: () -> Unit = this::checkDuplicateEmail
     val codeInvoke: () -> Unit = this::checkCodeValid
@@ -57,14 +57,14 @@ class RegistrationViewModel : ViewModel() {
     fun checkPasswordSame() {
         if (!passwordConfirm.value.isValid(PASSWORD_REGEX)) {
             passwordConfirmStatus.value = Event(Status.FAILURE)
-            passwordConfirmMessage.postValue(R.string.alert_pwd)
+            passwordConfirmMessage.postValue(R.string.notice_error_password)
             return
         }
         if (password.value == passwordConfirm.value) {
             passwordConfirmStatus.postEvent(Status.SUCCESS)
-            passwordConfirmMessage.postValue(R.string.default_text)
+            passwordConfirmMessage.postValue(R.string.empty_text)
         } else {
-            passwordConfirmMessage.postValue(R.string.alert_pwd)
+            passwordConfirmMessage.postValue(R.string.notice_error_password)
             passwordConfirmStatus.postEvent(Status.FAILURE)
         }
     }
@@ -78,17 +78,17 @@ class RegistrationViewModel : ViewModel() {
 
     fun checkDuplicateNickname() {
         if (!nickName.value.isValid(NICKNAME_REGEX)) {
-            nicknameMessage.postValue(R.string.alert_nickname_valid)
+            nicknameMessage.postValue(R.string.notice_nickname_valid_condition)
             nicknameStatus.postEvent(Status.FAILURE)
             return
         }
         viewModelScope.launch(Dispatchers.IO) {
             if (userRepository.checkNickname(nickName.value.toString())) {
                 nicknameStatus.postEvent(Status.SUCCESS)
-                nicknameMessage.postValue(R.string.default_text)
+                nicknameMessage.postValue(R.string.empty_text)
             } else {
                 nicknameStatus.postEvent(Status.FAILURE)
-                nicknameMessage.postValue(R.string.error_nickname)
+                nicknameMessage.postValue(R.string.notice_exist_nickname)
             }
         }
     }
@@ -96,20 +96,20 @@ class RegistrationViewModel : ViewModel() {
     fun checkCodeValid() {
         if (code.value.toString().isEmpty()) {
             codeStatus.value = Event(Status.FAILURE)
-            codeMessage.postValue(R.string.alert_code)
+            codeMessage.postValue(R.string.notice_enter_code)
             return
         }
         if (!code.value.isValid(CODE_REGEX)) {
-            codeMessage.postValue(R.string.alert_code_valid)
+            codeMessage.postValue(R.string.notice_check_code)
             codeStatus.value = Event(Status.FAILURE)
             return
         }
         viewModelScope.launch {
             if (userRepository.checkCode(code.value.toString())) {
                 codeStatus.postEvent(Status.SUCCESS)
-                codeMessage.postValue(R.string.default_text)
+                codeMessage.postValue(R.string.empty_text)
             } else {
-                codeMessage.postValue(R.string.error_code)
+                codeMessage.postValue(R.string.notice_code_is_not_valid)
                 codeStatus.value = Event(Status.FAILURE)
             }
         }
@@ -118,9 +118,9 @@ class RegistrationViewModel : ViewModel() {
     fun checkPasswordValid() {
         if (password.value.isValid(PASSWORD_REGEX)) {
             passwordStatus.value = Event(Status.SUCCESS)
-            passwordMessage.postValue(R.string.default_text)
+            passwordMessage.postValue(R.string.empty_text)
         } else {
-            passwordMessage.postValue(R.string.alert_pwd_valid)
+            passwordMessage.postValue(R.string.notice_password_valid_condition)
             passwordStatus.value = Event(Status.FAILURE)
         }
     }
@@ -128,16 +128,16 @@ class RegistrationViewModel : ViewModel() {
     fun checkDuplicateEmail() {
         if (!email.value.isValid(EMAIL_REGEX)) {
             emailStatus.postEvent(Status.FAILURE)
-            emailMessage.postValue(R.string.alert_email)
+            emailMessage.postValue(R.string.notice_error_email)
             return
         }
         viewModelScope.launch {
             if (userRepository.checkDuplicateEmail(email.value.toString())) {
-                emailMessage.postValue(R.string.default_text)
+                emailMessage.postValue(R.string.empty_text)
                 sendAuthEmail()
             } else {
                 emailStatus.postEvent(Status.FAILURE)
-                emailMessage.postValue(R.string.error_email)
+                emailMessage.postValue(R.string.notice_exist_email)
             }
         }
     }
@@ -146,9 +146,9 @@ class RegistrationViewModel : ViewModel() {
         viewModelScope.launch {
             if (userRepository.sendAuthCode(email.value.toString())) {
                 emailStatus.postEvent(Status.SUCCESS)
-                emailMessage.postValue(R.string.default_text)
+                emailMessage.postValue(R.string.empty_text)
             } else {
-                emailMessage.postValue(R.string.alert_email)
+                emailMessage.postValue(R.string.notice_error_email)
                 emailStatus.postEvent(Status.FAILURE)
             }
         }

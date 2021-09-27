@@ -70,7 +70,7 @@
             android:id="@+id/topicListRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintVertical_weight="7"
+            app:layout_constraintVertical_weight="15"
             android:layout_gravity="start"
             android:layout_marginTop="10dp"
             android:background="@color/dark_blue"
@@ -90,7 +90,7 @@
             app:layout_constraintVertical_weight="1"
             android:layout_margin="10dp"
             android:backgroundTint="@color/white"
-            android:text="@string/add_topic"
+            android:text="@string/button_add_topic"
             android:textColor="@color/light_dark_gray"
             app:layout_constraintTop_toBottomOf="@id/topicListRecyclerView"
             app:layout_constraintBottom_toBottomOf="parent" />

@@ -56,7 +56,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:text="@string/log_in"
+                    android:text="@string/label_login"
                     android:textColor="@color/black"
                     android:textSize="37sp"
                     android:textStyle="bold"
@@ -71,8 +71,8 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="30dp"
                     android:layout_marginEnd="20dp"
+                    android:hint="@string/hint_email"
                     android:background="@drawable/background_round_white"
-                    android:hint="@string/e_mail"
                     android:paddingStart="10dp"
                     android:singleLine="true"
                     android:text="@={viewModel.email}"
@@ -87,8 +87,8 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="20dp"
+                    android:hint="@string/hint_password"
                     android:background="@drawable/background_round_white"
-                    android:hint="@string/pwd"
                     android:inputType="textPassword"
                     android:paddingStart="10dp"
                     android:singleLine="true"
@@ -106,7 +106,7 @@
                     android:textColor="@color/red"
                     app:layout_constraintStart_toStartOf="@+id/loginPwd"
                     app:layout_constraintTop_toBottomOf="@+id/loginPwd"
-                    tools:text="로그인 확인 text" />
+                    tools:text="@string/notice_login_check" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
@@ -119,7 +119,7 @@
             android:layout_marginEnd="30dp"
             android:backgroundTint="@color/skyblue"
             android:onClick="@{() -> viewModel.checkLogin()}"
-            android:text="@string/log_in"
+            android:text="@string/button_login"
             app:layout_constraintEnd_toEndOf="@id/loginCardView"
             app:layout_constraintStart_toStartOf="@+id/loginCardView"
             app:layout_constraintTop_toBottomOf="@+id/loginCardView" />
@@ -133,7 +133,7 @@
             android:layout_marginEnd="30dp"
             android:backgroundTint="@color/skyblue"
             android:onClick="@{() -> viewModel.startRegisterActivity()}"
-            android:text="@string/register"
+            android:text="@string/button_register"
             app:layout_constraintStart_toStartOf="@id/loginBtn"
             app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
 
@@ -143,7 +143,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
             android:layout_marginTop="5dp"
-            android:text="@string/find_id"
+            android:text="@string/button_find_id"
             app:layout_constraintStart_toStartOf="@+id/registerBtn"
             app:layout_constraintTop_toBottomOf="@id/registerBtn" />
 
@@ -152,7 +152,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="7dp"
-            android:text="@string/find_pwd"
+            android:text="@string/button_find_password"
             app:layout_constraintStart_toEndOf="@+id/findId"
             app:layout_constraintTop_toTopOf="@+id/findId" />
     </androidx.constraintlayout.widget.ConstraintLayout>
