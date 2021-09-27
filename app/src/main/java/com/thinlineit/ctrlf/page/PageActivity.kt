@@ -1,13 +1,22 @@
 package com.thinlineit.ctrlf.page
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.DisplayMetrics
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.ActivityPageBinding
+<<<<<<< HEAD
 import com.thinlineit.ctrlf.util.LoadingDialog
+=======
+import com.thinlineit.ctrlf.main.LogoutActivity
+import kotlin.properties.Delegates
+import kotlinx.android.synthetic.main.activity_page.pageActivityToolBar
+>>>>>>> dev
 import kotlinx.android.synthetic.main.activity_page.slidingPaneLayout
 
 class PageActivity : AppCompatActivity() {
@@ -27,14 +36,12 @@ class PageActivity : AppCompatActivity() {
             this.pageViewModel = pageViewModel
             lifecycleOwner = this@PageActivity
         }
-        pageViewModel.slidingOpen.observe(
-            this,
-            Observer {
-                if (it == true && slidingPaneLayout.isSlideable) {
-                    slidingPaneLayout.open()
-                    pageViewModel.closeSliding()
-                }
+        pageViewModel.openSlidingPane.observe(this) {
+            if (it == true && slidingPaneLayout.isSlideable) {
+                slidingPaneLayout.open()
+                pageViewModel.closeSliding()
             }
+<<<<<<< HEAD
         )
 
         val loadingDialog = LoadingDialog(this)
@@ -47,6 +54,35 @@ class PageActivity : AppCompatActivity() {
             }
         )
 
+=======
+        }
+
+        setSupportActionBar(pageActivityToolBar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        // TODO: Do not use deprecated methods.
+        val display = windowManager.defaultDisplay
+        val outMetrics = DisplayMetrics()
+        display.getMetrics(outMetrics)
+
+        val density = resources.displayMetrics.density
+        dpWidth = if (outMetrics.widthPixels > 1080) (outMetrics.widthPixels / density) / 6
+        else (outMetrics.widthPixels / density) / 3
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.toolbar_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+        R.id.userCircleBtn -> {
+            val logout = Intent(this, LogoutActivity::class.java)
+            startActivity(logout)
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
+>>>>>>> dev
         /*
         // floating button for 0.2.1 version
         binding.fabButton.setOnClickListener {
@@ -67,6 +103,7 @@ class PageActivity : AppCompatActivity() {
 
     companion object {
         const val NOTE_ID = "noteId"
+        var dpWidth by Delegates.notNull<Float>()
         const val PAGEINFO = "pageInfo"
     }
 }

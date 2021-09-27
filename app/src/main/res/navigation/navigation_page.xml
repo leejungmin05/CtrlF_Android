@@ -12,9 +12,7 @@
         tools:layout="@layout/fragment_topic_title">
         <action
             android:id="@+id/action_notes_fragment_to_page_fragment"
-            app:destination="@id/page_title_list_fragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:popEnterAnim="@anim/slide_in_right" />
+            app:destination="@id/page_title_list_fragment" />
     </fragment>
 
     <fragment
@@ -24,9 +22,7 @@
         tools:layout="@layout/fragment_page_title">
         <action
             android:id="@+id/action_page_fragment_to_page_fragment"
-            app:destination="@id/topic_title_list_fragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:popEnterAnim="@anim/slide_in_right" />
+            app:destination="@id/topic_title_list_fragment" />
     </fragment>
 
 </navigation>
