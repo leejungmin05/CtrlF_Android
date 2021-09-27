@@ -32,7 +32,7 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.eventClick.observeIfNotHandled(this) {
+        binding.registerButton.setOnClickListener {
             RegistrationActivity.start(this)
         }
     }
