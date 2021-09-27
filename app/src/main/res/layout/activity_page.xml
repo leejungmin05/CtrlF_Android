@@ -9,38 +9,31 @@
             name="pageViewModel"
             type="com.thinlineit.ctrlf.page.PageViewModel" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/pageActivityToolBarLayout"
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/pageActivityToolBar"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintVertical_weight="1"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white"
+            android:elevation="4dp"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed"
-            >
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/pageActivityToolBar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/white"
-                android:elevation="4dp"
-                android:minHeight="?attr/actionBarSize"
-                android:theme="?attr/actionBarTheme"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:menu="@menu/toolbar_main">
+            app:menu="@menu/toolbar_main">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:adjustViewBounds="true"
-                    android:padding="10dp"
-                    android:src="@drawable/ic_logo" />
-            </androidx.appcompat.widget.Toolbar>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:padding="10dp"
+                android:src="@drawable/ic_logo" />
+        </androidx.appcompat.widget.Toolbar>
 
 
         <androidx.slidingpanelayout.widget.SlidingPaneLayout
@@ -48,8 +41,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@drawable/ic_background"
-            app:layout_constraintTop_toBottomOf="@id/pageActivityToolBarLayout"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pageActivityToolBar">
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/pageTopicFragmentContainerView"
@@ -105,6 +98,7 @@
                     app:markdownString="@{pageViewModel.content}" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.slidingpanelayout.widget.SlidingPaneLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
