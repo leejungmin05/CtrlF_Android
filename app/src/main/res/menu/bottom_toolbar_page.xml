@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/addTopicPage"
-        android:icon="@drawable/ic_user_circle_btn"
+        android:icon="@drawable/icon_user_circle_button"
         app:showAsAction="always"
         android:title="추가"
         android:enabled="true">
