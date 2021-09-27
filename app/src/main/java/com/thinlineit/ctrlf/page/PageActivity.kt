@@ -7,17 +7,14 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.ActivityPageBinding
-<<<<<<< HEAD
-import com.thinlineit.ctrlf.util.LoadingDialog
-=======
 import com.thinlineit.ctrlf.main.LogoutActivity
+import com.thinlineit.ctrlf.util.LoadingDialog
 import kotlin.properties.Delegates
-import kotlinx.android.synthetic.main.activity_page.pageActivityToolBar
->>>>>>> dev
-import kotlinx.android.synthetic.main.activity_page.slidingPaneLayout
+import kotlinx.android.synthetic.main.activity_page.*
 
 class PageActivity : AppCompatActivity() {
     private val binding: ActivityPageBinding by lazy {
@@ -41,8 +38,7 @@ class PageActivity : AppCompatActivity() {
                 slidingPaneLayout.open()
                 pageViewModel.closeSliding()
             }
-<<<<<<< HEAD
-        )
+        }
 
         val loadingDialog = LoadingDialog(this)
 
@@ -53,9 +49,6 @@ class PageActivity : AppCompatActivity() {
                 else loadingDialog.dismiss()
             }
         )
-
-=======
-        }
 
         setSupportActionBar(pageActivityToolBar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
@@ -82,7 +75,6 @@ class PageActivity : AppCompatActivity() {
             true
         }
         else -> super.onOptionsItemSelected(item)
->>>>>>> dev
         /*
         // floating button for 0.2.1 version
         binding.fabButton.setOnClickListener {
