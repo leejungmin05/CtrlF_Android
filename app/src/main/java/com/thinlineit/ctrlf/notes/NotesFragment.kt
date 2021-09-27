@@ -15,6 +15,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.FragmentNotesBinding
+import com.thinlineit.ctrlf.util.LoadingDialog
 
 class NotesFragment : Fragment() {
     private val noteViewModel by viewModels<NotesViewModel>()
@@ -48,6 +49,12 @@ class NotesFragment : Fragment() {
             // TODO: Check if response body is empty
             Toast.makeText(context, it, Toast.LENGTH_LONG).show()
             Log.e("loadNote Exception", it)
+        }
+        val loadingDialog = LoadingDialog(this.requireContext())
+
+        noteViewModel.isLoading.observe(viewLifecycleOwner) {
+            if (it) loadingDialog.show()
+            else loadingDialog.dismiss()
         }
         return binding.root
     }

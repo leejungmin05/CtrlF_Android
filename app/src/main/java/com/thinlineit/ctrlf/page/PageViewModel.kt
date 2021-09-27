@@ -3,14 +3,16 @@ package com.thinlineit.ctrlf.page
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thinlineit.ctrlf.notes.NoteDao
 import com.thinlineit.ctrlf.notes.TopicDao
 import com.thinlineit.ctrlf.repository.PageRepository
-import kotlinx.coroutines.launch
+import com.thinlineit.ctrlf.repository.network.NoteService
+import com.thinlineit.ctrlf.repository.network.PageService
+import com.thinlineit.ctrlf.repository.network.TopicService
+import com.thinlineit.ctrlf.util.base.BaseViewModel
 
-class PageViewModel(noteId: Int) : ViewModel() {
+class PageViewModel(noteId: Int) : BaseViewModel() {
 
     private val pageRepository: PageRepository by lazy {
         PageRepository()
@@ -43,22 +45,33 @@ class PageViewModel(noteId: Int) : ViewModel() {
     }
 
     private fun loadPage(pageId: Int) {
-        viewModelScope.launch {
-            pageInfo.setValue(pageRepository.loadPage(pageId))
+        viewModelScope.loadingLaunch {
+            try {
+                pageInfo.setValue(PageService.retrofitService.getPage(pageId.toString()))
+            } catch (e: Exception) {
+            }
         }
     }
 
     private fun loadNoteInfo() {
-        viewModelScope.launch {
-            val noteId = noteIdString.value ?: return@launch
-            noteInfo.setValue(pageRepository.loadNoteInfo(noteId))
+        viewModelScope.loadingLaunch {
+            try {
+                val noteId = noteIdString.value ?: return@loadingLaunch
+                noteInfo.setValue(NoteService.retrofitService.getNote(noteId))
+            } catch (e: Exception) {
+            }
         }
     }
 
     private fun loadNoteDetailInfo() {
-        viewModelScope.launch {
-            val noteId = noteIdString.value ?: return@launch
-            noteDetailInfo.setValue(pageRepository.loadNoteDetailInfo(noteId))
+        viewModelScope.loadingLaunch {
+            try {
+                val noteId = noteIdString.value ?: return@loadingLaunch
+                noteDetailInfo.setValue(
+                    NoteService.retrofitService.getNoteDetail(Integer.parseInt(noteId))
+                )
+            } catch (e: Exception) {
+            }
         }
     }
 
@@ -73,8 +86,11 @@ class PageViewModel(noteId: Int) : ViewModel() {
     }
 
     private fun loadPageList(topicId: Int) {
-        viewModelScope.launch {
-            topicInfo.setValue(pageRepository.loadPageList(topicId))
+        viewModelScope.loadingLaunch {
+            try {
+                topicInfo.setValue(TopicService.retrofitService.getPageList(topicId.toString()))
+            } catch (e: Exception) {
+            }
         }
     }
 

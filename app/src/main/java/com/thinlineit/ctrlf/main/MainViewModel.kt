@@ -4,16 +4,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thinlineit.ctrlf.issue.IssueDao
 import com.thinlineit.ctrlf.main.viewpager.IdeaCountBannerFragment
 import com.thinlineit.ctrlf.notes.NoteDao
 import com.thinlineit.ctrlf.notes.NoteListDao
 import com.thinlineit.ctrlf.repository.network.NoteService
-import kotlinx.coroutines.launch
+import com.thinlineit.ctrlf.util.base.BaseViewModel
 
-class MainViewModel : ViewModel() {
+class MainViewModel : BaseViewModel() {
     private val _noteList = MutableLiveData<NoteListDao>()
     val noteList: LiveData<NoteListDao>
         get() = _noteList
@@ -40,7 +39,7 @@ class MainViewModel : ViewModel() {
     }
 
     private fun loadNote() {
-        viewModelScope.launch {
+        viewModelScope.loadingLaunch {
             try {
                 _noteList.value = NoteService.retrofitService.listNote(cursor)
                 /* TODO: Implement loading with cursor by scrolling

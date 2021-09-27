@@ -7,13 +7,14 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.thinlineit.ctrlf.R
 import com.thinlineit.ctrlf.databinding.ActivityPageBinding
 import com.thinlineit.ctrlf.main.LogoutActivity
+import com.thinlineit.ctrlf.util.LoadingDialog
 import kotlin.properties.Delegates
-import kotlinx.android.synthetic.main.activity_page.pageActivityToolBar
-import kotlinx.android.synthetic.main.activity_page.slidingPaneLayout
+import kotlinx.android.synthetic.main.activity_page.*
 
 class PageActivity : AppCompatActivity() {
     private val binding: ActivityPageBinding by lazy {
@@ -38,6 +39,16 @@ class PageActivity : AppCompatActivity() {
                 pageViewModel.closeSliding()
             }
         }
+
+        val loadingDialog = LoadingDialog(this)
+
+        pageViewModel.isLoading.observe(
+            this,
+            Observer {
+                if (it) loadingDialog.show()
+                else loadingDialog.dismiss()
+            }
+        )
 
         setSupportActionBar(pageActivityToolBar)
         supportActionBar?.setDisplayShowTitleEnabled(false)

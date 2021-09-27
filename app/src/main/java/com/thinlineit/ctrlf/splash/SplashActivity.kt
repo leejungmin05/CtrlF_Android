@@ -29,13 +29,14 @@ class SplashActivity : AppCompatActivity() {
     private fun loadSplashView() {
         Glide
             .with(this@SplashActivity)
-            .load(R.drawable.ic_splash_logo)
+            .asGif()
+            .load(R.drawable.ic_splash_logo_gif)
             .into(splashView)
     }
 
     private fun startFirstActivity() {
         CoroutineScope(Dispatchers.Default).launch {
-            delay(1500L)
+            delay(2000L)
             if (userRepository.mayLogin()) {
                 MainActivity.start(this@SplashActivity)
             } else {
