@@ -1,4 +1,4 @@
-package com.thinlineit.ctrlf.main
+package com.thinlineit.ctrlf.logout
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -14,7 +14,7 @@ class LogoutActivity : AppCompatActivity() {
         setContentView(R.layout.activity_logout)
         logoutBtn.setOnClickListener {
             deleteInfo()
-            finish()
+            finishAffinity()
             SplashActivity.relaunch(this)
         }
         cancelBtn.setOnClickListener {
@@ -27,6 +27,7 @@ class LogoutActivity : AppCompatActivity() {
         Application.preferenceUtil.setString(PASSWORD, "")
         Application.preferenceUtil.setString(TOKEN, "")
     }
+
     companion object {
         private const val TOKEN = "token"
         private const val EMAIL = "email"
